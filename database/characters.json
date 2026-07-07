@@ -1,0 +1,23 @@
+{
+    "MA001": {
+        "name": "Mama Akos",
+        "role": "Mother",
+        "personality": "Strict, Funny, Protective, Very dramatic",
+        "voice": "Ghanaian Female",
+        "status": "Main"
+    },
+    "PK001": {
+        "name": "Papa Kofi",
+        "role": "Father",
+        "personality": "Calm, Funny, Always laughing",
+        "voice": "Ghanaian Male",
+        "status": "Main"
+    },
+    "KF001": {
+        "name": "Kofi",
+        "role": "Son",
+        "personality": "Funny, Curious, Stubborn",
+        "voice": "Young Ghanaian Male",
+        "status": "Main"
+    }
+}

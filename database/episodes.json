@@ -1,0 +1,23 @@
+{
+    "EP001": {
+        "title": "Mama Akos Finds the Missing Money",
+        "setting": "Living Room / Kitchen",
+        "characters": [
+            "MA001",
+            "KF001"
+        ],
+        "status": "Planned",
+        "prompt_style": "High-drama, traditional Ghanaian household setting, intense facial expressions."
+    },
+    "EP002": {
+        "title": "Papa Kofi Tries to Cook",
+        "setting": "Kitchen Chaos",
+        "characters": [
+            "PK001",
+            "MA001",
+            "KF001"
+        ],
+        "status": "Draft",
+        "prompt_style": "Comedic, messy kitchen layout, vibrant cinematic colors."
+    }
+}
