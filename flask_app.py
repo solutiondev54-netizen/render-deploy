@@ -1,14 +1,13 @@
 import os
+import random
 from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS
 from dotenv import load_dotenv
 
 load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
 app = Flask(__name__)
-
-import random
-
-import random
+CORS(app)
 
 @app.route('/')
 def index():
@@ -16,20 +15,16 @@ def index():
 
 @app.route('/generate', methods=['POST'])
 def generate():
-    # A library of different stories
     stories = [
-        "EPISODE: EP002 - Jollof Retaliation\nMama Akos finds the pot empty!",
-        "EPISODE: EP003 - The Mask's Revenge\nThe wooden mask on the wall starts whispering.",
-        "EPISODE: EP004 - Market Mayhem\nKofi gets caught in a fabric deal gone wrong."
+        "EP002 - Jollof Retaliation: Mama Akos finds the pot empty!",
+        "EP003 - The Mask's Revenge: The wooden mask on the wall starts whispering.",
+        "EP004 - Market Mayhem: Kofi gets caught in a fabric deal gone wrong."
     ]
-    
-    # This picks one random story every time the button is clicked
     chosen_script = random.choice(stories)
     return jsonify({"script": chosen_script})
 
 @app.route('/render-video', methods=['POST'])
 def render_video():
-    # Using an open-access video stream from VideoJS that allows direct web embedding
     return jsonify({
         "status": "success",
         "video_url": "https://vjs.zencdn.net/v/oceans.mp4"
