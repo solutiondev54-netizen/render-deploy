@@ -8,17 +8,19 @@ app = Flask(__name__)
 
 import random
 
+import random
+
 @app.route('/generate', methods=['POST'])
 def generate():
-    # This is your list of different story options
-    story_options = [
-        "EPISODE: EP002 - The Jollof Thief\n\nMama Akos enters the kitchen and finds the pot completely empty. She screams!",
-        "EPISODE: EP003 - The Midnight Masquerade\n\nThe wooden mask on the wall starts whispering secrets in the middle of the night.",
-        "EPISODE: EP004 - Market Day Mayhem\n\nKofi tries to sell a fabric that isn't actually his. The market queen is not happy."
+    # A library of different stories
+    stories = [
+        "EPISODE: EP002 - Jollof Retaliation\nMama Akos finds the pot empty!",
+        "EPISODE: EP003 - The Mask's Revenge\nThe wooden mask on the wall starts whispering.",
+        "EPISODE: EP004 - Market Mayhem\nKofi gets caught in a fabric deal gone wrong."
     ]
     
-    # This picks one story randomly every time you click the button
-    chosen_script = random.choice(story_options)
+    # This picks one random story every time the button is clicked
+    chosen_script = random.choice(stories)
     return jsonify({"script": chosen_script})
 
 @app.route('/render-video', methods=['POST'])
