@@ -262,79 +262,63 @@
     <script>
         let latestRawScript = "";
 
-        function insertToken(text) {
-            const input = document.getElementById('prompt-input');
-            input.value += text;
-            input.focus();
-        }
-
-        function generateScript() {
-    console.log("DEBUG: Script Engine button clicked"); // Add this line
+function generateScript() {
     const btn = document.getElementById('script-btn');
-    // ... rest of your existing code
+    const workspace = document.getElementById('workspace');
+    const userPrompt = document.getElementById('prompt-input').value;
+
     btn.innerText = "WRITING...";
-    
+    workspace.innerHTML = "Sourcing computational layers...";
+
     fetch('/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: 'test' })
+        body: JSON.stringify({ prompt: userPrompt })
     })
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
-        console.log("Data received:", data); // 2. Check if this appears
-        alert("Success! " + data.script); // 3. A test to see if it works
+        if (data.script) {
+            latestRawScript = data.script;
+            workspace.innerHTML = marked.parse(data.script);
+        } else {
+            workspace.innerHTML = "Error: " + (data.error || "Unknown");
+        }
     })
-    .catch(error => {
-        console.error("Error:", error);
-        alert("Failed: " + error); // 4. This will tell you exactly why it's failing
+    .catch(err => {
+        workspace.innerHTML = "Connection failure: " + err;
     })
     .finally(() => {
         btn.innerText = "SCRIPT ENGINE";
     });
+}
+
+function renderVideo() {
+    const vBtn = document.getElementById('video-btn');
+    const feed = document.getElementById('video-feed');
+
+    vBtn.innerText = "RENDERING...";
+    feed.innerHTML = "Processing script segments into motion arrays...";
+
+    fetch('/render-video', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ script: latestRawScript })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.video_url) {
+            feed.innerHTML = `<video controls autoplay loop src="${data.video_url}"></video>`;
+        } else {
+            feed.innerHTML = "Rendering complete. Video payload built.";
         }
-            
-            .then(res => res.json())
-            .then(data => {
-                if(data.script) {
-                    latestRawScript = data.script;
-                    workspace.innerHTML = marked.parse(data.script);
-                } else {
-                    workspace.innerHTML = "Error: " + (data.error || "Unknown Exception");
-                }
-                btn.innerText = "Script Engine";
-            })
-            .catch(err => {
-                workspace.innerHTML = "Connection failure: " + err;
-                btn.innerText = "Script Engine";
-            });
-        }
-            const vBtn = document.getElementById('video-btn');
-            const feed = document.getElementById('video-feed');
-            
-            vBtn.innerText = "RENDERING...";
-            feed.innerHTML = "Processing script segments into motion arrays...";
-            
-            fetch('/render-video', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ script: latestRawScript })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if(data.status === "loading") {
-                    feed.innerHTML = `<span style="color: #cbd5e1;">${data.error}</span>`;
-                } else if(data.video_url) {
-                    feed.innerHTML = `<video controls autoplay loop src="${data.video_url}"></video>`;
-                } else {
-                    feed.innerHTML = "Rendering complete. Video payload built.";
-                }
-                vBtn.innerText = "Render Video";
-            })
-            .catch(err => {
-                feed.innerHTML = "Render link error.";
-                vBtn.innerText = "Render Video";
-            });
-        }
+    })
+    .catch(err => {
+        feed.innerHTML = "Render link error: " + err;
+    })
+    .finally(() => {
+        vBtn.innerText = "RENDER VIDEO";
+    });
+}
 
         function pushToSocial() {
             alert("Social Integration Node active. Transporting compiled file directly into YouTube upload queues!");
