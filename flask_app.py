@@ -15,16 +15,16 @@ def index():
 
 @app.route('/generate', methods=['POST'])
 def generate():
-    stories = [
-        "EP002 - Jollof Retaliation: Mama Akos finds the pot empty!",
-        "EP003 - The Mask's Revenge: The wooden mask on the wall starts whispering.",
-        "EP004 - Market Mayhem: Kofi gets caught in a fabric deal gone wrong."
-    ]
-    chosen_script = random.choice(stories)
-    return jsonify({"script": chosen_script})
+    data = request.get_json()
+    user_prompt = data.get('prompt', 'No prompt provided')
+    
+    # Process the prompt
+    response_text = f"Feature film based on: {user_prompt}. (System: Story logic processing...)"
+    return jsonify({"script": response_text})
 
 @app.route('/render-video', methods=['POST'])
 def render_video():
+    # Currently pointing to demo video
     return jsonify({
         "status": "success",
         "video_url": "https://vjs.zencdn.net/v/oceans.mp4"
