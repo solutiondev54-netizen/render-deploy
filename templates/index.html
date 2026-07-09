@@ -276,11 +276,11 @@
             btn.innerText = "WRITING...";
             workspace.innerHTML = "Sourcing computational layers via OpenRouter pipeline...";
             
-            fetch('/generate', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt: userPrompt })
-            })
+         fetch('https://render-deploy-xa2s.onrender.com/generate', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt: userPrompt })
+})
             .then(res => res.json())
             .then(data => {
                 if(data.script) {
