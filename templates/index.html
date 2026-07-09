@@ -269,18 +269,28 @@
         }
 
         function generateScript() {
-            const btn = document.getElementById('script-btn');
-            const workspace = document.getElementById('workspace');
-            const userPrompt = document.getElementById('prompt-input').value;
-
-            btn.innerText = "WRITING...";
-            workspace.innerHTML = "Sourcing computational layers via openrouter pipeline...":
-
-          fetch('/generate', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ prompt: userPrompt })
-})
+    console.log("Button clicked!"); // 1. Check if this appears in Inspect -> Console
+    const btn = document.getElementById('script-btn');
+    btn.innerText = "WRITING...";
+    
+    fetch('/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: 'test' })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Data received:", data); // 2. Check if this appears
+        alert("Success! " + data.script); // 3. A test to see if it works
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("Failed: " + error); // 4. This will tell you exactly why it's failing
+    })
+    .finally(() => {
+        btn.innerText = "SCRIPT ENGINE";
+    });
+        }
             
             .then(res => res.json())
             .then(data => {
