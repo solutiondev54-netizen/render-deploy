@@ -309,16 +309,18 @@ function renderVideo() {
     })
     .then(res => res.json())
     .then(data => {
-        if (data.video_url) {
+        // If data exists, show the video, otherwise show an error
+        if (data && data.video_url) {
             feed.innerHTML = `<video controls autoplay loop src="${data.video_url}" style="width:100%"></video>`;
         } else {
-            feed.innerText = "Rendering complete. Video payload built.";
+            feed.innerText = "Render status: Success, but no video stream detected.";
         }
     })
     .catch(err => {
         feed.innerText = "Render error: " + err;
     })
     .finally(() => {
+        // THIS IS THE KEY: This always happens, so the button never stays "RENDERING..."
         vBtn.innerText = "RENDER VIDEO";
     });
 }
