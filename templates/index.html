@@ -300,7 +300,7 @@ function renderVideo() {
     const feed = document.getElementById('video-feed');
 
     vBtn.innerText = "RENDERING...";
-    feed.innerHTML = "Processing script segments into motion arrays...";
+    feed.innerText = "Processing script segments into motion arrays...";
 
     fetch('/render-video', {
         method: 'POST',
@@ -310,13 +310,13 @@ function renderVideo() {
     .then(res => res.json())
     .then(data => {
         if (data.video_url) {
-            feed.innerHTML = `<video controls autoplay loop src="${data.video_url}"></video>`;
+            feed.innerHTML = `<video controls autoplay loop src="${data.video_url}" style="width:100%"></video>`;
         } else {
-            feed.innerHTML = "Rendering complete. Video payload built.";
+            feed.innerText = "Rendering complete. Video payload built.";
         }
     })
     .catch(err => {
-        feed.innerHTML = "Render link error: " + err;
+        feed.innerText = "Render error: " + err;
     })
     .finally(() => {
         vBtn.innerText = "RENDER VIDEO";
