@@ -267,8 +267,9 @@ function generateScript() {
     const workspace = document.getElementById('workspace');
     const userPrompt = document.getElementById('prompt-input').value;
 
+    // 1. Immediate visual feedback
     btn.innerText = "WRITING...";
-    workspace.innerHTML = "Sourcing computational layers...";
+    workspace.innerText = "Sourcing computational layers...";
 
     fetch('/generate', {
         method: 'POST',
@@ -277,17 +278,19 @@ function generateScript() {
     })
     .then(res => res.json())
     .then(data => {
+        // 2. Explicitly update the workspace
         if (data.script) {
             latestRawScript = data.script;
-            workspace.innerHTML = marked.parse(data.script);
+            workspace.innerText = data.script; // Using innerText to be safe
         } else {
-            workspace.innerHTML = "Error: " + (data.error || "Unknown");
+            workspace.innerText = "Error: No script returned.";
         }
     })
     .catch(err => {
-        workspace.innerHTML = "Connection failure: " + err;
+        workspace.innerText = "Connection failure: " + err;
     })
     .finally(() => {
+        // 3. Guaranteed reset of button text
         btn.innerText = "SCRIPT ENGINE";
     });
 }
