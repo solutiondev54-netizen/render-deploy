@@ -269,8 +269,9 @@
         }
 
         function generateScript() {
-    console.log("Button clicked!"); // 1. Check if this appears in Inspect -> Console
+    console.log("DEBUG: Script Engine button clicked"); // Add this line
     const btn = document.getElementById('script-btn');
+    // ... rest of your existing code
     btn.innerText = "WRITING...";
     
     fetch('/generate', {
