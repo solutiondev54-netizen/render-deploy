@@ -6,27 +6,20 @@ load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+import random
 
 @app.route('/generate', methods=['POST'])
 def generate():
-    local_script = (
-        "### EPISODE: EP002 - Jollof Retaliation\n\n"
-        "### SCENE 1\n\n"
-        "**INT. AKOS'S LIVING ROOM - DAY**\n\n"
-        "A vibrant Ghanaian living room clashing gloriously with Ankara print fabrics. "
-        "A large wooden mask hangs on the wall.\n\n"
-        "**MAMA AKOS** (60s, a complete force of nature) paces wildly like a caged lioness. "
-        "She stops and shakes her fist at the mask.\n\n"
-        "**MAMA AKOS**\n"
-        "> Mask! Do you see this humiliation?! Stolen! My masterpiece jollof... gone! "
-        "I put precisely seven scotch bonnet peppers for the true Ghanaian kick! "
-        "This is a culinary vendetta! You will tell me who did this, or I swear I will replace you with a picture of Beyoncé!\n\n"
-        "*She spins on her heel and marches into the kitchen, muttering about culinary traitors.*"
-    )
-    return jsonify({"script": local_script})
+    # This is your list of different story options
+    story_options = [
+        "EPISODE: EP002 - The Jollof Thief\n\nMama Akos enters the kitchen and finds the pot completely empty. She screams!",
+        "EPISODE: EP003 - The Midnight Masquerade\n\nThe wooden mask on the wall starts whispering secrets in the middle of the night.",
+        "EPISODE: EP004 - Market Day Mayhem\n\nKofi tries to sell a fabric that isn't actually his. The market queen is not happy."
+    ]
+    
+    # This picks one story randomly every time you click the button
+    chosen_script = random.choice(story_options)
+    return jsonify({"script": chosen_script})
 
 @app.route('/render-video', methods=['POST'])
 def render_video():
