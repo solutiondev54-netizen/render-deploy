@@ -23,7 +23,7 @@ else:
 def index():
     return render_template('index.html')
 
-@app.route('/generate', methods=['POST'])
+@app.route('/api/generate', methods=['POST'])
 def generate():
     if client is None:
         return jsonify({"script": "Error: AI Client not initialized. Check your API key in Render settings."})
