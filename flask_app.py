@@ -35,11 +35,11 @@ def generate():
         return jsonify({"script": "Error: Please enter a plot idea."})
     
     try:
-        # We use the most generic, widely supported model name
-        response = client.models.generate_content(
-    model='models/gemini-3.5-flash',
+        # Update the model string to use Gemini 2.5 Pro
+response = client.models.generate_content(
+    model='models/gemini-2.5-pro',
     contents=f"Write a comedy script for 'MAAE Core'. PLOT: {user_prompt}."
-        )
+)
         return jsonify({"script": response.text})
     except Exception as e:
         # This will tell us the exact Google API error in your browser
