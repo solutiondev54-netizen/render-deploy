@@ -29,8 +29,8 @@ def generate():
         return jsonify({"script": "Error: Please enter a plot idea."})
     
     try:
-        # Initializing the model with a stable version
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        # Change the line inside your generate() function:
+model = genai.GenerativeModel('gemini-3.5-flash')
         
         prompt_text = (
             f"Write a professional, hilarious comedy script for the show 'MAAE Core'. "
