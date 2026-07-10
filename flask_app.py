@@ -16,11 +16,29 @@ def index():
 @app.route('/generate', methods=['POST'])
 def generate():
     data = request.get_json()
-    user_prompt = data.get('prompt', 'No prompt provided')
+    user_prompt = data.get('prompt', '').strip()
     
-    # Process the prompt
-    response_text = f"Feature film based on: {user_prompt}. (System: Story logic processing...)"
-    return jsonify({"script": response_text})
+    # Requirement: Ensure the prompt is not empty
+    if not user_prompt:
+        return jsonify({"script": "Error: Please enter a plot or idea to generate a script."})
+    
+    # Generate full script structure
+    full_script = f"""
+    TITLE: {user_prompt.upper()}
+    
+    [SCENE START]
+    EXT. STUDIO LOCATION - DAY
+    
+    The scene opens with the energy of the prompt: {user_prompt}.
+    
+    CHARACTER A: We have to get this right this time.
+    
+    CHARACTER B: (Looking at the camera) The script says it's going to be legendary.
+    
+    [SCENE END]
+    """
+    
+    return jsonify({"script": full_script})
 
 @app.route('/render-video', methods=['POST'])
 def render_video():
