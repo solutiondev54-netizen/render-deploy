@@ -22,7 +22,8 @@ def generate():
         return jsonify({"script": "Error: Please enter a plot idea."})
     
     try:
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        # Change this line:
+        model = genai.GenerativeModel('gemini-1.5-flash-002')
         prompt_text = (
             f"Write a professional, hilarious comedy script for the show 'MAAE Core'. "
             f"CAST: Mama Akos (the boss), Kofi (the troublemaker), Papa Kofi (the mediator/absent-minded), and Akos (the sassy sister). "
