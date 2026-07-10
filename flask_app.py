@@ -24,7 +24,7 @@ def generate():
     
     try:
         # We are using the standard model identifier
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-1.5-flash-8b')
         
         prompt_text = (
             f"Write a professional, hilarious comedy script for the show 'MAAE Core'. "
