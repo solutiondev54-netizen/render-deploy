@@ -1,23 +1,15 @@
 import os
-import logging
-from flask import Flask, render_template, request, jsonify
-from flask_cors import CORS
 from google import genai
-from google.genai import types
 
-# Configure Logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+# 1. Explicitly pull the variable from the environment
+api_key = os.environ.get("GEMINI_API_KEY")
 
-app = Flask(__name__)
-CORS(app)
+# 2. Check if the key exists to prevent silent failures
+if not api_key:
+    raise ValueError("GEMINI_API_KEY is not set in your Render environment variables!")
 
-# Initialize the Gemini Client
-# The SDK automatically uses GEMINI_API_KEY from environment variables
-try:
-    client = genai.Client()
-except Exception as e:
-    logger.error(f"Failed to initialize Gemini Client: {e}")
+# 3. Initialize the client using the variable
+client = genai.Client(api_key=api_key)
 
 # --- Routes ---
 
