@@ -265,9 +265,14 @@
 function generateScript() {
     const btn = document.getElementById('script-btn');
     const workspace = document.getElementById('workspace');
-    const userPrompt = document.getElementById('prompt-input').value;
+    const userPrompt = document.getElementById('prompt-input').value.trim();
 
-    // 1. Immediate visual feedback
+    // Requirement: Check if prompt is empty
+    if (!userPrompt) {
+        alert("Please enter a story idea before running the engine!");
+        return; // Stops the function here
+    }
+
     btn.innerText = "WRITING...";
     workspace.innerText = "Sourcing computational layers...";
 
@@ -278,19 +283,15 @@ function generateScript() {
     })
     .then(res => res.json())
     .then(data => {
-        // 2. Explicitly update the workspace
         if (data.script) {
             latestRawScript = data.script;
-            workspace.innerText = data.script; // Using innerText to be safe
-        } else {
-            workspace.innerText = "Error: No script returned.";
+            workspace.innerText = data.script;
         }
     })
     .catch(err => {
         workspace.innerText = "Connection failure: " + err;
     })
     .finally(() => {
-        // 3. Guaranteed reset of button text
         btn.innerText = "SCRIPT ENGINE";
     });
 }
