@@ -7,14 +7,11 @@ app = Flask(__name__)
 CORS(app)
 
 # Configure Gemini with the API key from Render environment variables
-# Ensure your API_KEY environment variable is correctly set in Render
 api_key = os.environ.get("API_KEY")
-if api_key:
-    genai.configure(api_key=api_key)
+genai.configure(api_key=api_key)
 
 @app.route('/')
 def index():
-    # Ensure you have a templates/index.html file in your project
     return render_template('index.html')
 
 @app.route('/generate', methods=['POST'])
@@ -22,29 +19,23 @@ def generate():
     data = request.get_json()
     user_prompt = data.get('prompt', '').strip()
     
-    if not api_key:
-        return jsonify({"script": "System Error: API Key not configured."})
-    
     if not user_prompt:
         return jsonify({"script": "Error: Please enter a plot idea."})
     
     try:
-        # Change the line inside your generate() function:
-model = genai.GenerativeModel('gemini-1.5-flash')
+        # We are using the standard model identifier
+        model = genai.GenerativeModel('gemini-1.5-flash')
         
         prompt_text = (
             f"Write a professional, hilarious comedy script for the show 'MAAE Core'. "
-            f"CAST: Mama Akos (the boss), Kofi (the troublemaker), "
-            f"Papa Kofi (the mediator/absent-minded), and Akos (the sassy sister). "
+            f"CAST: Mama Akos, Kofi, Papa Kofi, and Akos. "
             f"PLOT: {user_prompt}. "
-            f"INSTRUCTIONS: Use standard script format with scene headings, "
-            f"character names, and dialogue. Ensure all four characters "
-            f"contribute to the comedy."
+            f"INSTRUCTIONS: Use standard script format."
         )
-        
         response = model.generate_content(prompt_text)
         return jsonify({"script": response.text})
     except Exception as e:
+        # This will return the exact API error to your browser
         return jsonify({"script": f"AI Engine Error: {str(e)}"})
 
 if __name__ == '__main__':
