@@ -30,7 +30,7 @@ def generate():
     
     try:
         # Initializing the model with a stable version
-        model = genai.GenerativeModel('gemini-1.5-flash-002')
+        model = genai.GenerativeModel('gemini-1.5-flash')
         
         prompt_text = (
             f"Write a professional, hilarious comedy script for the show 'MAAE Core'. "
