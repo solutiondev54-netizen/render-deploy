@@ -276,7 +276,7 @@ function generateScript() {
     btn.innerText = "WRITING...";
     workspace.innerText = "Sourcing computational layers...";
 
-    fetch('/generate', {
+    fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt: userPrompt })
