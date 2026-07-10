@@ -1,13 +1,13 @@
 import os
-import random
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
-from dotenv import load_dotenv
-
-load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
+import google.generativeai as genai
 
 app = Flask(__name__)
 CORS(app)
+
+# Configure Gemini with the API key from Render environment variables
+genai.configure(api_key=os.environ.get("API_KEY"))
 
 @app.route('/')
 def index():
@@ -18,31 +18,24 @@ def generate():
     data = request.get_json()
     user_prompt = data.get('prompt', '').strip()
     
-    # Requirement: Ensure the prompt is not empty
     if not user_prompt:
-        return jsonify({"script": "Error: Please enter a plot or idea to generate a script."})
+        return jsonify({"script": "Error: Please enter a plot idea."})
     
-    # Generate full script structure
-    full_script = f"""
-    TITLE: {user_prompt.upper()}
-    
-    [SCENE START]
-    EXT. STUDIO LOCATION - DAY
-    
-    The scene opens with the energy of the prompt: {user_prompt}.
-    
-    CHARACTER A: We have to get this right this time.
-    
-    CHARACTER B: (Looking at the camera) The script says it's going to be legendary.
-    
-    [SCENE END]
-    """
-    
-    return jsonify({"script": full_script})
+    try:
+        model = genai.GenerativeModel('gemini-1.5-flash')
+        prompt_text = (
+            f"Write a professional, hilarious comedy script for the show 'MAAE Core'. "
+            f"CAST: Mama Akos (the boss), Kofi (the troublemaker), Papa Kofi (the mediator/absent-minded), and Akos (the sassy sister). "
+            f"PLOT: {user_prompt}. "
+            f"INSTRUCTIONS: Use standard script format with scene headings, character names, and dialogue. Ensure all four characters contribute to the comedy."
+        )
+        response = model.generate_content(prompt_text)
+        return jsonify({"script": response.text})
+    except Exception as e:
+        return jsonify({"script": f"AI Engine Error: {str(e)}"})
 
 @app.route('/render-video', methods=['POST'])
 def render_video():
-    # Currently pointing to demo video
     return jsonify({
         "status": "success",
         "video_url": "https://vjs.zencdn.net/v/oceans.mp4"
