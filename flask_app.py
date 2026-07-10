@@ -30,11 +30,24 @@ def generate():
         return jsonify({"script": "Error: Please enter a plot idea."})
     
     try:
-        # Indented exactly 8 spaces to be inside the 'try' block
+        # Refined prompt for structured, script-based output
+        prompt = f"""
+        You are a professional comedy screenwriter. 
+        Write a short, hilarious comedy script for 'MAAE Core' (Management of Advanced Aesthetic Endeavors). 
+        
+        STRICT FORMATTING REQUIREMENTS:
+        1. Start directly with the Scene Heading (e.g., INT. OFFICE - DAY).
+        2. Use standard script format for Character Names (centered/uppercase) and Dialogue.
+        3. Keep it punchy and witty.
+        
+        PLOT: {user_prompt}
+        """
+        
         response = client.models.generate_content(
             model='models/gemini-3.5-flash',
-            contents=f"Write a comedy script for 'MAAE Core'. PLOT: {user_prompt}."
+            contents=prompt
         )
+        return jsonify({"script": response.text})
         return jsonify({"script": response.text})
     except Exception as e:
         # Indented exactly 8 spaces to be inside the 'except' block
