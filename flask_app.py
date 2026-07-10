@@ -37,7 +37,7 @@ def generate():
     try:
         # We use the most generic, widely supported model name
         response = client.models.generate_content(
-            model='gemini-1.5-flash',
+            model='gemini-3.5-flash',
             contents=f"Write a comedy script for 'MAAE Core'. PLOT: {user_prompt}."
         )
         return jsonify({"script": response.text})
