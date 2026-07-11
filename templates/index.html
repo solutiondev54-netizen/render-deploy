@@ -238,51 +238,42 @@
 </div>
 
 <script>
-    // 1. The Token Insertion Function
+    // 1. Token Insertion
     function insertToken(token) {
         const input = document.getElementById('prompt-input');
         input.value += (input.value ? ", " : "") + token;
     }
-function generateScript() {
-    const btn = document.getElementById('script-btn');
-    const workspace = document.getElementById('workspace');
-    const userPrompt = document.getElementById('prompt-input').value.trim();
 
-    // 1. Requirement: Check if prompt is empty
-    if (!userPrompt) {
-        alert("Please enter a story idea before running the engine!");
-        return; 
-    }
-
-    // 2. STABILITY: Disable button and change text immediately
-    btn.disabled = true;
-    btn.innerText = "WRITING...";
-    workspace.innerText = "Sourcing computational layers...";
-
-    // 3. The Fetch request
-    fetch('/api/generate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: userPrompt })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.script) {
-            latestRawScript = data.script;
-            workspace.innerText = data.script;
-        } else {
-            workspace.innerText = "Error: No script returned.";
+    // 2. Stable Script Generator
+    async function generateScript() {
+        const btn = document.getElementById('script-btn');
+        const input = document.getElementById('prompt-input');
+        const workspace = document.getElementById('workspace');
+        
+        if (!input.value.trim()) {
+            alert("Please enter a plot!");
+            return;
         }
-    })
-    .catch(err => {
-        workspace.innerText = "Connection failure: " + err;
-    })
-    .finally(() => {
-        // 4. STABILITY: Re-enable the button once the process finishes
-        btn.disabled = false;
-        btn.innerText = "SCRIPT ENGINE";
-    });
-}
+
+        btn.disabled = true;
+        btn.innerText = "WRITING...";
+        workspace.innerText = "Sourcing computational layers...";
+        
+        try {
+            const response = await fetch('/api/generate', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ prompt: input.value })
+            });
+            const data = await response.json();
+            workspace.innerText = data.script || "Error: No script returned.";
+        } catch (e) {
+            workspace.innerText = "Connection error: " + e;
+        } finally {
+            btn.disabled = false;
+            btn.innerText = "SCRIPT ENGINE";
+        }
+    }
         
 function renderVideo() {
     const vBtn = document.getElementById('video-btn');
