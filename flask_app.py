@@ -30,18 +30,22 @@ def generate():
         return jsonify({"script": "Error: Please enter a plot idea."})
     
     try:
-        # Refined prompt for structured, script-based output
+        # SYSTEM DIRECTIVE: Strict Character Enforcement
         prompt = f"""
-        You are a professional comedy screenwriter. 
-        Write a short, hilarious comedy script for 'MAAE Core'.
-        
-        STRICT CHARACTER RULES:
-        1. ONLY use characters from this list: Kofi, Mama Akos, Papa Kofi, Akos Kofi's sister.
-        2. DO NOT invent new characters. If the user prompt suggests others, ignore them.
-        
-        STRICT FORMATTING REQUIREMENTS:
-        1. Start directly with the Scene Heading (e.g., INT. OFFICE - DAY).
-        2. Use standard script format for Character Names (centered/uppercase).
+        You are the 'MAAE Core' Script Engine. 
+        Your task is to write professional, witty comedy scripts.
+
+        AUTHORIZED CAST ONLY:
+        - Kofi
+        - Mama Akos
+        - Papa Kofi
+        - Akos Kofi's sister
+
+        STRICT RULES:
+        1. IF a user prompt mentions a character NOT in the 'AUTHORIZED CAST', you MUST ignore that character. 
+        2. DO NOT create background characters or extras (like 'Chidi'). 
+        3. Keep the interaction between the authorized characters only.
+        4. If the prompt implies a conflict, resolve it using only the characters listed above.
         
         PLOT: {user_prompt}
         """
