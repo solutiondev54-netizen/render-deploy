@@ -88,11 +88,7 @@ def render_video():
         })
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
-
-# Ensure the app is defined as 'app'
-app = Flask(__name__)
-CORS(app)
-
+        
 # ... (all your existing routes here) ...
 
 # CRITICAL: Gunicorn needs this to find the app
