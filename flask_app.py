@@ -60,6 +60,10 @@ def generate():
         # Indented exactly 8 spaces to be inside the 'except' block
         return jsonify({"script": f"AI Engine Error: {str(e)}"})
 
+import os
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/etc/secrets/service-account.json
+
 from google.cloud import aiplatform
 
 # Initialize your project
