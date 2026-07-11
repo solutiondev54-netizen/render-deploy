@@ -33,12 +33,15 @@ def generate():
         # Refined prompt for structured, script-based output
         prompt = f"""
         You are a professional comedy screenwriter. 
-        Write a short, hilarious comedy script for 'MAAE Core' (Management of Advanced Aesthetic Endeavors). 
+        Write a short, hilarious comedy script for 'MAAE Core'.
+        
+        STRICT CHARACTER RULES:
+        1. ONLY use characters from this list: Kofi, Mama Akos, Papa Kofi, Akos Kofi's sister.
+        2. DO NOT invent new characters. If the user prompt suggests others, ignore them.
         
         STRICT FORMATTING REQUIREMENTS:
         1. Start directly with the Scene Heading (e.g., INT. OFFICE - DAY).
-        2. Use standard script format for Character Names (centered/uppercase) and Dialogue.
-        3. Keep it punchy and witty.
+        2. Use standard script format for Character Names (centered/uppercase).
         
         PLOT: {user_prompt}
         """
