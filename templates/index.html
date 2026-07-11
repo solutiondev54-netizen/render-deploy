@@ -3,328 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAAE Core Suite</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght=600;700&family=Inter:wght=300;400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <style>
-        :root {
-            --bg-gradient: linear-gradient(135deg, #0f111a 0%, #07080d 100%);
-            --panel-bg: rgba(255, 255, 255, 0.03);
-            --panel-border: rgba(255, 255, 255, 0.08);
-            --accent-gold: #d4af37;
-            --accent-glow: rgba(212, 175, 55, 0.15);
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-gradient);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 480px;
-            background: var(--panel-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--panel-border);
-            border-radius: 24px;
-            padding: 25px 20px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-        }
-
-        header { text-align: center; margin-bottom: 20px; }
-
-        h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            letter-spacing: 2px;
-            color: var(--accent-gold);
-            text-shadow: 0 0 15px var(--accent-glow);
-            margin-bottom: 4px;
-        }
-
-        .subtitle {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--accent-gold);
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .token-bank {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            margin-bottom: 12px;
-        }
-
-        .tag-token {
-            background: rgba(212, 175, 55, 0.06);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            color: var(--accent-gold);
-            padding: 5px 10px;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .tag-token.action {
-            background: rgba(99, 102, 241, 0.06);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            color: #818cf8;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--panel-border);
-            border-radius: 12px;
-            padding: 14px;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-        }
-
-        input[type="text"]:focus {
-            outline: none;
-            border-color: var(--accent-gold);
-        }
-
-        .engine-controls {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .action-btn {
-            background: transparent;
-            color: var(--accent-gold);
-            border: 1px solid var(--accent-gold);
-            padding: 15px 10px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .action-btn.video-btn {
-            border-color: #38bdf8;
-            color: #38bdf8;
-        }
-
-        .action-btn:active {
-            opacity: 0.7;
-        }
-
-        .output-workspace {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--panel-border);
-            border-radius: 16px;
-            padding: 20px;
-            min-height: 180px;
-            max-height: 320px;
-            overflow-y: auto;
-            font-size: 0.98rem;
-            line-height: 1.7;
-            color: #e5e7eb;
-            margin-bottom: 15px;
-        }
-
-        .output-workspace strong, .output-workspace b {
-            color: var(--accent-gold);
-            display: block;
-            margin-top: 14px;
-        }
-        
-        .output-workspace em, .output-workspace i {
-            color: #a8a29e;
-            font-style: italic;
-        }
-
-        .video-terminal {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            border-radius: 16px;
-            padding: 15px;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .video-container {
-            width: 100%;
-            aspect-ratio: 16/9;
-            background: #000;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            font-size: 0.85rem;
-            overflow: hidden;
-        }
-
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .tray {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .utility-btn {
-            background: transparent;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            color: var(--accent-gold);
-            padding: 7px 14px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .utility-btn.export {
-            border-color: rgba(244, 63, 94, 0.4);
-            color: #fb7185;
-        }
-    </style>
+    <title>MAAE Core | Production Studio Suite</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
     <div class="container">
-        <header>
-            <h1>MAAE Core</h1>
-            <div class="subtitle">Production Studio Suite</div>
-        </header>
+        <h1>MAAE Core</h1>
+        <div class="subtitle">Production Studio Suite</div>
 
         <div class="input-group">
-            <label>Studio Directive Manifest</label>
+            <label>STUDIO DIRECTIVE MANIFEST</label>
             <div class="token-bank">
-    <span class="tag-token" onclick="insertToken('Mama Akos')" style="cursor: pointer;">+ Mama Akos</span>
-    <span class="tag-token" onclick="insertToken('Kofi')" style="cursor: pointer;">+ Kofi</span>
-    <span class="tag-token" onclick="insertToken('Papa Kofi')" style="cursor: pointer;">+ Papa Kofi</span>
-    <span class="tag-token" onclick="insertToken('Akos Kofi\'s sister')" style="cursor: pointer;">+ Akos Kofi's sister</span>
-</div>
+                <span class="tag-token" onclick="insertToken('Mama Akos')">+ Mama Akos</span>
+                <span class="tag-token" onclick="insertToken('Kofi')">+ Kofi</span>
+                <span class="tag-token" onclick="insertToken('Papa Kofi')">+ Papa Kofi</span>
+                <span class="tag-token" onclick="insertToken('Akos Kofi\'s sister')">+ Akos Kofi's sister</span>
+            </div>
+            
+            <input type="text" id="prompt-input" placeholder="Enter plot idea here...">
+            <button id="script-btn" onclick="generateScript()">SCRIPT ENGINE</button>
+        </div>
 
-<script>
-    // 1. Token Insertion
-    function insertToken(token) {
-        const input = document.getElementById('prompt-input');
-        input.value += (input.value ? ", " : "") + token;
-    }
-    
-     <div class="input-group">
-    <input type="text" id="prompt-input" placeholder="Enter your story idea here...">
-    <button id="script-btn" onclick="generateScript()">SCRIPT ENGINE</button>
-</div>
+        <div id="workspace"></div>
 
-<div id="workspace"></div>
+        <div class="engine-controls">
+            <button id="video-btn" onclick="renderVideo()">RENDER VIDEO</button>
+        </div>
+        <div id="video-feed"></div>
+    </div>
 
-<div class="engine-controls">
-    <button id="video-btn" onclick="renderVideo()">RENDER VIDEO</button>
-</div>
-    
-    // 2. Stable Script Generator
-    async function generateScript() {
-        const btn = document.getElementById('script-btn');
-        const input = document.getElementById('prompt-input');
-        const workspace = document.getElementById('workspace');
-        
-        if (!input.value.trim()) {
-            alert("Please enter a plot!");
-            return;
+    <script>
+        // Appends character names to the input field
+        function insertToken(token) {
+            const input = document.getElementById('prompt-input');
+            input.value += (input.value ? ", " : "") + token;
         }
 
-        btn.disabled = true;
-        btn.innerText = "WRITING...";
-        workspace.innerText = "Sourcing computational layers...";
-        
-        try {
-            const response = await fetch('/api/generate', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ prompt: input.value })
-            });
-            const data = await response.json();
-            workspace.innerText = data.script || "Error: No script returned.";
-        } catch (e) {
-            workspace.innerText = "Connection error: " + e;
-        } finally {
-            btn.disabled = false;
-            btn.innerText = "SCRIPT ENGINE";
-        }
-    }
-        
-function renderVideo() {
-    const vBtn = document.getElementById('video-btn');
-    const feed = document.getElementById('video-feed');
+        // Logic to communicate with your flask_app.py
+        async function generateScript() {
+            const btn = document.getElementById('script-btn');
+            const input = document.getElementById('prompt-input');
+            const workspace = document.getElementById('workspace');
+            
+            if (!input.value.trim()) {
+                alert("Please enter a plot idea!");
+                return;
+            }
 
-    vBtn.innerText = "RENDERING...";
-    feed.innerText = "Processing script segments into motion arrays...";
-
-    fetch('/render-video', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ script: latestRawScript })
-    })
-    .then(res => res.json())
-    .then(data => {
-        // If data exists, show the video, otherwise show an error
-        if (data && data.video_url) {
-            feed.innerHTML = `<video controls autoplay loop src="${data.video_url}" style="width:100%"></video>`;
-        } else {
-            feed.innerText = "Render status: Success, but no video stream detected.";
-        }
-    })
-    .catch(err => {
-        feed.innerText = "Render error: " + err;
-    })
-    .finally(() => {
-        // THIS IS THE KEY: This always happens, so the button never stays "RENDERING..."
-        vBtn.innerText = "RENDER VIDEO";
-    });
-}
-
-        function pushToSocial() {
-            alert("Social Integration Node active. Transporting compiled file directly into YouTube upload queues!");
+            btn.disabled = true;
+            btn.innerText = "WRITING...";
+            workspace.innerText = "Sourcing computational layers...";
+            
+            try {
+                const response = await fetch('/api/generate', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ prompt: input.value })
+                });
+                const data = await response.json();
+                workspace.innerText = data.script || "Error: No script returned.";
+            } catch (e) {
+                workspace.innerText = "Connection error: " + e;
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "SCRIPT ENGINE";
+            }
         }
 
-        function copyText() {
-            const text = document.getElementById('workspace').innerText;
-            navigator.clipboard.writeText(text);
+        // Placeholder for video rendering logic
+        function renderVideo() {
+            const feed = document.getElementById('video-feed');
+            feed.innerText = "Processing script segments into motion arrays...";
         }
     </script>
-
 </body>
 </html>
