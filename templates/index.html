@@ -243,7 +243,18 @@
         const input = document.getElementById('prompt-input');
         input.value += (input.value ? ", " : "") + token;
     }
+    
+     <div class="input-group">
+    <input type="text" id="prompt-input" placeholder="Enter your story idea here...">
+    <button id="script-btn" onclick="generateScript()">SCRIPT ENGINE</button>
+</div>
 
+<div id="workspace"></div>
+
+<div class="engine-controls">
+    <button id="video-btn" onclick="renderVideo()">RENDER VIDEO</button>
+</div>
+    
     // 2. Stable Script Generator
     async function generateScript() {
         const btn = document.getElementById('script-btn');
