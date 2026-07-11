@@ -231,37 +231,20 @@
         <div class="input-group">
             <label>Studio Directive Manifest</label>
             <div class="token-bank">
-    <span class="tag-token" onclick="insertToken('Mama Akos')">+ Mama Akos</span>
-    <span class="tag-token" onclick="insertToken('Kofi')">+ Kofi</span>
-    <span class="tag-token" onclick="insertToken('Papa Kofi')">+ Papa Kofi</span>
-    <span class="tag-token" onclick="insertToken('Akos\'s sister')">+ Akos Kofi's sister</span>
-    <span class="tag-token action" onclick="insertToken('with catastrophic dramatic outrage ')">+ Outrage</span>
-    <span class="tag-token action" onclick="insertToken('with maximum petty comedy ')">+ Comedy</span>
-            </div>
-            <input type="text" id="prompt-input" value="EP002 - Jollof Retaliation.">
-        </div>
+    <span class="tag-token" onclick="insertToken('Mama Akos')" style="cursor: pointer;">+ Mama Akos</span>
+    <span class="tag-token" onclick="insertToken('Kofi')" style="cursor: pointer;">+ Kofi</span>
+    <span class="tag-token" onclick="insertToken('Papa Kofi')" style="cursor: pointer;">+ Papa Kofi</span>
+    <span class="tag-token" onclick="insertToken('Akos Kofi\'s sister')" style="cursor: pointer;">+ Akos Kofi's sister</span>
+</div>
 
-        <div class="engine-controls">
-            <button class="action-btn" id="script-btn" onclick="generateScript()">Script Engine</button>
-            <button class="action-btn video-btn" id="video-btn" onclick="renderVideo()">Render Video</button>
-        </div>
-
-        <div class="output-workspace" id="workspace"><p style="color:#64748b; text-align:center;">** STUDIO WORKSPACE ACTIVE **</p></div>
-        
-        <div class="video-terminal">
-            <label style="color: #38bdf8;">Production Video Feed</label>
-            <div class="video-container" id="video-feed">
-                No active rendering context detected.
-            </div>
-        </div>
-
-        <div class="tray">
-            <button class="utility-btn" onclick="copyText()">Copy Script</button>
-            <button class="utility-btn export" onclick="pushToSocial()">Export to YouTube</button>
-        </div>
-    </div>
-
-    <script>
+<script>
+// Ensure this function exists in your script block
+function insertToken(token) {
+    const input = document.getElementById('prompt-input');
+    // Appends the token with a comma for better AI readability
+    input.value += (input.value ? ", " : "") + token;
+}
+</script>
         let latestRawScript = "";
 
 function generateScript() {
