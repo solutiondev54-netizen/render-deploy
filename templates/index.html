@@ -71,10 +71,35 @@
             }
         }
 
-        // Placeholder for video rendering logic
-        function renderVideo() {
-            const feed = document.getElementById('video-feed');
-            feed.innerText = "Processing script segments into motion arrays...";
+        async function renderVideo() {
+    const vBtn = document.getElementById('video-btn');
+    const feed = document.getElementById('video-feed');
+    const workspace = document.getElementById('workspace');
+    
+    // Grab the script currently in the workspace
+    const scriptText = workspace.innerText;
+
+    vBtn.innerText = "RENDERING...";
+    feed.innerText = "Connecting to Video Production Node...";
+
+    try {
+        const response = await fetch('/api/render-video', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ script: scriptText })
+        });
+        const data = await response.json();
+        
+        if (data.status === "success") {
+            feed.innerHTML = `<video controls width="100%"><source src="${data.video_url}" type="video/mp4"></video>`;
+        } else {
+            feed.innerText = "Render failed: " + data.message;
+        }
+    } catch (e) {
+        feed.innerText = "Connection error: " + e;
+    } finally {
+        vBtn.innerText = "RENDER VIDEO";
+    }
         }
     </script>
 </body>
