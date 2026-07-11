@@ -60,25 +60,23 @@ def generate():
         # Indented exactly 8 spaces to be inside the 'except' block
         return jsonify({"script": f"AI Engine Error: {str(e)}"})
 
+# You will need to install: google-cloud-aiplatform
+from google.cloud import aiplatform
+
 @app.route('/api/render-video', methods=['POST'])
 def render_video():
-    try:
-        data = request.get_json()
-        script_content = data.get('script')
-
-        if not script_content:
-            return jsonify({"status": "error", "message": "No script provided for rendering."})
-
-        # INTEGRATION POINT: 
-        # Here is where you call your video service (e.g., Luma, Kling, Runway, etc.)
-        # For now, we return a success status to test your frontend connection.
-        print(f"Rendering script: {script_content[:50]}...") 
-        
-        # Once your video service returns a URL, update this to return it:
-        return jsonify({
-            "status": "success", 
-            "video_url": "https://example.com/your-generated-video.mp4" 
-        })
+    data = request.json
+    script = data.get('script')
+    
+    # Vertex AI initialization
+    aiplatform.init(project='your-project-id', location='us-central1')
+    
+    # We call the model directly
+    # This keeps everything in the Google AI ecosystem
+    video_response = aiplatform.Model('veo-model-id').predict(instances=[{"prompt": script}])
+    
+    return jsonify({"status": "success", "video_url": video_response.url})
+    
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
 
