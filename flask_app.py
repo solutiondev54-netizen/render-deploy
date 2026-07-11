@@ -60,6 +60,28 @@ def generate():
         # Indented exactly 8 spaces to be inside the 'except' block
         return jsonify({"script": f"AI Engine Error: {str(e)}"})
 
+@app.route('/api/render-video', methods=['POST'])
+def render_video():
+    try:
+        data = request.get_json()
+        script_content = data.get('script')
+
+        if not script_content:
+            return jsonify({"status": "error", "message": "No script provided for rendering."})
+
+        # INTEGRATION POINT: 
+        # Here is where you call your video service (e.g., Luma, Kling, Runway, etc.)
+        # For now, we return a success status to test your frontend connection.
+        print(f"Rendering script: {script_content[:50]}...") 
+        
+        # Once your video service returns a URL, update this to return it:
+        return jsonify({
+            "status": "success", 
+            "video_url": "https://example.com/your-generated-video.mp4" 
+        })
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)})
+
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
