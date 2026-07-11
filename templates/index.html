@@ -280,7 +280,7 @@ function generateScript() {
     btn.innerText = "WRITING...";
     workspace.innerText = "Sourcing computational layers...";
 
-    // 3. The Fetch request stays the same
+    // 3. The Fetch request
     fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -291,13 +291,15 @@ function generateScript() {
         if (data.script) {
             latestRawScript = data.script;
             workspace.innerText = data.script;
+        } else {
+            workspace.innerText = "Error: No script returned.";
         }
     })
     .catch(err => {
         workspace.innerText = "Connection failure: " + err;
     })
     .finally(() => {
-        // 4. STABILITY: Re-enable the button once the process finishes (success or error)
+        // 4. STABILITY: Re-enable the button once the process finishes
         btn.disabled = false;
         btn.innerText = "SCRIPT ENGINE";
     });
