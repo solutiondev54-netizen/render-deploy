@@ -63,7 +63,7 @@ def generate():
 from google.cloud import aiplatform
 
 # Initialize your project
-aiplatform.init(project="your-project-id", location="us-central1")
+aiplatform.init(project="maae-studio-production", location="us-central1").
 
 @app.route('/api/render-video', methods=['POST'])
 def render_video():
