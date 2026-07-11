@@ -1,80 +1,126 @@
 /* --- Global Studio Foundation --- */
 body {
-    background-color: #0B0E14;
+    background-color: #0D1117; /* Deep Midnight */
     color: #E2E8F0;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Poppins', system-ui, sans-serif; /* A more playful, rounded font */
+    padding: 20px;
     display: flex;
     justify-content: center;
-    padding: 20px;
 }
 
 .container {
     width: 100%;
-    max-width: 600px;
+    max-width: 650px;
 }
 
 /* --- The Header --- */
-h1 { font-size: 1.8rem; color: #FFFFFF; margin: 0; }
-.subtitle { color: #64748B; margin-bottom: 25px; }
+h1 { 
+    font-size: 2.5rem; 
+    color: #FFFFFF; 
+    margin: 0; 
+    font-weight: 800;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.subtitle { 
+    color: #94A3B8; 
+    margin-bottom: 30px; 
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
 
-/* --- Token Manifest Grid --- */
+/* --- The Playing Group Token Pills (The "Playful" Fix) --- */
 .token-bank {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Forces buttons into 2 neat columns */
-    gap: 12px;
-    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap; /* Still wraps, but each item is styled */
+    gap: 10px;
+    margin-bottom: 30px;
 }
 
 .tag-token {
     background: #1E293B;
-    border: 1px solid #334155;
-    color: #CBD5E1;
-    padding: 12px;
-    border-radius: 8px;
-    text-align: center;
+    border: none;
+    color: #F1F5F9;
+    padding: 10px 24px;
+    border-radius: 50px; /* THIS CREATES THE PERFECT PILL SHAPE */
+    font-weight: 600;
     cursor: pointer;
-    font-weight: 500;
-    transition: 0.2s;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 
-.tag-token:hover { background: #6366f1; color: white; }
+/* A playful, rainbow hover effect for the playing group */
+.tag-token:hover {
+    background: #6366f1; /* Primary Blue */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(99, 102, 241, 0.4);
+}
 
-/* --- Main Input Section --- */
+.tag-token:nth-child(1):hover { background: #F9A826; } /* Yellow */
+.tag-token:nth-child(2):hover { background: #16A34A; } /* Green */
+.tag-token:nth-child(3):hover { background: #C2410C; } /* Red */
+.tag-token:nth-child(4):hover { background: #9333EA; } /* Purple */
+
+/* --- Input Field (Still clean, but rounded) --- */
 #prompt-input {
     width: 100%;
-    background: #0B0E14;
-    border: 1px solid #374151;
-    padding: 16px;
-    border-radius: 10px;
+    background: #111827;
+    border: 2px solid #374151;
+    padding: 18px;
+    border-radius: 16px; /* Rounded input */
     color: white;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     box-sizing: border-box;
+    font-size: 1.1rem;
 }
 
-/* --- Pro Engine Buttons --- */
-#script-btn, #video-btn {
+#prompt-input:focus {
+    border-color: #6366f1;
+    outline: none;
+}
+
+/* --- The Hero Button (Big, Bubbly, and Energetic) --- */
+#script-btn {
     width: 100%;
-    padding: 16px;
-    border-radius: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    cursor: pointer;
+    /* A playful, energy-drink style gradient */
+    background: linear-gradient(270deg, #FF6978, #6366f1);
+    color: white;
+    padding: 18px;
+    border-radius: 50px; /* PILL SHAPE FOR THE MAIN BUTTON */
     border: none;
-    margin-bottom: 10px;
-    transition: transform 0.1s, opacity 0.2s;
+    font-weight: 800;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4);
 }
 
-#script-btn { background: linear-gradient(135deg, #6366f1, #a855f7); color: white; }
-#video-btn { background: #1E293B; color: #6366f1; border: 1px solid #6366f1; }
+#script-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(99, 102, 241, 0.6);
+    background: linear-gradient(270deg, #FF8A97, #8285f9);
+}
 
-/* --- Workspace Area --- */
+#script-btn:disabled {
+    background: #374151;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* --- The Workspace (Stylized like a screenplay) --- */
 #workspace {
     background: #11141d;
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #30363D;
-    min-height: 120px;
-    margin-top: 25px;
-    color: #C0C8D6;
-    font-size: 0.95rem;
+    padding: 40px; /* Extra padding for that "script page" feel */
+    border-radius: 16px;
+    border: 2px solid #30363D;
+    margin-top: 30px;
+    line-height: 1.8;
+    color: #E0E8F6;
+    font-size: 1rem;
+    /* THE STYLISH SCRIPT FONT */
+    font-family: 'Courier Prime', 'Courier New', monospace; 
+    white-space: pre-wrap;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
 }
