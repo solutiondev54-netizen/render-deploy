@@ -60,23 +60,28 @@ def generate():
         # Indented exactly 8 spaces to be inside the 'except' block
         return jsonify({"script": f"AI Engine Error: {str(e)}"})
 
-# You will need to install: google-cloud-aiplatform
 from google.cloud import aiplatform
+
+# Initialize your project
+aiplatform.init(project="your-project-id", location="us-central1")
 
 @app.route('/api/render-video', methods=['POST'])
 def render_video():
     data = request.json
     script = data.get('script')
     
-    # Vertex AI initialization
-    aiplatform.init(project='your-project-id', location='us-central1')
-    
-    # We call the model directly
-    # This keeps everything in the Google AI ecosystem
-    video_response = aiplatform.Model('veo-model-id').predict(instances=[{"prompt": script}])
-    
-    return jsonify({"status": "success", "video_url": video_response.url})
-    
+    try:
+        # This calls the video generative model directly
+        # You will replace 'veo-model-id' with the specific model endpoint name
+        response = aiplatform.Model('veo-model-id').predict(
+            instances=[{"prompt": script}]
+        )
+        
+        # Returns the generated video URL to your frontend
+        return jsonify({
+            "status": "success", 
+            "video_url": response.predictions[0]['url']
+        })
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
 
