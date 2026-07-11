@@ -305,6 +305,12 @@ function generateScript() {
     });
 }
 
+function insertToken(token) {
+    const input = document.getElementById('prompt-input');
+    // This appends the name to your existing text
+    input.value += (input.value ? ", " : "") + token;
+}
+        
 function renderVideo() {
     const vBtn = document.getElementById('video-btn');
     const feed = document.getElementById('video-feed');
