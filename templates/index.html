@@ -269,15 +269,18 @@ function generateScript() {
     const workspace = document.getElementById('workspace');
     const userPrompt = document.getElementById('prompt-input').value.trim();
 
-    // Requirement: Check if prompt is empty
+    // 1. Requirement: Check if prompt is empty
     if (!userPrompt) {
         alert("Please enter a story idea before running the engine!");
-        return; // Stops the function here
+        return; 
     }
 
+    // 2. STABILITY: Disable button and change text immediately
+    btn.disabled = true;
     btn.innerText = "WRITING...";
     workspace.innerText = "Sourcing computational layers...";
 
+    // 3. The Fetch request stays the same
     fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -294,6 +297,8 @@ function generateScript() {
         workspace.innerText = "Connection failure: " + err;
     })
     .finally(() => {
+        // 4. STABILITY: Re-enable the button once the process finishes (success or error)
+        btn.disabled = false;
         btn.innerText = "SCRIPT ENGINE";
     });
 }
