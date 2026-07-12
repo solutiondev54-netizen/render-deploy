@@ -111,10 +111,16 @@ h1 {
 
 /* --- The Premium Workspace --- */
 #workspace {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 24px;
+  /* The Gradient Border Setup */
+  border: 3px solid transparent; /* Keeps the border area ready */
+  background-image: linear-gradient(rgba(20, 25, 35, 0.9), rgba(20, 25, 35, 0.9)), 
+                    linear-gradient(135deg, #6366f1, #a855f7, #ec4899); /* The mixed colors */
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  
+  /* Box size and look */
+  padding: 40px;
+  border-radius: 20px;
   margin-top: 30px;
   max-height: 400px;
   overflow-y: auto;
