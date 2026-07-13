@@ -13,13 +13,18 @@ body {
     max-width: 650px;
 }
 
-/* --- The Header --- */
-h1 { 
-    font-size: 2.5rem; 
-    color: #FFFFFF; 
-    margin: 0; 
-    font-weight: 800;
-    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+/* --- Premium Typography for MAAE Core --- */
+h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  background: linear-gradient(90deg, #FFFFFF, #94A3B8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  text-shadow: none;
 }
 .subtitle { 
     color: #94A3B8; 
