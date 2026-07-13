@@ -136,26 +136,7 @@ h1 {
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-.render-video-btn {
-  display: block;
-  width: 100%;
-  margin-top: 20px;
-  padding: 15px;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.2);
-  color: #94A3B8;
-  border-radius: 12px;
-  text-align: center;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.render-video-btn:hover {
-  border-color: #6366f1;
-  color: #ffffff;
-}
-
-/* --- Premium Box Design for Video Section --- */
+/* --- Premium Combined Video Section --- */
 .container-box {
   background: rgba(20, 25, 35, 0.9);
   border: 3px solid transparent;
@@ -167,4 +148,26 @@ h1 {
   border-radius: 20px;
   margin-top: 30px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.render-video-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #ec4899, #a855f7);
+  border: none;
+  border-radius: 12px;
+  padding: 18px;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+}
+
+.render-video-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(236, 72, 153, 0.5);
+  filter: brightness(1.1);
 }
