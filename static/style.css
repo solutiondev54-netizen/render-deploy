@@ -26,11 +26,13 @@ h1 {
   text-transform: uppercase;
   text-shadow: none;
 }
-.subtitle { 
-    color: #94A3B8; 
-    margin-bottom: 30px; 
-    font-weight: 500;
-    letter-spacing: 0.5px;
+.subtitle {
+  font-size: 0.9rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #6366f1;
+  margin-bottom: 40px;
+  font-weight: 600;
 }
 
 /* --- The Playing Group Token Pills (The "Playful" Fix) --- */
