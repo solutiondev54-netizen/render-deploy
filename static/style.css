@@ -154,3 +154,17 @@ h1 {
   border-color: #6366f1;
   color: #ffffff;
 }
+
+/* --- Premium Box Design for Video Section --- */
+.container-box {
+  background: rgba(20, 25, 35, 0.9);
+  border: 3px solid transparent;
+  background-image: linear-gradient(rgba(20, 25, 35, 0.9), rgba(20, 25, 35, 0.9)), 
+                    linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  padding: 40px;
+  border-radius: 20px;
+  margin-top: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
