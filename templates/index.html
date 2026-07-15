@@ -42,18 +42,22 @@
         }
 
         // Logic to communicate with your flask_app.py
-        async function generateScript() {
-            const btn = document.getElementById('script-btn');
-            const input = document.getElementById('prompt-input');
-            const workspace = document.getElementById('workspace');
-            
-          <div id="custom-notification" class="hidden-notification">
-    Please enter a plot idea before generating!
-</div>
+            async function generateScript() {
+    const btn = document.getElementById('script-btn');
+    const input = document.getElementById('prompt-input');
+    const workspace = document.getElementById('workspace');
+    const notify = document.getElementById('custom-notification');
 
-            btn.disabled = true;
-            btn.innerText = "WRITING...";
-            workspace.innerText = "Sourcing computational layers...";
+    // Validation logic
+    if (input.value.trim() === "") {
+        notify.style.display = "block";
+        setTimeout(() => { notify.style.display = "none"; }, 3000);
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerText = "WRITING...";
+    workspace.innerText = "Sourcing computational layers...";
             
             try {
                 const response = await fetch('/api/generate', {
