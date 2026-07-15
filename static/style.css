@@ -171,3 +171,13 @@ h1 {
   box-shadow: 0 8px 25px rgba(236, 72, 153, 0.5);
   filter: brightness(1.1);
 }
+
+.hidden-notification {
+    display: none;
+    background: #ff4757; /* A nice red/pink to match your theme */
+    color: white;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: center;
+}
