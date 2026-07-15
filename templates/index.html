@@ -47,10 +47,9 @@
             const input = document.getElementById('prompt-input');
             const workspace = document.getElementById('workspace');
             
-            if (!input.value.trim()) {
-                alert("Please enter a plot idea!");
-                return;
-            }
+          <div id="custom-notification" class="hidden-notification">
+    Please enter a plot idea before generating!
+</div>
 
             btn.disabled = true;
             btn.innerText = "WRITING...";
