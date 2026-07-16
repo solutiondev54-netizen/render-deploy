@@ -62,30 +62,30 @@ def generate():
 
 import os
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/etc/secrets/service-account.json"
 
-from google.cloud import aiplatform
+from google import genai
+from google.genai import types
 
-# Initialize your project
-aiplatform.init(project="maae-studio-production", location="us-central1")
-
-# Use this structure inside your render_video function
 @app.route('/api/render-video', methods=['POST'])
 def render_video():
     data = request.get_json()
     script = data.get('script')
     
     try:
-        # Use your existing client to generate the video
-        # 'gemini-omni-flash' is recommended for video generation tasks
-        response = client.models.generate_content(
-            model="gemini-omni-flash",
-            contents=f"Generate a video based on this script: {script}"
+        # Initialize client with your existing key
+        client = genai.Client() 
+        
+        # Use the correct method for video generation
+        # 'veo-3.1-fast-generate-preview' is the supported model ID for AI Studio
+        response = client.models.generate_videos(
+            model="veo-3.1-fast-generate-preview",
+            prompt=script,
+            config=types.GenerateVideosConfig()
         )
         
         return jsonify({
             "status": "success",
-            "video_url": response.text # Adjust based on the actual response structure
+            "video_url": "Video generation initiated" # Adjust based on how you want to handle the response
         })
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
