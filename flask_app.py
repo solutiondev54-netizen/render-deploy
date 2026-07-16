@@ -69,22 +69,23 @@ from google.cloud import aiplatform
 # Initialize your project
 aiplatform.init(project="maae-studio-production", location="us-central1")
 
+# Use this structure inside your render_video function
 @app.route('/api/render-video', methods=['POST'])
 def render_video():
-    data = request.json
+    data = request.get_json()
     script = data.get('script')
     
     try:
-        # This calls the video generative model directly
-        # You will replace 'veo-model-id' with the specific model endpoint name
-        response = aiplatform.Model('veo-model-id').predict(
-            instances=[{"prompt": script}]
+        # Use your existing client to generate the video
+        # 'gemini-omni-flash' is recommended for video generation tasks
+        response = client.models.generate_content(
+            model="gemini-omni-flash",
+            contents=f"Generate a video based on this script: {script}"
         )
         
-        # Returns the generated video URL to your frontend
         return jsonify({
-            "status": "success", 
-            "video_url": response.predictions[0]['url']
+            "status": "success",
+            "video_url": response.text # Adjust based on the actual response structure
         })
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
