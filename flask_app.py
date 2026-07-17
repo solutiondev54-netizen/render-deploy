@@ -1,6 +1,5 @@
 import os
-import sys
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from google import genai
 
@@ -9,10 +8,7 @@ CORS(app)
 
 # Initialize the client
 api_key = os.environ.get("GEMINI_API_KEY")
-if not api_key:
-    client = None
-else:
-    client = genai.Client(api_key=api_key)
+client = genai.Client(api_key=api_key)
 
 @app.route('/')
 def index():
@@ -20,43 +16,35 @@ def index():
 
 @app.route('/api/generate', methods=['POST'])
 def generate():
-    if client is None:
-        return jsonify({"script": "Error: AI Client not initialized."})
-    
     data = request.get_json()
     user_prompt = data.get('prompt', '').strip()
-    
+
     if not user_prompt:
         return jsonify({"script": "Error: Please enter a plot idea."})
-    
+
+    system_instruction = """
+    You are the 'MAAE Core' Script Engine. Your task is to write professional, witty comedy scripts.
+    AUTHORIZED CAST ONLY: Kafi, Mama Akos, Papa Kafi, Akos Kafi's sister.
+    STRICT RULES:
+    1. If a user prompt mentions a character NOT in the 'AUTHORIZED CAST', ignore that character.
+    2. Do not create background characters or extras.
+    3. Keep the interaction between authorized characters only.
+    """
+
     try:
-        # SYSTEM DIRECTIVE: Strict Character Enforcement
-        prompt = f"""
-        You are the 'MAAE Core' Script Engine. 
-        Your task is to write professional, witty comedy scripts.
-
-        AUTHORIZED CAST ONLY:
-        - Kofi
-        - Mama Akos
-        - Papa Kofi
-        - Akos Kofi's sister
-
-        STRICT RULES:
-        1. IF a user prompt mentions a character NOT in the 'AUTHORIZED CAST', you MUST ignore that character. 
-        2. DO NOT create background characters or extras (like 'Chidi'). 
-        3. Keep the interaction between the authorized characters only.
-        4. If the prompt implies a conflict, resolve it using only the characters listed above.
-        
-        PLOT: {user_prompt}
-        """
-        
+        # Using gemini-3.5-flash (Free Tier)
         response = client.models.generate_content(
-            model='models/gemini-3.5-flash',
-            contents=prompt
+            model="gemini-3.5-flash",
+            contents=f"{system_instruction}\n\nPLOT: {user_prompt}"
         )
         return jsonify({"script": response.text})
-        return jsonify({"script": response.text})
     except Exception as e:
+        return jsonify({"script": f"AI Engine Error: {str(e)}"})
+
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
+
         # Indented exactly 8 spaces to be inside the 'except' block
         return jsonify({"script": f"AI Engine Error: {str(e)}"})
 
