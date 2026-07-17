@@ -45,9 +45,6 @@ if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
 
-        # Indented exactly 8 spaces to be inside the 'except' block
-        return jsonify({"script": f"AI Engine Error: {str(e)}"})
-
 import os
 
 
