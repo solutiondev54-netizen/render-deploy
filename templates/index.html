@@ -34,7 +34,25 @@
     <div id="video-feed"></div>
 </div>
 
-    <script>
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB8GNkZaVVV92w9-C2IN3jLzep8-zoUk8U",
+  authDomain: "maae-studio-production.firebaseapp.com",
+  projectId: "maae-studio-production",
+  storageBucket: "maae-studio-production.firebasestorage.app",
+  messagingSenderId: "794442926010",
+  appId: "1:794442926010:web:363376744b9618cb57f83",
+  measurementId: "G-SMN471NV3F"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+        
         // Appends character names to the input field
         function insertToken(token) {
             const input = document.getElementById('prompt-input');
