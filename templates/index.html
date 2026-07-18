@@ -33,50 +33,37 @@
 <div class="container-box">
     <div id="video-feed"></div>
 </div>
-
+    
     <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  const firebaseConfig = {
+    apiKey: "AIzaSyB8GNkZaVVV92w9-C2IN3jLzep8-zoUk8U",
+    authDomain: "maae-studio-production.firebaseapp.com",
+    projectId: "maae-studio-production",
+    storageBucket: "maae-studio-production.firebasestorage.app",
+    messagingSenderId: "794442926010",
+    appId: "1:794442926010:web:363376744b9618cb57f83",
+    measurementId: "G-SMN471NV3F"
+  };
 
-const firebaseConfig = {
-  apiKey: "AIzaSyB8GNkZaVVV92w9-C2IN3jLzep8-zoUk8U",
-  authDomain: "maae-studio-production.firebaseapp.com",
-  projectId: "maae-studio-production",
-  storageBucket: "maae-studio-production.firebasestorage.app",
-  messagingSenderId: "794442926010",
-  appId: "1:794442926010:web:363376744b9618cb57f83",
-  measurementId: "G-SMN471NV3F"
-};
-document.getElementById("google-signin-btn").addEventListener("click", () => {
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      console.log("User signed in:", result.user);
-      alert("Welcome, " + result.user.displayName);
-    })
-    .catch((error) => {
-      console.error("Error signing in:", error);
-    });
-});
-        
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
-        
-        // Appends character names to the input field
-        function insertToken(token) {
-            const input = document.getElementById('prompt-input');
-            input.value += (input.value ? ", " : "") + token;
-        }
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
 
-        // Logic to communicate with your flask_app.py
-            async function generateScript() {
+  // Define functions as global so HTML can see them
+  window.insertToken = (token) => {
+    const input = document.getElementById('prompt-input');
+    input.value += (input.value ? ", " : "") + token;
+  };
+
+  window.generateScript = async () => {
     const btn = document.getElementById('script-btn');
     const input = document.getElementById('prompt-input');
     const workspace = document.getElementById('workspace');
     const notify = document.getElementById('custom-notification');
 
-    // Validation logic
     if (input.value.trim() === "") {
         notify.style.display = "block";
         setTimeout(() => { notify.style.display = "none"; }, 3000);
@@ -86,33 +73,27 @@ const provider = new GoogleAuthProvider();
     btn.disabled = true;
     btn.innerText = "WRITING...";
     workspace.innerText = "Sourcing computational layers...";
-            
-            try {
-                const response = await fetch('/api/generate', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ prompt: input.value })
-                });
-                const data = await response.json();
-                workspace.innerText = data.script || "Error: No script returned.";
-            } catch (e) {
-                workspace.innerText = "Connection error: " + e;
-            } finally {
-                btn.disabled = false;
-                btn.innerText = "SCRIPT ENGINE";
-            }
-        }
 
-        window.insertToken = insertToken;
-window.generateScript = generateScript;
-// If you have a renderVideo function, add this too:
-// window.renderVideo = renderVideo;
-        async function renderVideo() {
+    try {
+        const response = await fetch('/api/generate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt: input.value })
+        });
+        const data = await response.json();
+        workspace.innerText = data.script || "Error: No script returned.";
+    } catch (e) {
+        workspace.innerText = "Connection error: " + e;
+    } finally {
+        btn.disabled = false;
+        btn.innerText = "SCRIPT ENGINE";
+    }
+  };
+
+  window.renderVideo = async () => {
     const vBtn = document.getElementById('video-btn');
     const feed = document.getElementById('video-feed');
     const workspace = document.getElementById('workspace');
-    
-    // Grab the script currently in the workspace
     const scriptText = workspace.innerText;
 
     vBtn.innerText = "RENDERING...";
@@ -121,11 +102,10 @@ window.generateScript = generateScript;
     try {
         const response = await fetch('/api/render-video', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ script: scriptText })
         });
         const data = await response.json();
-        
         if (data.status === "success") {
             feed.innerHTML = `<video controls width="100%"><source src="${data.video_url}" type="video/mp4"></video>`;
         } else {
@@ -136,13 +116,19 @@ window.generateScript = generateScript;
     } finally {
         vBtn.innerText = "RENDER VIDEO";
     }
-        }
+  };
 
-        window.insertToken = insertToken;
-window.generateScript = generateScript;
-window.renderVideo = renderVideo; // Add this if you have a renderVideo function
-        
-        <button id="google-signin-btn">Sign in with Google</button>
-    </script>
+  // Setup Firebase button
+  const signinBtn = document.getElementById("google-signin-btn");
+  if (signinBtn) {
+    signinBtn.addEventListener("click", () => {
+        signInWithPopup(auth, provider).then((result) => {
+            alert("Welcome, " + result.user.displayName);
+        }).catch((error) => {
+            console.error(error);
+        });
+    });
+  }
+    </script>    
 </body>
 </html>
