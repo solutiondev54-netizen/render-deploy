@@ -103,6 +103,10 @@ const provider = new GoogleAuthProvider();
             }
         }
 
+        window.insertToken = insertToken;
+window.generateScript = generateScript;
+// If you have a renderVideo function, add this too:
+// window.renderVideo = renderVideo;
         async function renderVideo() {
     const vBtn = document.getElementById('video-btn');
     const feed = document.getElementById('video-feed');
