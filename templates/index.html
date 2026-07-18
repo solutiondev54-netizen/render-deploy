@@ -48,7 +48,17 @@ const firebaseConfig = {
   appId: "1:794442926010:web:363376744b9618cb57f83",
   measurementId: "G-SMN471NV3F"
 };
-
+document.getElementById("google-signin-btn").addEventListener("click", () => {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      console.log("User signed in:", result.user);
+      alert("Welcome, " + result.user.displayName);
+    })
+    .catch((error) => {
+      console.error("Error signing in:", error);
+    });
+});
+        
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
