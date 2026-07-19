@@ -36,6 +36,22 @@ def generate():
     except Exception as e:
         return jsonify({"script": f"AI Engine Error: {str(e)}"})
 
+# --- Video Rendering Route ---
+@app.route('/api/render-video', methods=['POST'])
+def render_video():
+    data = request.get_json()
+    script_text = data.get('script', '')
+
+    if not script_text:
+        return jsonify({'status': 'error', 'message': 'No script provided'})
+
+    # This is where your video rendering logic goes.
+    # For now, this returns a success message to test your button connection.
+    return jsonify({
+        'status': 'success', 
+        'video_url': 'https://example.com/placeholder_video.mp4' 
+    })
+
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
