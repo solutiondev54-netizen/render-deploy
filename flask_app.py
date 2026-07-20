@@ -1,7 +1,9 @@
 import os
+import time  # This line must be here!
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from google import genai
+# ... rest of your code
 
 app = Flask(__name__)
 CORS(app)
