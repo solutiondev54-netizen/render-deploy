@@ -38,7 +38,7 @@ def generate():
                 time.sleep(5 * (attempt + 1)) # Wait 5s, then 10s
                 continue
             else:
-                return jsonify({'script': f"System Busy: kindly try again in a few seconds."}), 503
+                return jsonify({'script': f"System Is Busy: kindly try again in a few seconds."}), 503
 # --- Video R---
 @app.route('/api/render-video', methods=['POST'])
 def render_video():
