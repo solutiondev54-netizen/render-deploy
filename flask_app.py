@@ -1,14 +1,12 @@
 import os
-import time  # This line must be here!
+import time 
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from google import genai
-# ... rest of your code
 
 app = Flask(__name__)
 CORS(app)
 
-# Initialize the client simply
 client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
 @app.route('/')
