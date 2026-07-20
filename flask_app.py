@@ -21,16 +21,20 @@ def generate():
     if not user_prompt:
         return jsonify({'status': 'error', 'message': 'Please enter a plot idea.'})
 
-    try:
-        # Requesting a specific short response to save RAM
-        response = client.models.generate_content(
-            model='gemini-3.5-flash',
-            contents=f"Write a professional, witty comedy script about: {user_prompt}"
-        )
-        return jsonify({'script': response.text})
-
-    except Exception as e:
-        return jsonify({'script': f"Engine Error: {str(e)}"}), 500
+    # --- ADD THIS RETRY LOGIC ---
+    for attempt in range(3):
+        try:
+            response = client.models.generate_content(
+                model='gemini-3.5-flash',
+                contents=f"Write a professional, witty comedy script about: {user_prompt}"
+            )
+            return jsonify({'script': response.text})
+        except Exception as e:
+            if "503" in str(e) and attempt < 2:
+                time.sleep(2)  # Wait 2 seconds before trying again
+                continue
+            else:
+                return jsonify({'script': f"Engine Error: {str(e)}"}), 500
 
 # --- Video Rendering Route ---
 @app.route('/api/render-video', methods=['POST'])
