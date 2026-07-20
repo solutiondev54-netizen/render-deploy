@@ -24,24 +24,22 @@ def generate():
     if not user_prompt:
         return jsonify({'status': 'error', 'message': 'Please enter a plot idea.'})
 
-    try:
-        # Use the stream to keep memory usage low
-        response_stream = client.models.generate_content_stream(
-            model='gemini-3.5-flash',
-            contents=f"Write a professional, witty comedy script about: {user_prompt}"
-        )
-        
-        # Build the string piece by piece
-        full_text = ""
-        for chunk in response_stream:
-            full_text += chunk.text
-            
-        return jsonify({'script': full_text})
-
-    except Exception as e:
-        return jsonify({'script': f"Engine Error: {str(e)}"}), 500
-
-# --- Video Rendering Route ---
+    # Retry logic with backoff
+    for attempt in range(3):
+        try:
+            response = client.models.generate_content(
+                model='gemini-3.5-flash',
+                contents=f"Write a professional, witty comedy script about: {user_prompt}"
+            )
+            return jsonify({'script': response.text})
+        except Exception as e:
+            # If it's a 503 error, wait and try again
+            if "503" in str(e) and attempt < 2:
+                time.sleep(5 * (attempt + 1)) # Wait 5s, then 10s
+                continue
+            else:
+                return jsonify({'script': f"Engine Busy: Please try again in a few seconds."}), 503
+# --- Video R---
 @app.route('/api/render-video', methods=['POST'])
 def render_video():
     # Keep this logic simple to avoid memory spikes
