@@ -24,18 +24,24 @@ def generate():
     user_prompt = data.get('prompt', '').strip()
 
     if not user_prompt:
-        return jsonify({"script": "Error: Please enter a plot idea."})
+        return jsonify({'status': 'error', 'message': 'Please enter a plot idea.'})
 
-    system_instruction = "You are the 'MAAE Core' Script Engine. Write professional, witty comedy scripts. AUTHORIZED CAST ONLY: Kafi, Mama Akos, Papa Kafi, Akos Kafi's sister."
+    system_instruction = "You are the MAAE Core Script Engine. Write professional, witty comedy scripts."
 
     try:
+        # Use a more lightweight call
         response = client.models.generate_content(
-            model="gemini-3.5-flash",
+            model='gemini-1.5-flash',
             contents=f"{system_instruction}\n\nPLOT: {user_prompt}"
         )
-        return jsonify({"script": response.text})
+        
+        # Explicitly extract text and return immediately
+        script_text = response.text
+        return jsonify({'script': script_text})
+
     except Exception as e:
-        return jsonify({"script": f"AI Engine Error: {str(e)}"})
+        # Catch the error and return JSON so the frontend doesn't show the '<' error
+        return jsonify({'script': f"Engine Error: {str(e)}"}), 500
 
 # --- Video Rendering Route ---
 @app.route('/api/render-video', methods=['POST'])
