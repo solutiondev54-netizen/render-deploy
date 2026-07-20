@@ -31,7 +31,7 @@ def generate():
     try:
         # Use a more lightweight call
         response = client.models.generate_content(
-            model='gemini-1.5-flash',
+            model='gemini-3.5-flash',
             contents=f"{system_instruction}\n\nPLOT: {user_prompt}"
         )
         
