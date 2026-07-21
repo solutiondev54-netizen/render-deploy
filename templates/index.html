@@ -117,7 +117,6 @@
         vBtn.innerText = "RENDER VIDEO";
     }
   };
-
   // Setup Firebase button
   const signinBtn = document.getElementById("google-signin-btn");
   if (signinBtn) {
@@ -129,6 +128,23 @@
         });
     });
   }
+        // Function to bring your comedy script to life with free browser voice audio
+window.playAudioDrama = () => {
+    const scriptText = document.getElementById('workspace').innerText;
+    if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection")) {
+        alert("Please generate a script first!");
+        return;
+    }
+    if (!('speechSynthesis' in window)) {
+        alert("Text-to-speech is not supported in this browser.");
+        return;
+    }
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(scriptText);
+    utterance.rate = 1.0;
+    utterance.pitch = 1.1;
+    window.speechSynthesis.speak(utterance);
+};
     </script>    
 </body>
 </html>
