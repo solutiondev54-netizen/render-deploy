@@ -181,22 +181,3 @@ h1 {
     border-radius: 5px;
     text-align: center;
 }
-
-<button id="audio-btn" onclick="playAudioDrama()" title="Play African Audio Voice" style="
-    background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%);
-    color: #f2c94c;
-    font-weight: 600;
-    font-size: 13px;
-    padding: 8px 14px;
-    border: 1px solid rgba(242, 201, 76, 0.4);
-    border-radius: 6px;
-    cursor: pointer;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    outline: none;
-">
-    <span style="font-size: 14px;">🎙️</span> <span style="letter-spacing: 0.3px;">Play Audio</span>
-</button>
