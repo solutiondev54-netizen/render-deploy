@@ -29,7 +29,7 @@ def generate():
         try:
             response = client.models.generate_content(
                  model='gemini-3-flash-preview',
-                contents=f"Write a professional, witty comedy script about: {user_prompt}"
+                contents=f"Write a professional, witty comedy script. You MUST include these specific characters and plot elements: {user_prompt}"
             )
             return jsonify({'script': response.text})
         except Exception as e:
