@@ -4,12 +4,14 @@ from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from google import genai
 import gc
-# ... after your imports
+
+# Enable garbage collection to keep container memory clean
 gc.enable()
 
 app = Flask(__name__)
 CORS(app)
 
+# Initialize the official Google GenAI client
 client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
 @app.route('/')
@@ -22,25 +24,57 @@ def generate():
     user_prompt = data.get('prompt', '').strip()
 
     if not user_prompt:
-        return jsonify({'status': 'error', 'message': 'Please enter a plot idea.'}), 400
+        return jsonify({
+            'status': 'error', 
+            'message': 'Please enter a plot idea or select a character preset.'
+        }), 400
 
-    # Retry logic with backoff
-    for attempt in range(3):
+    # Structured prompt template to ensure the model respects your exact characters/inputs
+    structured_content = (
+        "You are an elite, award-winning Hollywood comedy showrunner and scriptwriter. "
+        "Write a professional, witty, masterfully paced multi-character comedy script. "
+        "You MUST strictly incorporate and feature the exact characters, names, dynamics, or themes provided below. "
+        f"Core Prompt / Blueprint: {user_prompt}"
+    )
+
+    # Resilient retry logic with backoff cooling times to handle rate limits gracefully
+    max_retries = 3
+    base_delay = 4  # Seconds
+
+    for attempt in range(max_retries):
         try:
             response = client.models.generate_content(
-                 model='gemini-3-flash-preview',
-                contents=f"Write a professional, witty comedy script. You MUST include these specific characters and plot elements: {user_prompt}"
+                model='gemini-3-flash-preview',
+                contents=structured_content
             )
-            return jsonify({'script': response.text})
-        except Exception as e:
-            print(f"GENERATION ERROR: {str(e)}")
-            return jsonify({'script': f"ERROR: {str(e)}"}), 500
+            
+            if response and response.text:
+                return jsonify({'status': 'success', 'script': response.text}), 200
+            else:
+                raise ValueError("Received an empty response payload from the model.")
 
-# --- Video R---
+        except Exception as e:
+            error_message = str(e)
+            print(f"GENERATION WARNING [Attempt {attempt + 1}/{max_retries}]: {error_message}")
+            
+            if attempt < max_retries - 1:
+                # Cool down before retrying to prevent quota exhaustion
+                sleep_duration = base_delay * (2 ** attempt)
+                time.sleep(sleep_duration)
+            else:
+                return jsonify({
+                    'status': 'error',
+                    'script': f"SERVER ERROR: Model capacity exhausted or rate limit reached. Details: {error_message}"
+                }), 500
+
+# --- Video Rendering Placeholder Route ---
 @app.route('/api/render-video', methods=['POST'])
 def render_video():
-    # Keep this logic simple to avoid memory spikes
-    return jsonify({'status': 'success', 'video_url': 'https://example.com/placeholder_video.mp4'})
+    # Kept lightweight with no local disk usage to prevent server bloat
+    return jsonify({
+        'status': 'success', 
+        'video_url': 'https://example.com/placeholder_video.mp4'
+    })
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
