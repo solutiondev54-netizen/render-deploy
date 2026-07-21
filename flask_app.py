@@ -27,9 +27,10 @@ def generate():
     # Retry logic with backoff
     for attempt in range(3):
         try:
-            response = client.models.generate_content(
-                model='gemini-3.5-flash',
-                contents=f"Write a professional, witty comedy script about: {user_prompt}"
+         response = client.models.generate_content(
+    model='gemini-2.5-pro',
+    contents=f"Write a professional, witty comedy script about: {user_prompt}"
+         )
             )
             return jsonify({'script': response.text})
         except Exception as e:
