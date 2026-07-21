@@ -34,11 +34,7 @@ def generate():
             return jsonify({'script': response.text})
         except Exception as e:
             print(f"GENERATION ERROR: {str(e)}")
-            if attempt < 2:
-                time.sleep(3)
-                continue
-            else:
-                }})
+            return jsonify({'script': f"ERROR: {str(e)}"}), 500
 # --- Video R---
 @app.route('/api/render-video', methods=['POST'])
 def render_video():
