@@ -38,7 +38,7 @@ def generate():
                 time.sleep(3)
                 continue
             else:
-                return jsonify({'script': "System Is Busy: kindly try again in a few seconds."}), 503
+                }})
 # --- Video R---
 @app.route('/api/render-video', methods=['POST'])
 def render_video():
