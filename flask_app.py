@@ -33,16 +33,22 @@ def generate():
             )
             return jsonify({'script': response.text})
            
-            except Exception as e:
-        # Print the exact error to your Render logs so we can see it clearly
-        print(f"GENERATION ERROR: {str(e)}")
-        
-        # If it's a retryable error, wait and try again
-        if attempt < 2:
-            time.sleep(3)
-            continue
-        else:
-                return jsonify({'script': f"System Is Busy: kindly try again in a few seconds."}), 503
+        # Retry logic with backoff
+    for attempt in range(3):
+        try:
+            response = client.models.generate_content(
+                model='gemini-2.5-flash',
+                contents=f"Write a professional, witty comedy script about: {user_prompt}"
+            )
+            return jsonify({'script': response.text})
+        except Exception as e:
+            print(f"GENERATION ERROR: {str(e)}")
+            if attempt < 2:
+                time.sleep(3)
+                continue
+            else:
+                return jsonify({'script': "System Is Busy: kindly try again in a few seconds."}), 503
+
 # --- Video R---
 @app.route('/api/render-video', methods=['POST'])
 def render_video():
