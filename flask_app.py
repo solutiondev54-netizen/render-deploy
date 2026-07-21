@@ -22,20 +22,20 @@ def generate():
     user_prompt = data.get('prompt', '').strip()
 
     if not user_prompt:
-        return jsonify({'status': 'error', 'message': 'Please enter a plot idea.'})
+        return jsonify({'status': 'error', 'message': 'Please enter a plot idea.'}), 400
 
     # Retry logic with backoff
     for attempt in range(3):
         try:
-          response = client.models.generate_content(
-             model='gemini-2.5-pro',
-             contents=f"Write a professional, witty comedy script about: {user_prompt}"
-         )
+            response = client.models.generate_content(
+                model='gemini-2.5-pro',
+                contents=f"Write a professional, witty comedy script about: {user_prompt}"
             )
             return jsonify({'script': response.text})
         except Exception as e:
             print(f"GENERATION ERROR: {str(e)}")
             return jsonify({'script': f"ERROR: {str(e)}"}), 500
+
 # --- Video R---
 @app.route('/api/render-video', methods=['POST'])
 def render_video():
