@@ -32,12 +32,16 @@ def generate():
                 contents=f"Write a professional, witty comedy script about: {user_prompt}"
             )
             return jsonify({'script': response.text})
-        except Exception as e:
-            # If it's a 503 error, wait and try again
-            if "503" in str(e) and attempt < 2:
-                time.sleep(5 * (attempt + 1)) # Wait 5s, then 10s
-                continue
-            else:
+           
+            except Exception as e:
+        # Print the exact error to your Render logs so we can see it clearly
+        print(f"GENERATION ERROR: {str(e)}")
+        
+        # If it's a retryable error, wait and try again
+        if attempt < 2:
+            time.sleep(3)
+            continue
+        else:
                 return jsonify({'script': f"System Is Busy: kindly try again in a few seconds."}), 503
 # --- Video R---
 @app.route('/api/render-video', methods=['POST'])
