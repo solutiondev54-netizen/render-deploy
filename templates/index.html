@@ -130,7 +130,7 @@
     });
   }
         // Function to bring your comedy script to life with free browser voice audio
-window.playAudioDrama = () => {
+        window.playAudioDrama = () => {
     const scriptText = document.getElementById('workspace').innerText;
     if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection")) {
         alert("Please generate a script first!");
@@ -141,11 +141,33 @@ window.playAudioDrama = () => {
         return;
     }
     window.speechSynthesis.cancel();
+    
     const utterance = new SpeechSynthesisUtterance(scriptText);
-    utterance.rate = 1.0;
-    utterance.pitch = 1.1;
+    utterance.rate = 0.95; // Slightly paced for comedic delivery
+    utterance.pitch = 1.05;
+
+    // Fetch available browser voices and pick an African regional voice if installed
+    const voices = window.speechSynthesis.getVoices();
+    const africanVoice = voices.find(v => 
+        v.lang.includes('en-NG') || // Nigerian English
+        v.lang.includes('en-GH') || // Ghanaian English
+        v.lang.includes('en-ZA') || // South African English
+        v.name.toLowerCase().includes('africa')
+    );
+
+    if (africanVoice) {
+        utterance.voice = africanVoice;
+    }
+
     window.speechSynthesis.speak(utterance);
 };
+
+// Ensures voices load properly across different mobile/desktop browsers
+if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.getVoices();
+    };
+}
     </script>    
 </body>
 </html>
