@@ -32,15 +32,6 @@ def generate():
                 contents=f"Write a professional, witty comedy script about: {user_prompt}"
             )
             return jsonify({'script': response.text})
-           
-        # Retry logic with backoff
-    for attempt in range(3):
-        try:
-            response = client.models.generate_content(
-                model='gemini-2.5-flash',
-                contents=f"Write a professional, witty comedy script about: {user_prompt}"
-            )
-            return jsonify({'script': response.text})
         except Exception as e:
             print(f"GENERATION ERROR: {str(e)}")
             if attempt < 2:
@@ -48,10 +39,9 @@ def generate():
                 continue
             else:
                 return jsonify({'script': "System Is Busy: kindly try again in a few seconds."}), 503
-
 # --- Video R---
-@app.route('/api/render-video', methods=['POST'])
-def render_video():
+@app.route('/api/render-video', me['POST'])
+def render_video(
     # Keep this logic simple to avoid memory spikes
     return jsonify({'status': 'success', 'video_url': 'https://example.com/placeholder_video.mp4'})
 
