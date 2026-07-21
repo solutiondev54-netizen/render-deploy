@@ -40,7 +40,7 @@ def generate():
             else:
                 return jsonify({'script': "System Is Busy: kindly try again in a few seconds."}), 503
 # --- Video R---
-@app.route('/api/render-video', me['POST'])
+@app.route('/api/render-video', methods=['POST'])
 def render_video():
     # Keep this logic simple to avoid memory spikes
     return jsonify({'status': 'success', 'video_url': 'https://example.com/placeholder_video.mp4'})
