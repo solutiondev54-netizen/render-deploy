@@ -28,7 +28,7 @@ def generate():
     for attempt in range(3):
         try:
             response = client.models.generate_content(
-                model='gemini-3.1-flash-lite',
+                model='gemini-3.5-flash-',
                 contents=f"Write a professional, witty comedy script about: {user_prompt}"
             )
             return jsonify({'script': response.text})
