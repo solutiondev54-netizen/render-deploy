@@ -45,7 +45,7 @@ def generate():
         try:
             response = client.models.generate_content(
                 model='gemini-3-flash-preview',
-                contents=structured_content
+                contents=f"Write a professional, witty comedy script. You MUST include these specific characters and plot elements: {user_prompt}"
             )
             
             if response and response.text:
