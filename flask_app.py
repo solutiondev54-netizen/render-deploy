@@ -25,7 +25,7 @@ def generate():
 
     if not user_prompt:
         return jsonify({
-            'status': 'error', 
+            'status': 'error',
             'message': 'Please enter a plot idea or select a character preset.'
         }), 400
 
@@ -41,13 +41,16 @@ def generate():
         "Format cleanly with **SCENE START**, **SETTING**, character names in bold caps, action tags in parentheses, and finish with **SCENE END**."
     )
 
+    max_retries = 3
+    base_delay = 4
+
     for attempt in range(max_retries):
         try:
             response = client.models.generate_content(
                 model='gemini-3-flash-preview',
                 contents=structured_content
             )
-            
+
             if response and response.text:
                 return jsonify({'status': 'success', 'script': response.text}), 200
             else:
@@ -56,16 +59,15 @@ def generate():
         except Exception as e:
             error_message = str(e)
             print(f"GENERATION WARNING [Attempt {attempt + 1}/{max_retries}]: {error_message}")
-            
+
             if attempt < max_retries - 1:
-                # Cool down before retrying to prevent quota exhaustion
                 sleep_duration = base_delay * (2 ** attempt)
                 time.sleep(sleep_duration)
             else:
                 return jsonify({
                     'status': 'error',
                     'script': f"SERVER ERROR: Model capacity exhausted or rate limit reached. Details: {error_message}"
-                }), 500
+                }, 500)
 
 # --- Video Rendering Placeholder Route ---
 @app.route('/api/render-video', methods=['POST'])
