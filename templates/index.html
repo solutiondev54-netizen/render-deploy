@@ -112,7 +112,7 @@
     const input = document.getElementById('prompt-input');
     input.value += (input.value ? ", " : "") + token;
   };
-
+ 
   window.generateScript = async () => {
     const btn = document.getElementById('script-btn');
     const input = document.getElementById('prompt-input');
@@ -125,6 +125,23 @@
         return;
     }
 
+    let activeDialect = 'classic_family';
+
+window.selectDialect = (element) => {
+    document.querySelectorAll('.dialect-pill').forEach(pill => {
+        pill.style.background = '#111118';
+        pill.style.color = '#a0a0ab';
+        pill.style.borderColor = 'rgba(255,255,255,0.1)';
+        pill.classList.remove('active');
+    });
+
+    element.style.background = 'linear-gradient(135deg, #1f1f2e 0%, #111118 100%)';
+    element.style.color = '#f2c94c';
+    element.style.borderColor = '#f2c94c';
+    element.classList.add('active');
+
+    activeDialect = element.getAttribute('data-value');
+};
     btn.disabled = true;
     btn.innerText = "WRITING...";
     workspace.innerText = "Sourcing computational layers...";
