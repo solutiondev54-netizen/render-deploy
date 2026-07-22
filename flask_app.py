@@ -29,23 +29,23 @@ def generate():
             'message': 'Please enter a plot idea or select a character preset.'
         }), 400
 
-    # Structured prompt template to ensure the model respects your exact characters/inputs
+    # Structured prompt template to lock in character dynamics and behaviors
     structured_content = (
-        "You are an elite, award-winning Hollywood comedy showrunner and scriptwriter. "
-        "Write a professional, witty, masterfully paced multi-character comedy script. "
-        "You MUST strictly incorporate and feature the exact characters, names, dynamics, or themes provided below. "
-        f"Core Prompt / Blueprint: {user_prompt}"
+        "You are the master comedy scriptwriter for MAAE CORE, a high-end African production suite. "
+        f"Generate a hilarious, highly relatable West African comedy sketch script based on this idea: '{user_prompt}'. "
+        "STRICT FAMILY CHARACTER RULES & BEHAVIORS: "
+        "- AKOS: The witty, dramatic daughter/sister. Always stressed, talks fast, defends her wardrobe or dignity fiercely. "
+        "- KOFI: Akos's brother. Cheeky, annoying, loves pulling pranks and eating food that isn't his. "
+        "- MAMA AKOS: The mother. Dramatic, uses epic African mother psychological warfare and religious quotes. "
+        "- PAPA KOFI / PAPA AKOS: The father. Old-school, strict authority, easily distracted by food or football. "
+        "Format cleanly with **SCENE START**, **SETTING**, character names in bold caps, action tags in parentheses, and finish with **SCENE END**."
     )
-
-    # Resilient retry logic with backoff cooling times to handle rate limits gracefully
-    max_retries = 3
-    base_delay = 4  # Seconds
 
     for attempt in range(max_retries):
         try:
             response = client.models.generate_content(
                 model='gemini-3-flash-preview',
-                contents=f"Write a hilarious, relatable modern African comedy sketch about: {user_prompt}. CRITICAL RULE: You are strictly forbidden from introducing any outside or random characters. You MUST ONLY use the exact built-in characters provided in the system or input list."
+                contents=structured_content
             )
             
             if response and response.text:
