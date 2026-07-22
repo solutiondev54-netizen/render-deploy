@@ -22,7 +22,7 @@ def index():
 def generate():
     data = request.get_json()
     user_prompt = data.get('prompt', '').strip()
-
+    
     if not user_prompt:
         return jsonify({
             'status': 'error',
@@ -32,13 +32,13 @@ def generate():
     # Structured prompt template to lock in character dynamics and behaviors
     structured_content = (
         "You are the master comedy scriptwriter for MAAE CORE, a high-end African production suite. "
-        f"Generate a hilarious, highly relatable West African comedy sketch script based on this idea: '{user_prompt}'. "
+        f"Generate a hilarious, highly relatable West African comedy sketch script based on this idea: {user_prompt}. "
         "STRICT FAMILY CHARACTER RULES & BEHAVIORS: "
         "- AKOS: The witty, dramatic daughter/sister. Always stressed, talks fast, defends her wardrobe or dignity fiercely. "
         "- KOFI: Akos's brother. Cheeky, annoying, loves pulling pranks and eating food that isn't his. "
-        "- MAMA AKOS: The mother. Dramatic, uses epic African mother psychological warfare and religious quotes. "
+        "- WAMA AKOS: The mother. Dramatic, uses epic African mother psychological warfare and religious quotes. "
         "- PAPA KOFI / PAPA AKOS: The father. Old-school, strict authority, easily distracted by food or football. "
-        "Format cleanly with **SCENE START**, **SETTING**, character names in bold caps, action tags in parentheses, and finish with **SCENE END**."
+        "Format cleanly with **SCENE START**, **SETTING**, character names in bold caps, action tags in parentheses, and dialogue."
     )
 
     max_retries = 3
@@ -47,10 +47,10 @@ def generate():
     for attempt in range(max_retries):
         try:
             response = client.models.generate_content(
-                model='gemini-3-flash-preview',
+                model='gemini-2.5-flash-preview',
                 contents=structured_content
             )
-
+            
             if response and response.text:
                 return jsonify({'status': 'success', 'script': response.text}), 200
             else:
@@ -59,7 +59,7 @@ def generate():
         except Exception as e:
             error_message = str(e)
             print(f"GENERATION WARNING [Attempt {attempt + 1}/{max_retries}]: {error_message}")
-
+            
             if attempt < max_retries - 1:
                 sleep_duration = base_delay * (2 ** attempt)
                 time.sleep(sleep_duration)
@@ -74,46 +74,9 @@ def generate():
 def render_video():
     # Kept lightweight with no local disk usage to prevent server bloat
     return jsonify({
-        'status': 'success', 
+        'status': 'success',
         'video_url': 'https://example.com/placeholder_video.mp4'
     })
-
-import os
-from flask import redirect, url_for, session, request
-from authlib.integrations.flask_client import OAuth
-
-# Initialize Authlib OAuth
-oauth = OAuth(app)
-google = oauth.register(
-    name='google',
-    client_id=os.environ.get('GOOGLE_CLIENT_ID'),
-    client_secret=os.environ.get('GOOGLE_CLIENT_SECRET'),
-    server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
-    client_kwargs={'scope': 'openid email profile'}
-)
-
-@app.route('/login/google')
-def login_google():
-    # Dynamically direct back to the correct callback domain
-    redirect_uri = url_for('authorize_google', _external=True)
-    return google.authorize_redirect(redirect_uri)
-
-@app.route('/auth/google/callback')
-def authorize_google():
-    token = google.authorize_access_token()
-    user_info = token.get('userinfo')
-    if user_info:
-        session['user'] = {
-            'name': user_info.get('name'),
-            'email': user_info.get('email'),
-            'picture': user_info.get('picture')
-        }
-    return redirect(url_for('index'))
-
-@app.route('/logout')
-def logout():
-    session.pop('user', None)
-    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
