@@ -13,14 +13,15 @@
 </head>
 <body>
     <!-- 1. Gatekeeper overlay at the very top -->
-    <div id="auth-gate" class="gatekeeper-overlay">
-        <div class="gatekeeper-title">MAAE CORE</div>
+<div id="auth-gate" class="gatekeeper-overlay" style="display: flex; justify-content: center; align-items: center; z-index: 99999;">
+    <div class="gatekeeper-content" style="text-align: center;">
+        <div class="gatekeeper-title">MAAE Core</div>
         <div class="gatekeeper-subtitle">Production Studio Suite</div>
-        <button onclick="loginWithGoogle()" class="premium-google-btn" type="button">
-            <!-- Google SVG Icon -->
+        <button onclick="loginWithGoogle()" class="premium-google-btn" type="button" style="cursor: pointer; pointer-events: auto; position: relative; z-index: 100000;">
             Continue with Google
         </button>
     </div>
+</div>
 
     <!-- 2. Wrap all your existing dashboard content inside this -->
     <div id="main-app-content">
