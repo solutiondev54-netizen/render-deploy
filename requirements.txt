@@ -4,5 +4,3 @@ gunicorn
 python-dotenv
 google-genai
 google-cloud-storage
-pywebview
-authlib
