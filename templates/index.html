@@ -41,6 +41,24 @@
             </div>
             
             <input type="text" id="prompt-input" placeholder="Enter plot idea here...">
+           <div style="margin: 15px 0; text-align: left;">
+    <label style="color: #f2c94c; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">🌍 Dialect & Flavor Profile</label>
+    <select id="dialect-select" style="
+        width: 100%;
+        background: #111118;
+        color: #ffffff;
+        border: 1px solid rgba(242, 201, 76, 0.3);
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 14px;
+        outline: none;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+    ">
+        <option value="accra_pidgin">Accra Urban & Pidgin Mix (High Energy)</option>
+        <option value="lagos_street">Lagos Mainland Street Vibe (Dramatic & Sharp)</option>
+        <option value="classic_family">Classic Family Sitcom (Relatable & Witty)</option>
+    </select>
+           </div>
             <button id="script-btn" onclick="generateScript()">SCRIPT ENGINE</button>
             <button id="copy-btn" onclick="copyScript()" title="Copy Script to Clipboard" style="
     background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%);
