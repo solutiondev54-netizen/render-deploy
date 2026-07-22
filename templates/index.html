@@ -346,12 +346,12 @@ onAuthStateChanged(auth, (user) => {
 
       if (authContainer) {
         authContainer.innerHTML = `
-          <div class="user-profile-pill">
-              <img src="${user.photoURL || 'https://via.placeholder.com/32'}" alt="Profile" class="avatar">
-              <span class="user-name">${user.displayName}</span>
-              <button onclick="logoutUser()" class="logout-btn" type="button">Sign Out</button>
-          </div>
-        `;
+    <div class="user-profile-pill">
+        <img src="${user.photoURL || 'https://via.placeholder.com/32'}" alt="Profile" class="avatar">
+        <span class="user-name">${user.displayName}</span>
+        <button onclick="logoutUser()" class="logout-btn" type="button">Sign Out</button>
+    </div>
+`;
       }
     } else {
       if (authGate) authGate.style.display = 'flex';
