@@ -130,11 +130,17 @@
     workspace.innerText = "Sourcing computational layers...";
 
     try {
-        const response = await fetch('/api/generate', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ prompt: input.value })
-        });
+            const selectedDialect = document.getElementById('dialect-select').value;
+
+            const response = await fetch('/api/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    prompt: input.value, 
+                    dialect: selectedDialect 
+                })
+            });
+            const data = await response.json();
         const data = await response.json();
         workspace.innerText = data.script || "Error: No script returned.";
     } catch (e) {
