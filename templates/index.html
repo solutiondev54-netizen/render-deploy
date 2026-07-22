@@ -12,7 +12,24 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <!-- 1. Gatekeeper overlay at the very top -->
+    <div id="auth-gate" class="gatekeeper-overlay">
+        <div class="gatekeeper-title">MAAE CORE</div>
+        <div class="gatekeeper-subtitle">Production Studio Suite</div>
+        <button onclick="loginWithGoogle()" class="premium-google-btn" type="button">
+            <!-- Google SVG Icon -->
+            Continue with Google
+        </button>
+    </div>
 
+    <!-- 2. Wrap all your existing dashboard content inside this -->
+    <div id="main-app-content">
+        <div style="position: absolute; top: 20px; right: 20px; z-index: 100;">
+            <div id="firebase-auth-container"></div>
+        </div>
+
+        <!-- YOUR EXISTING DASHBOARD CODE GOES HERE -->
+    </div>
     <div id="firebase-auth-container" class="auth-container"></div>
     
     <div class="container">
