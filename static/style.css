@@ -181,3 +181,74 @@ h1 {
     border-radius: 5px;
     text-align: center;
 }
+
+/* Premium Google Sign-In Button */
+.google-signin-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #1e1e2d 0%, #161622 100%);
+    color: #ffffff;
+    border: 1px solid rgba(212, 175, 55, 0.3); /* Subtle gold accent border */
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+}
+
+.google-signin-btn:hover {
+    background: linear-gradient(135deg, #252538 0%, #1b1b28 100%);
+    border-color: rgba(212, 175, 55, 0.8); /* Brighter gold on hover */
+    box-shadow: 0 6px 25px rgba(212, 175, 55, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.google-signin-btn:active {
+    transform: translateY(0);
+}
+
+/* User Profile Pill Container */
+.user-profile-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(25, 25, 35, 0.8);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    padding: 6px 16px 6px 6px;
+    border-radius: 50px;
+    color: #ffffff;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+.user-profile-pill .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #d4af37;
+}
+
+.user-profile-pill .logout-btn {
+    background: rgba(255, 75, 75, 0.15);
+    color: #ff6b6b;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 75, 75, 0.3);
+    margin-left: 6px;
+}
+
+.user-profile-pill .logout-btn:hover {
+    background: rgba(255, 75, 75, 0.3);
+    color: #ffffff;
+}
