@@ -12,332 +12,264 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-</div>
 
-    <!-- 2. Wrap all your existing dashboard content inside this -->
+    <!-- 1. Wrap all your existing dashboard content inside this -->
     <div id="main-app-content">
-        <div style="position: absolute; top: 20px; right: 20px; z-index: 100;">
-            <div id="firebase-auth-container">
-        
 
         <!-- YOUR EXISTING DASHBOARD CODE GOES HERE -->
-    
-    <div class="container">
-        <h1>MAAE Core</h1>
-        <div class="subtitle">Production Studio Suite</div>
 
-        <div class="input-group">
-            <label>STUDIO DIRECTIVE MANIFEST</label>
-            <div class="token-bank">
-                <span class="tag-token" onclick="insertToken('Mama Akos')">+ Mama Akos</span>
-                <span class="tag-token" onclick="insertToken('Kofi')">+ Kofi</span>
-                <span class="tag-token" onclick="insertToken('Papa Kofi')">+ Papa Kofi</span>
-                <span class="tag-token" onclick="insertToken('Akos\'s sister')">+ Akos Kofi's sister</span>
-                <button id="audio-btn" onclick="playAudioDrama()" title="Play African Audio Voice" style="
-    background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%);
-    color: #f2c94c;
-    font-weight: 600;
-    font-size: 13px;
-    padding: 8px 14px;
-    border: 1px solid rgba(242, 201, 76, 0.4);
-    border-radius: 6px;
-    cursor: pointer;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    outline: none;
-    margin-top: 8px;
-">
-    <span style="font-size: 14px;">🎙️</span> <span style="letter-spacing: 0.3px;">Play Audio</span>
-                </button>
-            
-            <input type="text" id="prompt-input" placeholder="Enter plot idea here...">
-           <div style="margin: 15px 0; text-align: left;">
-    <div style="margin: 20px 0; text-align: left;">
-    <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 8px;">🌍 Dialect & Flavor Profile (Optional)</label>
-    <div id="dialect-container" style="display: flex; gap: 8px; flex-wrap: wrap;">
-        <div class="dialect-pill active" data-value="classic_family" onclick="selectDialect(this)" style="
+        <div class="container">
+            <h1>MAAE Core</h1>
+            <div class="subtitle">Production Studio Suite</div>
+
+            <div class="input-group">
+                <label>STUDIO DIRECTIVE MANIFEST</label>
+                <div class="token-bank">
+                    <span class="tag-token" onclick="insertToken('Mama Akos')">+ Mama Akos</span>
+                    <span class="tag-token" onclick="insertToken('Kofi')">+ Kofi</span>
+                    <span class="tag-token" onclick="insertToken('Papa Kofi')">+ Papa Kofi</span>
+                    <span class="tag-token" onclick="insertToken('Akos\'s sister')">+ Akos Kofi's sister</span>
+                    <button id="audio-btn" onclick="playAudioDrama()" title="Play African Audio Voice" style="
             background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%);
             color: #f2c94c;
-            border: 1px solid #f2c94c;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 13px;
+            padding: 8px 14px;
+            border: 1px solid rgba(242, 201, 76, 0.4);
+            border-radius: 6px;
             cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
             transition: all 0.2s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-        ">Classic Sitcom</div>
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            outline: none;
+            margin-top: 8px;
+            margin-left: 8px;
+        ">
+                        <span style="font-size: 14px;">▶</span> <span style="letter-spacing: 0.3px;">Play Audio</span>
+                    </button>
+                </div>
 
-        <div class="dialect-pill" data-value="accra_pidgin" onclick="selectDialect(this)" style="
-            background: #111118;
-            color: #a0a0ab;
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 500;
+                <input type="text" id="prompt-input" placeholder="Enter plot idea here...">
+                <div style="margin: 15px 0; text-align: left;">
+                    <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 6px;">Select Dialect Style</label>
+                    <div id="dialect-container" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <div class="dialect-pill active" data-value="classic_family" onclick="selectDialect(this)" style="
+                            background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%);
+                            color: #f2c94c;
+                            border: 1px solid #f2c94c;
+                            padding: 8px 12px;
+                            border-radius: 8px;
+                            font-size: 12px;
+                            font-weight: 500;
+                            cursor: pointer;
+                            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+                            transition: all 0.2s ease;
+                        ">Classic Sitcom</div>
+
+                        <div class="dialect-pill" data-value="accra_pidgin" onclick="selectDialect(this)" style="
+                            background: #111118;
+                            color: #a0a0ab;
+                            border: 1px solid rgba(255,255,255,0.1);
+                            padding: 8px 12px;
+                            border-radius: 8px;
+                            font-size: 12px;
+                            font-weight: 500;
+                            cursor: pointer;
+                            transition: all 0.2s ease;
+                        ">Accra Pidgin</div>
+
+                        <div class="dialect-pill" data-value="lagos_street" onclick="selectDialect(this)" style="
+                            background: #111118;
+                            color: #a0a0ab;
+                            border: 1px solid rgba(255,255,255,0.1);
+                            padding: 8px 12px;
+                            border-radius: 8px;
+                            font-size: 12px;
+                            font-weight: 500;
+                            cursor: pointer;
+                            transition: all 0.2s ease;
+                        ">Lagos Street</div>
+                    </div>
+                </div>
+
+                <button id="script-btn" onclick="generateScript()">SCRIPT ENGINE</button>
+                <button id="copy-btn" onclick="copyScript()" title="Copy Script to Clipboard" style="
+            background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%);
+            color: #f2c94c;
+            font-weight: 600;
+            font-size: 13px;
+            padding: 8px 14px;
+            border: 1px solid rgba(242, 201, 76, 0.4);
+            border-radius: 6px;
             cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
             transition: all 0.2s ease;
-        ">Accra Pidgin</div>
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            outline: none;
+            margin-top: 8px;
+            margin-left: 8px;
+        ">
+                    <span style="font-size: 14px;">📋</span> <span style="letter-spacing: 0.3px;">Copy Script</span>
+                </button>
+            </div>
 
-        <div class="dialect-pill" data-value="lagos_street" onclick="selectDialect(this)" style="
-            background: #111118;
-            color: #a0a0ab;
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        ">Lagos Street</dav>
-           
-            <button id="script-btn" onclick="generateScript()">SCRIPT ENGINE</button>
-            <button id="copy-btn" onclick="copyScript()" title="Copy Script to Clipboard" style="
-    background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%);
-    color: #f2c94c;
-    font-weight: 600;
-    font-size: 13px;
-    padding: 8px 14px;
-    border: 1px solid rgba(242, 201, 76, 0.4);
-    border-radius: 6px;
-    cursor: pointer;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    outline: none;
-    margin-top: 8px;
-    margin-left: 8px;
-">
-                <span style="font-size: 14px;">📋</span> <span style="letter-spacing: 0.3px;">Copy Script</span>
-            </button>
-     
-        
+            <div id="workspace"></div>
+            <button id="video-btn" class="render-video-btn" onclick="renderVideo()">RENDER VIDEO</button>
+            <div class="container-box">
+                <div id="video-feed"></div>
+            </div>
+        </div>
 
-        <div id="workspace"></div>
-        <button id="video-btn" class="render-video-btn" onclick="renderVideo()">RENDER VIDEO</button>
-<div class="container-box">
-    <div id="video-feed"></div>
-    
-    <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    </div>
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyB8GNkZaVVV92w9-C2IN3jLzep8-zoUk8U",
-    authDomain: "maae-studio-production.firebaseapp.com",
-    projectId: "maae-studio-production",
-    storageBucket: "maae-studio-production.firebasestorage.app",
-    messagingSenderId: "794442926010",
-    appId: "1:794442926010:web:363376744b9618cb57f83",
-    measurementId: "G-SMN471NV3F"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
-
-  // Define functions as global so HTML can see them
-  window.insertToken = (token) => {
-    const input = document.getElementById('prompt-input');
-    input.value += (input.value ? ", " : "") + token;
-  }
-
-// Dialect tracking variables and helper placed BEFORE generateScript
-let activeDialect = 'classic_family';
-
-window.selectDialect = (element) => {
-    document.querySelectorAll('.dialect-pill').forEach(pill => {
-        pill.style.background = '#111118';
-        pill.style.color = '#a0a0ab';
-        pill.style.borderColor = 'rgba(255,255,255,0.1)';
-        pill.classList.remove('active');
-    });
-
-    element.style.background = 'linear-gradient(135deg, #1f1f2e 0%, #111118 100%)';
-    element.style.color = '#f2c94c';
-    element.style.borderColor = '#f2c94c';
-    element.classList.add('active');
-
-    activeDialect = element.getAttribute('data-value');
-};
-
-window.generateScript = async () => {
-    const btn = document.getElementById('script-btn');
-    const input = document.getElementById('prompt-input');
-    const workspace = document.getElementById('workspace');
-    const notify = document.getElementById('custom-notification');
-
-    if (input.value.trim() === "") {
-        notify.style.display = "block";
-        setTimeout(() => { notify.style.display = "none"; }, 3000);
-        return;
-    }
-
-    btn.disabled = true;
-    btn.innerText = "WRITING...";
-    workspace.innerText = "Sourcing computational layers...";
-
-    try {
-        const response = await fetch('/api/generate', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                prompt: input.value, 
-                dialect: activeDialect 
-            })
-        });
-        const data = await response.json();
-        workspace.innerText = data.script || data.message || "Error: No script returned.";
-    } catch (e) {
-        workspace.innerText = "Connection error: " + e;
-    } finally {
-        btn.disabled = false;
-        btn.innerText = "SCRIPT ENGINE";
-    }
-};
-
-  window.renderVideo = async () => {
-    const vBtn = document.getElementById('video-btn');
-    const feed = document.getElementById('video-feed');
-    const workspace = document.getElementById('workspace');
-    const scriptText = workspace.innerText;
-
-    vBtn.innerText = "RENDERING...";
-    feed.innerText = "Connecting to Video Production Node...";
-
-    try {
-        const response = await fetch('/api/render-video', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ script: scriptText })
-        });
-        const data = await response.json();
-        if (data.status === "success") {
-            feed.innerHTML = `<video controls width="100%"><source src="${data.video_url}" type="video/mp4"></video>`;
-        } else {
-            feed.innerText = "Render failed: " + data.message;
+    <script>
+        // Define functions as global so HTML can see them
+        window.insertToken = (token) => {
+            const input = document.getElementById('prompt-input');
+            input.value += (input.value ? ", " : "") + token;
         }
-    } catch (e) {
-        feed.innerText = "Connection error: " + e;
-    } finally {
-        vBtn.innerText = "RENDER VIDEO";
-    }
-  };
-  // Setup Firebase button
-  const signinBtn = document.getElementById("google-signin-btn");
-  if (signinBtn) {
-    signinBtn.addEventListener("click", () => {
-        signInWithPopup(auth, provider).then((result) => {
-            alert("Welcome, " + result.user.displayName);
-        }).catch((error) => {
-            console.error(error);
-        });
-    });
-  }
+
+        // Dialect tracking variables and helper placed BEFORE generateScript
+        let activeDialect = 'classic_family';
+
+        window.selectDialect = (element) => {
+            document.querySelectorAll('.dialect-pill').forEach(pill => {
+                pill.style.background = '#111118';
+                pill.style.color = '#a0a0ab';
+                pill.style.borderColor = 'rgba(255,255,255,0.1)';
+                pill.classList.remove('active');
+            });
+
+            element.style.background = 'linear-gradient(135deg, #1f1f2e 0%, #111118 100%)';
+            element.style.color = '#f2c94c';
+            element.style.borderColor = '#f2c94c';
+            element.classList.add('active');
+
+            activeDialect = element.getAttribute('data-value');
+        };
+
+        window.generateScript = async () => {
+            const btn = document.getElementById('script-btn');
+            const input = document.getElementById('prompt-input');
+            const workspace = document.getElementById('workspace');
+            const notify = document.getElementById('custom-notification');
+
+            if (input.value.trim() === "") {
+                if(notify) {
+                    notify.style.display = "block";
+                    setTimeout(() => { notify.style.display = "none"; }, 3000);
+                } else {
+                    alert("Please enter a plot idea first!");
+                }
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerText = "WRITING...";
+            workspace.innerText = "Sourcing computational layers...";
+
+            try {
+                const response = await fetch('/api/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        prompt: input.value,
+                        dialect: activeDialect
+                    })
+                });
+                const data = await response.json();
+                workspace.innerText = data.script || data.message || "Error: No script returned.";
+            } catch (e) {
+                workspace.innerText = "Connection error: " + e;
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "SCRIPT ENGINE";
+            }
+        };
+
+        window.renderVideo = async () => {
+            const vBtn = document.getElementById('video-btn');
+            const feed = document.getElementById('video-feed');
+            const workspace = document.getElementById('workspace');
+            const scriptText = workspace.innerText;
+
+            vBtn.innerText = "RENDERING...";
+            feed.innerText = "Connecting to Video Production Node...";
+
+            try {
+                const response = await fetch('/api/render-video', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ script: scriptText })
+                });
+                const data = await response.json();
+                if (data.status === "success") {
+                    feed.innerHTML = `<video controls width="100%"><source src="${data.video_url}" type="video/mp4"></video>`;
+                } else {
+                    feed.innerText = "Render failed: " + data.message;
+                }
+            } catch (e) {
+                feed.innerText = "Connection error: " + e;
+            } finally {
+                vBtn.innerText = "RENDER VIDEO";
+            }
+        };
+
         // Function to bring your comedy script to life with free browser voice audio
-  window.playAudioDrama = () => {
-    const scriptText = document.getElementById('workspace').innerText;
-    if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection")) {
-        alert("Please generate a script first!");
-        return;
-    }
-    if (!('speechSynthesis' in window)) {
-        alert("Text-to-speech is not supported in this browser.");
-        return;
-    }
-    window.speechSynthesis.cancel();
-    
-    const utterance = new SpeechSynthesisUtterance(scriptText);
-    utterance.rate = 0.92; // Slightly slower, crisp comedic delivery
-    utterance.pitch = 1.15;  // Higher, more expressive pitch for lively banter
+        window.playAudioDrama = () => {
+            const scriptText = document.getElementById('workspace').innerText;
+            if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection")) {
+                alert("Please generate a script first!");
+                return;
+            }
+            if (!('speechSynthesis' in window)) {
+                alert("Text-to-speech is not supported in this browser.");
+                return;
+            }
+            window.speechSynthesis.cancel();
 
-    const voices = window.speechSynthesis.getVoices();
-    
-    // Look for regional African or high-accent Commonwealth English variants
-    const selectedVoice = voices.find(v => 
-        v.lang.includes('en-NG') || 
-        v.lang.includes('en-GH') || 
-        v.lang.includes('en-ZA') || 
-        v.name.toLowerCase().includes('africa') ||
-        v.name.toLowerCase().includes('uk English') || // Often closer cadence
-        v.lang.includes('en-GB')
-    ) || voices[0];
+            const utterance = new SpeechSynthesisUtterance(scriptText);
+            utterance.rate = 0.92; // Slightly slower, crisp comedic delivery
+            utterance.pitch = 1.15; // Higher, more expressive pitch for lively banter
 
-    if (selectedVoice) {
-        utterance.voice = selectedVoice;
-    }
+            const voices = window.speechSynthesis.getVoices();
+            
+            // Look for regional African or high-accent Commonwealth English variants
+            const selectedVoice = voices.find(v => 
+                v.lang.includes('en-NG') || 
+                v.lang.includes('en-GH') || 
+                v.lang.includes('en-ZA') || 
+                v.name.toLowerCase().includes('africa') || 
+                v.name.toLowerCase().includes('uk english') // Often closer cadence
+            ) || voices[0];
 
-    window.speechSynthesis.speak(utterance);
-};
-   
-  window.copyScript = () => {
-    const scriptText = document.getElementById('workspace').innerText;
-    if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection")) {
-        alert("Please generate a script first!");
-        return;
-    }
-    navigator.clipboard.writeText(scriptText).then(() => {
-        const btn = document.getElementById('copy-btn');
-        btn.innerHTML = '<span style="font-size: 14px;">✅</span> <span style="letter-spacing: 0.3px;">Copied!</span>';
-        setTimeout(() => {
-            btn.innerHTML = '<span style="font-size: 14px;">📋</span> <span style="letter-spacing: 0.3px;">Copy Script</span>';
-        }, 2000);
-    }).catch(err => {
-        alert("Failed to copy script.");
-    });
-}; 
-        
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+            if (selectedVoice) {
+                utterance.voice = selectedVoice;
+            }
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBHNKZaVVW92w9-C21N3JLezo0-zoUk8U",
-    authDomain: "maae-studio-production.firebaseapp.com",
-    projectId: "maae-studio-production",
-    storageBucket: "maae-studio-production.firebasestorage.app",
-    messagingSenderId: "794442926010",
-    appId: "1:794442926010:web:f54116613839739b57f83",
-    measurementId: "G-X3Q0XRZCR"
-  };
+            window.speechSynthesis.speak(utterance);
+        };
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
-
-  window.loginWithGoogle = function() {
-      signInWithPopup(auth, provider).then(() => {
-          window.location.reload();
-      }).catch((error) => {
-          console.error("Login Error:", error.message);
-      });
-  };
-
-  window.logoutUser = function() {
-      signOut(auth).then(() => {
-          window.location.reload();
-      }).catch((error) => {
-          console.error("Logout Error:", error.message);
-      });
-  };
-
-onAuthStateChanged(auth, (user) => {
-    const authGate = document.getElementById('auth-gate');
-    const mainApp = document.getElementById('main-app-content');
-    const authContainer = document.getElementById('firebase-auth-container');
-
-    // TEMPORARY BYPASS: Force app open immediately
-const authGate = document.getElementById('auth-gate');
-const mainApp = document.getElementById('main-app-content');
-if (authGate) authGate.style.display = 'none';
-if (mainApp) mainApp.style.display = 'block';
-</div>         
-</script>        
+        window.copyScript = () => {
+            const scriptText = document.getElementById('workspace').innerText;
+            if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection")) {
+                alert("Please generate a script first!");
+                return;
+            }
+            navigator.clipboard.writeText(scriptText).then(() => {
+                const btn = document.getElementById('copy-btn');
+                btn.innerHTML = `<span style="font-size: 14px;">✅</span> <span style="letter-spacing: 0.3px;">Copied!</span>`;
+                setTimeout(() => {
+                    btn.innerHTML = `<span style="font-size: 14px;">📋</span> <span style="letter-spacing: 0.3px;">Copy Script</span>`;
+                }, 2000);
+            }).catch(err => {
+                alert("Failed to copy script.");
+            });
+        };
+    </script>
 </body>
 </html>
