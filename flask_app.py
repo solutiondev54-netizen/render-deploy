@@ -78,6 +78,43 @@ def render_video():
         'video_url': 'https://example.com/placeholder_video.mp4'
     })
 
+import os
+from flask import redirect, url_for, session, request
+from authlib.integrations.flask_client import OAuth
+
+# Initialize Authlib OAuth
+oauth = OAuth(app)
+google = oauth.register(
+    name='google',
+    client_id=os.environ.get('GOOGLE_CLIENT_ID'),
+    client_secret=os.environ.get('GOOGLE_CLIENT_SECRET'),
+    server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
+    client_kwargs={'scope': 'openid email profile'}
+)
+
+@app.route('/login/google')
+def login_google():
+    # Dynamically direct back to the correct callback domain
+    redirect_uri = url_for('authorize_google', _external=True)
+    return google.authorize_redirect(redirect_uri)
+
+@app.route('/auth/google/callback')
+def authorize_google():
+    token = google.authorize_access_token()
+    user_info = token.get('userinfo')
+    if user_info:
+        session['user'] = {
+            'name': user_info.get('name'),
+            'email': user_info.get('email'),
+            'picture': user_info.get('picture')
+        }
+    return redirect(url_for('index'))
+
+@app.route('/logout')
+def logout():
+    session.pop('user', None)
+    return redirect(url_for('index'))
+
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
