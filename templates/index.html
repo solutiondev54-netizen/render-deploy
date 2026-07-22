@@ -341,23 +341,11 @@ onAuthStateChanged(auth, (user) => {
     const mainApp = document.getElementById('main-app-content');
     const authContainer = document.getElementById('firebase-auth-container');
 
-    if (user) {
-      if (authGate) authGate.style.display = 'none';
-      if (mainApp) mainApp.style.display = 'block';
-
-      if (authContainer) {
-      authContainer.innerHTML = 
-    '<div class="user-profile-pill">' +
-    '<img src="' + (user.photoURL || 'https://via.placeholder.com/32') + '" alt="Profile" class="avatar">' +
-    '<span class="user-name">' + user.displayName + '</span>' +
-    '<button onclick="logoutUser()" class="logout-btn" type="button">Sign Out</button>' +
-    '</div>';
-      }
-    } else {
-      if (authGate) authGate.style.display = 'flex';
-      if (mainApp) mainApp.style.display = 'none';
-    }
-  });
+    // TEMPORARY BYPASS: Force app open immediately
+const authGate = document.getElementById('auth-gate');
+const mainApp = document.getElementById('main-app-content');
+if (authGate) authGate.style.display = 'none';
+if (mainApp) mainApp.style.display = 'block';
 </div>         
 </script>        
 </body>
