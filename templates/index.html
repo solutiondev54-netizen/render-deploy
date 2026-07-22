@@ -171,8 +171,6 @@ window.selectDialect = (element) => {
     workspace.innerText = "Sourcing computational layers...";
 
     try {
-            const selectedDialect = document.getElementById('dialect-select').value;
-
             const response = await fetch('/api/generate', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
