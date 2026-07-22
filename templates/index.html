@@ -42,6 +42,27 @@
             
             <input type="text" id="prompt-input" placeholder="Enter plot idea here...">
             <button id="script-btn" onclick="generateScript()">SCRIPT ENGINE</button>
+            <button id="copy-btn" onclick="copyScript()" title="Copy Script to Clipboard" style="
+    background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%);
+    color: #f2c94c;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 8px 14px;
+    border: 1px solid rgba(242, 201, 76, 0.4);
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    outline: none;
+    margin-top: 8px;
+    margin-left: 8px;
+">
+    <span style="font-size: 14px;">📋</span> <span style="letter-spacing: 0.3px;">Copy Script</span>
+            </button>
+     
         </div> 
 
         <div id="workspace"></div>
