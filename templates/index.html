@@ -203,6 +203,23 @@
 
     window.speechSynthesis.speak(utterance);
 };
+   
+  window.copyScript = () => {
+    const scriptText = document.getElementById('workspace').innerText;
+    if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection")) {
+        alert("Please generate a script first!");
+        return;
+    }
+    navigator.clipboard.writeText(scriptText).then(() => {
+        const btn = document.getElementById('copy-btn');
+        btn.innerHTML = '<span style="font-size: 14px;">✅</span> <span style="letter-spacing: 0.3px;">Copied!</span>';
+        setTimeout(() => {
+            btn.innerHTML = '<span style="font-size: 14px;">📋</span> <span style="letter-spacing: 0.3px;">Copy Script</span>';
+        }, 2000);
+    }).catch(err => {
+        alert("Failed to copy script.");
+    });
+};
     </script>    
 </body>
 </html>
