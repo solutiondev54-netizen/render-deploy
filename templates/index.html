@@ -26,11 +26,9 @@
     <div id="main-app-content">
         <div style="position: absolute; top: 20px; right: 20px; z-index: 100;">
             <div id="firebase-auth-container"></div>
-        </div>
+        
 
         <!-- YOUR EXISTING DASHBOARD CODE GOES HERE -->
-    </div>
-    <div id="firebase-auth-container" class="auth-container"></div>
     
     <div class="container">
         <h1>MAAE Core</h1>
@@ -62,7 +60,6 @@
 ">
     <span style="font-size: 14px;">🎙️</span> <span style="letter-spacing: 0.3px;">Play Audio</span>
                 </button>
-            </div>
             
             <input type="text" id="prompt-input" placeholder="Enter plot idea here...">
            <div style="margin: 15px 0; text-align: left;">
@@ -104,9 +101,8 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s ease;
-        ">Lagos Street</div>
-    </div>
-           </div>
+        ">Lagos Street</dav>
+           
             <button id="script-btn" onclick="generateScript()">SCRIPT ENGINE</button>
             <button id="copy-btn" onclick="copyScript()" title="Copy Script to Clipboard" style="
     background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%);
@@ -129,13 +125,12 @@
                 <span style="font-size: 14px;">📋</span> <span style="letter-spacing: 0.3px;">Copy Script</span>
             </button>
      
-        </div> 
+        
 
         <div id="workspace"></div>
         <button id="video-btn" class="render-video-btn" onclick="renderVideo()">RENDER VIDEO</button>
 <div class="container-box">
     <div id="video-feed"></div>
-</div>
     
     <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -351,7 +346,7 @@ window.generateScript = async () => {
             <img src="${user.photoURL || 'https://via.placeholder.com/32'}" alt="Profile" class="avatar">
             <span class="user-name">${user.displayName}</span>
             <button onclick="logoutUser()" class="logout-btn" type="button">Sign Out</button>
-        </div>
+        
       `;
     } else {
       authContainer.innerHTML = `
@@ -367,6 +362,7 @@ window.generateScript = async () => {
       `;
     }
   });
+</div>         
 </script>        
 </body>
 </html>
