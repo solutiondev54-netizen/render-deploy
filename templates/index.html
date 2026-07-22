@@ -335,14 +335,6 @@ window.generateScript = async () => {
       });
   };
 
-  window.logoutUser = function() {
-    signOut(auth).then(() => {
-      window.location.reload();
-    }).catch((error) => {
-      console.error("Logout Error:", error.message);
-    });
-  };
-
 onAuthStateChanged(auth, (user) => {
     const authGate = document.getElementById('auth-gate');
     const mainApp = document.getElementById('main-app-content');
