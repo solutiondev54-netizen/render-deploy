@@ -154,7 +154,7 @@ window.selectDialect = (element) => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
                     prompt: input.value, 
-                    dialect: selectedDialect 
+                    dialect: activeDialect 
                 })
             });
             const data = await response.json();
