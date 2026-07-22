@@ -135,13 +135,7 @@
   window.insertToken = (token) => {
     const input = document.getElementById('prompt-input');
     input.value += (input.value ? ", " : "") + token;
-  };
- 
-  // Define functions as global so HTML can see them
-window.insertToken = (token) => {
-    const input = document.getElementById('prompt-input');
-    input.value += (input.value ? ", " : "") + token;
-};
+  }
 
 // Dialect tracking variables and helper placed BEFORE generateScript
 let activeDialect = 'classic_family';
