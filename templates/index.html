@@ -300,20 +300,18 @@ window.generateScript = async () => {
         alert("Failed to copy script.");
     });
 };  
-    </script>
-       
-        <script type="module">
+<script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
   const firebaseConfig = {
-    apiKey: "AIzaSyBHGNkZaVVV92w9-C21N3jLzep0-zoUk8U",
+    apiKey: "AIzaSyBHNKZaVVW92w9-C21N3JLezo0-zoUk8U",
     authDomain: "maae-studio-production.firebaseapp.com",
     projectId: "maae-studio-production",
     storageBucket: "maae-studio-production.firebasestorage.app",
     messagingSenderId: "794442926010",
-    appId: "1:794442926010:web:f541166138397399b57f83",
-    measurementId: "G-X3QR0XRZCR"
+    appId: "1:794442926010:web:f54116613839739b57f83",
+    measurementId: "G-X3Q0XRZCR"
   };
 
   const app = initializeApp(firebaseConfig);
@@ -321,11 +319,19 @@ window.generateScript = async () => {
   const provider = new GoogleAuthProvider();
 
   window.loginWithGoogle = function() {
-    signInWithPopup(auth, provider).then(() => {
-      window.location.reload();
-    }).catch((error) => {
-      console.error("Login Error:", error.message);
-    });
+      signInWithPopup(auth, provider).then(() => {
+          window.location.reload();
+      }).catch((error) => {
+          console.error("Login Error:", error.message);
+      });
+  };
+
+  window.logoutUser = function() {
+      signOut(auth).then(() => {
+          window.location.reload();
+      }).catch((error) => {
+          console.error("Logout Error:", error.message);
+      });
   };
 
   window.logoutUser = function() {
