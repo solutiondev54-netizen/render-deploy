@@ -13,127 +13,118 @@
 </head>
 <body>
 
-    <!-- 1. Wrap all your existing dashboard content inside this -->
-    <div id="main-app-content">
+    <div class="container">
+        <h1>MAAE Core</h1>
+        <div class="subtitle">Production Studio Suite</div>
 
-        <!-- YOUR EXISTING DASHBOARD CODE GOES HERE -->
-
-        <div class="container">
-            <h1>MAAE Core</h1>
-            <div class="subtitle">Production Studio Suite</div>
-
-            <div class="input-group">
-                <label>STUDIO DIRECTIVE MANIFEST</label>
-                <div class="token-bank">
-                    <span class="tag-token" onclick="insertToken('Mama Akos')">+ Mama Akos</span>
-                    <span class="tag-token" onclick="insertToken('Kofi')">+ Kofi</span>
-                    <span class="tag-token" onclick="insertToken('Papa Kofi')">+ Papa Kofi</span>
-                    <span class="tag-token" onclick="insertToken('Akos\'s sister')">+ Akos Kofi's sister</span>
-                    <button id="audio-btn" onclick="playAudioDrama()" title="Play African Audio Voice" style="
-            background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%);
-            color: #f2c94c;
-            font-weight: 600;
-            font-size: 13px;
-            padding: 8px 14px;
-            border: 1px solid rgba(242, 201, 76, 0.4);
-            border-radius: 6px;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            outline: none;
-            margin-top: 8px;
-            margin-left: 8px;
-        ">
-                        <span style="font-size: 14px;">▶</span> <span style="letter-spacing: 0.3px;">Play Audio</span>
-                    </button>
-                </div>
-
-                <input type="text" id="prompt-input" placeholder="Enter plot idea here...">
-                <div style="margin: 15px 0; text-align: left;">
-                    <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 6px;">Select Dialect Style</label>
-                    <div id="dialect-container" style="display: flex; gap: 8px; flex-wrap: wrap;">
-                        <div class="dialect-pill active" data-value="classic_family" onclick="selectDialect(this)" style="
-                            background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%);
-                            color: #f2c94c;
-                            border: 1px solid #f2c94c;
-                            padding: 8px 12px;
-                            border-radius: 8px;
-                            font-size: 12px;
-                            font-weight: 500;
-                            cursor: pointer;
-                            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-                            transition: all 0.2s ease;
-                        ">Classic Sitcom</div>
-
-                        <div class="dialect-pill" data-value="accra_pidgin" onclick="selectDialect(this)" style="
-                            background: #111118;
-                            color: #a0a0ab;
-                            border: 1px solid rgba(255,255,255,0.1);
-                            padding: 8px 12px;
-                            border-radius: 8px;
-                            font-size: 12px;
-                            font-weight: 500;
-                            cursor: pointer;
-                            transition: all 0.2s ease;
-                        ">Accra Pidgin</div>
-
-                        <div class="dialect-pill" data-value="lagos_street" onclick="selectDialect(this)" style="
-                            background: #111118;
-                            color: #a0a0ab;
-                            border: 1px solid rgba(255,255,255,0.1);
-                            padding: 8px 12px;
-                            border-radius: 8px;
-                            font-size: 12px;
-                            font-weight: 500;
-                            cursor: pointer;
-                            transition: all 0.2s ease;
-                        ">Lagos Street</div>
-                    </div>
-                </div>
-
-                <button id="script-btn" onclick="generateScript()">SCRIPT ENGINE</button>
-                <button id="copy-btn" onclick="copyScript()" title="Copy Script to Clipboard" style="
-            background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%);
-            color: #f2c94c;
-            font-weight: 600;
-            font-size: 13px;
-            padding: 8px 14px;
-            border: 1px solid rgba(242, 201, 76, 0.4);
-            border-radius: 6px;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            outline: none;
-            margin-top: 8px;
-            margin-left: 8px;
-        ">
-                    <span style="font-size: 14px;">📋</span> <span style="letter-spacing: 0.3px;">Copy Script</span>
+        <div class="input-group">
+            <label>STUDIO DIRECTIVE MANIFEST</label>
+            <div class="token-bank">
+                <span class="tag-token" onclick="insertToken('Mama Akos')">+ Mama Akos</span>
+                <span class="tag-token" onclick="insertToken('Kofi')">+ Kofi</span>
+                <span class="tag-token" onclick="insertToken('Papa Kofi')">+ Papa Kofi</span>
+                <span class="tag-token" onclick="insertToken('Akos\'s sister')">+ Akos Kofi's sister</span>
+                <button id="audio-btn" onclick="playAudioDrama()" title="Play African Audio Voice" style="
+        background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%);
+        color: #f2c94c;
+        font-weight: 600;
+        font-size: 13px;
+        padding: 8px 14px;
+        border: 1px solid rgba(242, 201, 76, 0.4);
+        border-radius: 6px;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        outline: none;
+        margin-top: 8px;
+        margin-left: 8px;
+    ">
+                    <span style="font-size: 14px;">▶</span> <span style="letter-spacing: 0.3px;">Play Audio</span>
                 </button>
             </div>
 
-            <div id="workspace"></div>
-            <button id="video-btn" class="render-video-btn" onclick="renderVideo()">RENDER VIDEO</button>
-            <div class="container-box">
-                <div id="video-feed"></div>
+            <input type="text" id="prompt-input" placeholder="Enter plot idea here...">
+            <div style="margin: 15px 0; text-align: left;">
+                <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 6px;">Select Dialect Style</label>
+                <div id="dialect-container" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <div class="dialect-pill active" data-value="classic_family" onclick="selectDialect(this)" style="
+                        background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%);
+                        color: #f2c94c;
+                        border: 1px solid #f2c94c;
+                        padding: 8px 12px;
+                        border-radius: 8px;
+                        font-size: 12px;
+                        font-weight: 500;
+                        cursor: pointer;
+                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+                        transition: all 0.2s ease;
+                    ">Classic Sitcom</div>
+
+                    <div class="dialect-pill" data-value="accra_pidgin" onclick="selectDialect(this)" style="
+                        background: #111118;
+                        color: #a0a0ab;
+                        border: 1px solid rgba(255,255,255,0.1);
+                        padding: 8px 12px;
+                        border-radius: 8px;
+                        font-size: 12px;
+                        font-weight: 500;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                    ">Accra Pidgin</div>
+
+                    <div class="dialect-pill" data-value="lagos_street" onclick="selectDialect(this)" style="
+                        background: #111118;
+                        color: #a0a0ab;
+                        border: 1px solid rgba(255,255,255,0.1);
+                        padding: 8px 12px;
+                        border-radius: 8px;
+                        font-size: 12px;
+                        font-weight: 500;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                    ">Lagos Street</div>
+                </div>
             </div>
+
+            <button id="script-btn" onclick="generateScript()">SCRIPT ENGINE</button>
+            <button id="copy-btn" onclick="copyScript()" title="Copy Script to Clipboard" style="
+        background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%);
+        color: #f2c94c;
+        font-weight: 600;
+        font-size: 13px;
+        padding: 8px 14px;
+        border: 1px solid rgba(242, 201, 76, 0.4);
+        border-radius: 6px;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        outline: none;
+        margin-top: 8px;
+        margin-left: 8px;
+    ">
+                <span style="font-size: 14px;">📋</span> <span style="letter-spacing: 0.3px;">Copy Script</span>
+            </button>
         </div>
 
+        <div id="workspace"></div>
+        <button id="video-btn" class="render-video-btn" onclick="renderVideo()">RENDER VIDEO</button>
+        <div class="container-box">
+            <div id="video-feed"></div>
+        </div>
     </div>
 
     <script>
-        // Define functions as global so HTML can see them
         window.insertToken = (token) => {
             const input = document.getElementById('prompt-input');
             input.value += (input.value ? ", " : "") + token;
         }
 
-        // Dialect tracking variables and helper placed BEFORE generateScript
         let activeDialect = 'classic_family';
 
         window.selectDialect = (element) => {
@@ -156,15 +147,9 @@
             const btn = document.getElementById('script-btn');
             const input = document.getElementById('prompt-input');
             const workspace = document.getElementById('workspace');
-            const notify = document.getElementById('custom-notification');
 
             if (input.value.trim() === "") {
-                if(notify) {
-                    notify.style.display = "block";
-                    setTimeout(() => { notify.style.display = "none"; }, 3000);
-                } else {
-                    alert("Please enter a plot idea first!");
-                }
+                alert("Please enter a plot idea first!");
                 return;
             }
 
@@ -219,7 +204,6 @@
             }
         };
 
-        // Function to bring your comedy script to life with free browser voice audio
         window.playAudioDrama = () => {
             const scriptText = document.getElementById('workspace').innerText;
             if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection")) {
@@ -233,18 +217,16 @@
             window.speechSynthesis.cancel();
 
             const utterance = new SpeechSynthesisUtterance(scriptText);
-            utterance.rate = 0.92; // Slightly slower, crisp comedic delivery
-            utterance.pitch = 1.15; // Higher, more expressive pitch for lively banter
+            utterance.rate = 0.92;
+            utterance.pitch = 1.15;
 
             const voices = window.speechSynthesis.getVoices();
-            
-            // Look for regional African or high-accent Commonwealth English variants
             const selectedVoice = voices.find(v => 
                 v.lang.includes('en-NG') || 
                 v.lang.includes('en-GH') || 
                 v.lang.includes('en-ZA') || 
                 v.name.toLowerCase().includes('africa') || 
-                v.name.toLowerCase().includes('uk english') // Often closer cadence
+                v.name.toLowerCase().includes('uk english')
             ) || voices[0];
 
             if (selectedVoice) {
