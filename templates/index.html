@@ -198,13 +198,15 @@
                     feed.innerText = "Render failed: " + data.message;
                 }
 
-                } catch (e) {
+} catch (e) {
         feed.innerText = "Connection error: " + e;
     } finally {
         vBtn.innerText = "RENDER VIDEO";
-            }
+    }
+};
 
-                window.playAudioDrama = () => {
+window.playAudioDrama = () => {
+                
             const scriptText = document.getElementById('workspace').innerText;
             if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection") || scriptText.startsWith("Error")) {
                 alert("Please generate a valid script first!");
