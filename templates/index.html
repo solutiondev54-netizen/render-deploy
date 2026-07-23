@@ -200,37 +200,39 @@
             } catch (e) {
                 feed.innerText = "Connection error: " + e;
             } finally {
-                vBtn.innerText = "RENDER VIDEO";
-            }
-        };
+                vBtn.inn
 
-        window.playAudioDrama = () => {
+                window.playAudioDrama = () => {
             const scriptText = document.getElementById('workspace').innerText;
-            if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection")) {
-                alert("Please generate a script first!");
+            if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection") || scriptText.startsWith("Error")) {
+                alert("Please generate a valid script first!");
                 return;
             }
             if (!('speechSynthesis' in window)) {
                 alert("Text-to-speech is not supported in this browser.");
                 return;
             }
+
+            // Cancel any prior speech queue blockage
             window.speechSynthesis.cancel();
 
             const utterance = new SpeechSynthesisUtterance(scriptText);
-            utterance.rate = 0.92;
-            utterance.pitch = 1.15;
+            utterance.rate = 0.95;
+            utterance.pitch = 1.05;
 
+            // Fetch available voices safely
             const voices = window.speechSynthesis.getVoices();
-            const selectedVoice = voices.find(v => 
-                v.lang.includes('en-NG') || 
-                v.lang.includes('en-GH') || 
-                v.lang.includes('en-ZA') || 
-                v.name.toLowerCase().includes('africa') || 
-                v.name.toLowerCase().includes('uk english')
-            ) || voices[0];
-
-            if (selectedVoice) {
-                utterance.voice = selectedVoice;
+            if (voices.length > 0) {
+                const selectedVoice = voices.find(v => 
+                    v.lang.includes('en-NG') || 
+                    v.lang.includes('en-GH') || 
+                    v.lang.includes('en-ZA') || 
+                    v.name.toLowerCase().includes('english')
+                ) || voices[0];
+                
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                }
             }
 
             window.speechSynthesis.speak(utterance);
