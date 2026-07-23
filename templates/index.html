@@ -197,10 +197,11 @@
                 } else {
                     feed.innerText = "Render failed: " + data.message;
                 }
-            } catch (e) {
-                feed.innerText = "Connection error: " + e;
-            } finally {
-                vBtn.inn
+                } catch (e) {
+                    feed.innerText = "Connection error: " + e;
+                } finally {
+                    vBtn.innerText = "RENDER VIDEO";
+                }
 
                 window.playAudioDrama = () => {
             const scriptText = document.getElementById('workspace').innerText;
