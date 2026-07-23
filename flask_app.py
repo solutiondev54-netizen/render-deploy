@@ -47,7 +47,7 @@ def generate():
     for attempt in range(max_retries):
         try:
             response = client.models.generate_content(
-                model='gemini-2.5-flash-preview',
+                model='gemini-3-flash-preview',
                 contents=structured_content
             )
             
