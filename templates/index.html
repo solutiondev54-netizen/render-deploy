@@ -58,6 +58,23 @@
         <!-- Workspace Output Display -->
         <div id="workspace" style="margin-top: 20px; background: #0a0a0f; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; min-height: 120px; color: #e5e7eb; font-size: 13px; text-align: left; white-space: pre-wrap;"></div>
 
+         <!-- Background Soundscape / Vibe Mixer -->
+<div class="feature-section-title">Background Soundscape Vibe</div>
+<div class="soundscape-grid" id="soundscape-container">
+    <button type="button" class="soundscape-pill active" data-vibe="none">🚫 None</button>
+    <button type="button" class="soundscape-pill" data-vibe="accra-market">🛒 Accra Market</button>
+    <button type="button" class="soundscape-pill" data-vibe="lagos-traffic">🚗 Lagos Traffic</button>
+    <button type="button" class="soundscape-pill" data-vibe="highlife-beat">🎵 Chill Highlife</button>
+    <button type="button" class="soundscape-pill" data-vibe="sitcom-laugh">😂 Sitcom Laughs</button>
+</div>
+
+<!-- Multi-Language Subtitle Toggle -->
+<div class="feature-section-title">Subtitle / Caption Mode</div>
+<div class="subtitle-grid" id="subtitle-container">
+    <button type="button" class="subtitle-pill active" data-sub="srt">📄 Standard .SRT</button>
+    <button type="button" class="subtitle-pill" data-sub="pidgin-captions">🌍 Local Pidgin FX</button>
+    <button type="button" class="subtitle-pill" data-sub="none">❌ No Subtitles</button>
+</div>
         <!-- Video Render Feed Box -->
         <button id="video-btn" class="render-video-btn" onclick="renderVideo()" style="width: 100%; margin-top: 15px; padding: 12px; background: #10b981; color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 14px; cursor: pointer;">RENDER VIDEO</button>
         <div class="container-box" style="margin-top: 10px;">
