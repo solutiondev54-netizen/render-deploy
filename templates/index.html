@@ -17,113 +17,93 @@
         <h1>MAAE Core</h1>
         <div class="subtitle">Production Studio Suite</div>
 
+        <!-- Studio Directive Manifest Section -->
         <div class="input-group">
             <label>STUDIO DIRECTIVE MANIFEST</label>
-            <div class="token-bank">
-                <span class="tag-token" onclick="insertToken('Mama Akos')">+ Mama Akos</span>
-                <span class="tag-token" onclick="insertToken('Kofi')">+ Kofi</span>
-                <span class="tag-token" onclick="insertToken('Papa Kofi')">+ Papa Kofi</span>
-                <span class="tag-token" onclick="insertToken('Akos\'s sister')">+ Akos Kofi's sister</span>
-                <button id="audio-btn" onclick="playAudioDrama()" title="Play African Audio Voice" style="
-        background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%);
-        color: #f2c94c;
-        font-weight: 600;
-        font-size: 13px;
-        padding: 8px 14px;
-        border: 1px solid rgba(242, 201, 76, 0.4);
-        border-radius: 6px;
-        cursor: pointer;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-        transition: all 0.2s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        outline: none;
-        margin-top: 8px;
-        margin-left: 8px;
-    ">
-                    <span style="font-size: 14px;">▶</span> <span style="letter-spacing: 0.3px;">Play Audio</span>
-                </button>
+            <div class="token-bank" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+                <span class="tag-token" onclick="insertToken('Mama Akos')" style="background: #1f1f2e; color: #f2c94c; border: 1px solid rgba(242, 201, 76, 0.4); padding: 6px 12px; border-radius: 6px; font-size: 13px; cursor: pointer;">+ Mama Akos</span>
+                <span class="tag-token" onclick="insertToken('Kofi')" style="background: #1f1f2e; color: #f2c94c; border: 1px solid rgba(242, 201, 76, 0.4); padding: 6px 12px; border-radius: 6px; font-size: 13px; cursor: pointer;">+ Kofi</span>
+                <span class="tag-token" onclick="insertToken('Papa Kofi')" style="background: #1f1f2e; color: #f2c94c; border: 1px solid rgba(242, 201, 76, 0.4); padding: 6px 12px; border-radius: 6px; font-size: 13px; cursor: pointer;">+ Papa Kofi</span>
+                <span class="tag-token" onclick="insertToken('Akos Kofi\'s sister')" style="background: #1f1f2e; color: #f2c94c; border: 1px solid rgba(242, 201, 76, 0.4); padding: 6px 12px; border-radius: 6px; font-size: 13px; cursor: pointer;">+ Akos Kofi's sister</span>
             </div>
-
-            <input type="text" id="prompt-input" placeholder="Enter plot idea here...">
-            <div style="margin: 15px 0; text-align: left;">
-                <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 6px;">Select Dialect Style</label>
-                <div id="dialect-container" style="display: flex; gap: 8px; flex-wrap: wrap;">
-                    <div class="dialect-pill active" data-value="classic_family" onclick="selectDialect(this)" style="
-                        background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%);
-                        color: #f2c94c;
-                        border: 1px solid #f2c94c;
-                        padding: 8px 12px;
-                        border-radius: 8px;
-                        font-size: 12px;
-                        font-weight: 500;
-                        cursor: pointer;
-                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-                        transition: all 0.2s ease;
-                    ">Classic Sitcom</div>
-
-                    <div class="dialect-pill" data-value="accra_pidgin" onclick="selectDialect(this)" style="
-                        background: #111118;
-                        color: #a0a0ab;
-                        border: 1px solid rgba(255,255,255,0.1);
-                        padding: 8px 12px;
-                        border-radius: 8px;
-                        font-size: 12px;
-                        font-weight: 500;
-                        cursor: pointer;
-                        transition: all 0.2s ease;
-                    ">Accra Pidgin</div>
-
-                    <div class="dialect-pill" data-value="lagos_street" onclick="selectDialect(this)" style="
-                        background: #111118;
-                        color: #a0a0ab;
-                        border: 1px solid rgba(255,255,255,0.1);
-                        padding: 8px 12px;
-                        border-radius: 8px;
-                        font-size: 12px;
-                        font-weight: 500;
-                        cursor: pointer;
-                        transition: all 0.2s ease;
-                    ">Lagos Street</div>
-                </div>
-            </div>
-
-            <button id="script-btn" onclick="generateScript()">SCRIPT ENGINE</button>
-            <button id="copy-btn" onclick="copyScript()" title="Copy Script to Clipboard" style="
-        background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%);
-        color: #f2c94c;
-        font-weight: 600;
-        font-size: 13px;
-        padding: 8px 14px;
-        border: 1px solid rgba(242, 201, 76, 0.4);
-        border-radius: 6px;
-        cursor: pointer;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-        transition: all 0.2s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        outline: none;
-        margin-top: 8px;
-        margin-left: 8px;
-    ">
-                <span style="font-size: 14px;">📋</span> <span style="letter-spacing: 0.3px;">Copy Script</span>
+            
+            <button id="audio-btn" onclick="playAudioDrama()" title="Play African Audio Voice" style="background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%); color: #f2c94c; font-weight: 600; font-size: 13px; padding: 10px 16px; border: 1px solid rgba(242, 201, 76, 0.4); border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; width: 100%; justify-content: center;">
+                <span style="font-size: 14px;">▶</span><span style="letter-spacing: 0.3px;">Play African Audio Voice</span>
             </button>
         </div>
 
-        <div id="workspace"></div>
-        <button id="video-btn" class="render-video-btn" onclick="renderVideo()">RENDER VIDEO</button>
-        <div class="container-box">
-            <div id="video-feed"></div>
+        <!-- Prompt Input Section -->
+        <div class="input-group" style="margin-top: 15px;">
+            <input type="text" id="prompt-input" placeholder="Enter plot idea here...">
+        </div>
+
+        <!-- Select Dialect Style Section -->
+        <div class="input-group" style="margin-top: 15px; text-align: left;">
+            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Select Dialect Style</label>
+            <div id="dialect-container" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;">
+                <div class="dialect-pill active" data-value="classic_family" onclick="selectDialect(this)" style="background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%); color: #f2c94c; border: 1px solid #f2c94c; padding: 10px 14px; border-radius: 8px; font-size: 12px; font-weight: 500; cursor: pointer; flex: 1; text-align: center;">Classic Sitcom</div>
+                <div class="dialect-pill" data-value="accra_pidgin" onclick="selectDialect(this)" style="background: #111118; color: #a0a0ab; border: 1px solid rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 8px; font-size: 12px; font-weight: 500; cursor: pointer; flex: 1; text-align: center;">Accra Pidgin</div>
+                <div class="dialect-pill" data-value="lagos_street" onclick="selectDialect(this)" style="background: #111118; color: #a0a0ab; border: 1px solid rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 8px; font-size: 12px; font-weight: 500; cursor: pointer; flex: 1; text-align: center;">Lagos Street</div>
+            </div>
+        </div>
+
+        <!-- Script Engine Action Button -->
+        <button id="script-btn" onclick="generateScript()" style="width: 100%; margin-top: 20px; padding: 12px; background: linear-gradient(135deg, #8b5cf6, #6366f1); color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 15px rgba(99,102,241,0.4);">SCRIPT ENGINE</button>
+
+        <!-- Copy Script Action Button -->
+        <button id="copy-btn" onclick="copyScript()" style="width: 100%; margin-top: 10px; background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%); color: #f2c94c; font-weight: 600; font-size: 13px; padding: 10px 16px; border: 1px solid rgba(242, 201, 76, 0.4); border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+            <span style="font-size: 14px;">📋</span><span style="letter-spacing: 0.3px;">Copy Script</span>
+        </button>
+
+        <!-- Workspace Output Display -->
+        <div id="workspace" style="margin-top: 20px; background: #0a0a0f; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; min-height: 120px; color: #e5e7eb; font-size: 13px; text-align: left; white-space: pre-wrap;"></div>
+
+        <!-- Video Render Feed Box -->
+        <button id="video-btn" class="render-video-btn" onclick="renderVideo()" style="width: 100%; margin-top: 15px; padding: 12px; background: #10b981; color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 14px; cursor: pointer;">RENDER VIDEO</button>
+        <div class="container-box" style="margin-top: 10px;">
+            <div id="video-feed" style="color: #9ca3af; font-size: 12px; text-align: center;"></div>
         </div>
     </div>
 
-<script>
+    <!-- Mama Akos Floating Trigger Button -->
+    <div id="mama-akos-trigger" onclick="toggleMamaChat()" style="position: fixed; bottom: 25px; right: 25px; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 12px 20px; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 99999; display: flex; align-items: center; gap: 10px; font-family: sans-serif;">
+        <span style="font-size: 22px;">👩🏾‍🍳</span> Ask Mama Akos
+    </div>
+
+    <!-- Mama Akos Chat Modal Window -->
+    <div id="mama-akos-modal" style="display: none; position: fixed; bottom: 90px; right: 25px; width: 350px; max-width: 90vw; height: 480px; background: #121212; border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.6); z-index: 100000; flex-direction: column; overflow: hidden; font-family: sans-serif;">
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #1e1e1e, #2d2d2d); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 35px; height: 35px; background: #f59e0b; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px;">👩🏾‍🍳</div>
+                <div>
+                    <h4 style="margin: 0; color: #ffffff; font-size: 15px;">Mama Akos</h4>
+                    <p style="margin: 0; color: #10b981; font-size: 11px;">● Online & ready to scold/help</p>
+                </div>
+            </div>
+            <button onclick="toggleMamaChat()" style="background: none; border: none; color: #aaa; font-size: 20px; cursor: pointer;">&times;</button>
+        </div>
+
+        <!-- Chat Messages Body -->
+        <div id="mama-chat-body" style="flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: #0a0a0a;">
+            <div style="background: #1f1f1f; color: #e5e7eb; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; align-self: flex-start; border-left: 3px solid #f59e0b;">
+                Ehn, welcome! What trouble are you facing with your script studio again? Don't just sit there looking at the screen, talk to Mama!
+            </div>
+        </div>
+
+        <!-- Input Footer -->
+        <div style="padding: 12px; background: #18181b; display: flex; gap: 8px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <input type="text" id="mama-chat-input" placeholder="Ask Mama Akos anything..." onkeypress="handleMamaEnter(event)" style="flex: 1; background: #27272a; border: 1px solid #3f3f46; color: white; padding: 10px 14px; border-radius: 10px; font-size: 13px; outline: none;">
+            <button onclick="sendMamaMessage()" style="background: #f59e0b; color: white; border: none; padding: 0 16px; border-radius: 10px; font-weight: bold; cursor: pointer;">Send</button>
+        </div>
+    </div>
+
+    <!-- Complete JavaScript Client Architecture -->
+    <script>
         window.insertToken = (token) => {
             const input = document.getElementById('prompt-input');
-            input.value += (input.value ? ", " : "") + token;
-        }
+            input.value += (input.value ? " " : "") + token;
+        };
 
         let activeDialect = 'classic_family';
 
@@ -197,15 +177,14 @@
                 } else {
                     feed.innerText = "Render failed: " + data.message;
                 }
+            } catch (e) {
+                feed.innerText = "Connection error: " + e;
+            } finally {
+                vBtn.innerText = "RENDER VIDEO";
+            }
+        };
 
-} catch (e) {
-        feed.innerText = "Connection error: " + e;
-    } finally {
-        vBtn.innerText = "RENDER VIDEO";
-    }
-};
-
-window.playAudioDrama = () => {
+        window.playAudioDrama = () => {
             const scriptText = document.getElementById('workspace').innerText;
             if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection") || scriptText.startsWith("Error")) {
                 alert("Please generate a valid script first!");
@@ -240,7 +219,6 @@ window.playAudioDrama = () => {
                 window.speechSynthesis.speak(utterance);
             };
 
-            // Ensure voices are loaded for mobile compatibility
             const voices = window.speechSynthesis.getVoices();
             if (voices.length === 0) {
                 window.speechSynthesis.onvoiceschanged = () => {
@@ -253,92 +231,61 @@ window.playAudioDrama = () => {
 
         window.copyScript = () => {
             const scriptText = document.getElementById('workspace').innerText;
-            if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection")) {
+            if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection") || scriptText.startsWith("Error")) {
                 alert("Please generate a script first!");
                 return;
             }
             navigator.clipboard.writeText(scriptText).then(() => {
                 const btn = document.getElementById('copy-btn');
-                btn.innerHTML = `<span style="font-size: 14px;">✅</span> <span style="letter-spacing: 0.3px;">Copied!</span>`;
+                btn.innerHTML = `<span style="font-size: 14px;">✅</span><span style="letter-spacing: 0.3px;">Copied!</span>`;
                 setTimeout(() => {
-                    btn.innerHTML = `<span style="font-size: 14px;">📋</span> <span style="letter-spacing: 0.3px;">Copy Script</span>`;
+                    btn.innerHTML = `<span style="font-size: 14px;">📋</span><span style="letter-spacing: 0.3px;">Copy Script</span>`;
                 }, 2000);
             }).catch(err => {
                 alert("Failed to copy script.");
             });
         };
 
-<!-- Mama Akos Floating Trigger Button -->
-<div id="mama-akos-trigger" onclick="toggleMamaChat()" style="position: fixed; bottom: 25px; right: 25px; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 12px 20px; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.3); z-index: 9999; display: flex; align-items: center; gap: 10px; font-family: sans-serif; transition: transform 0.2s;">
-    <span style="font-size: 22px;">👩🏾‍🍳</span> Ask Mama Akos
-</div>
+        // Mama Akos Chat Assistant Logic
+        function toggleMamaChat() {
+            const modal = document.getElementById('mama-akos-modal');
+            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+        }
 
-<!-- Mama Akos Chat Modal Window -->
-<div id="mama-akos-modal" style="display: none; position: fixed; bottom: 90px; right: 25px; width: 350px; max-width: 90vw; height: 480px; background: #121212; border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.5); z-index: 10000; flex-direction: column; overflow: hidden; font-family: sans-serif;">
-    <!-- Header -->
-    <div style="background: linear-gradient(135deg, #1e1e1e, #2d2d2d); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1);">
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <div style="width: 35px; height: 35px; background: #f59e0b; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px;">👩🏾‍🍳</div>
-            <div>
-                <h4 style="margin: 0; color: #ffffff; font-size: 15px;">Mama Akos</h4>
-                <p style="margin: 0; color: #10b981; font-size: 11px;">● Online & ready to scold/help</p>
-            </div>
-        </div>
-        <button onclick="toggleMamaChat()" style="background: none; border: none; color: #aaa; font-size: 18px; cursor: pointer;">&times;</button>
-    </div>
+        function handleMamaEnter(e) {
+            if (e.key === 'Enter') sendMamaMessage();
+        }
 
-    <!-- Chat Messages Body -->
-    <div id="mama-chat-body" style="flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: #0a0a0a;">
-        <div style="background: #1f1f1f; color: #e5e7eb; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; align-self: flex-start; border-left: 3px solid #f59e0b;">
-            Ehn, welcome! What trouble are you facing with your script studio again? Don't just sit there looking at the screen, talk to Mama!
-        </div>
-    </div>
+        async function sendMamaMessage() {
+            const input = document.getElementById('mama-chat-input');
+            const body = document.getElementById('mama-chat-body');
+            const text = input.value.trim();
+            if (!text) return;
 
-    <!-- Input Footer -->
-    <div style="padding: 12px; background: #18181b; display: flex; gap: 8px; border-top: 1px solid rgba(255,255,255,0.1);">
-        <input type="text" id="mama-chat-input" placeholder="Ask Mama Akos anything..." onkeypress="handleMamaEnter(event)" style="flex: 1; background: #27272a; border: 1px solid #3f3f46; color: white; padding: 10px 14px; border-radius: 10px; font-size: 13px; outline: none;">
-        <button onclick="sendMamaMessage()" style="background: #f59e0b; color: white; border: none; padding: 0 16px; border-radius: 10px; font-weight: bold; cursor: pointer;">Send</button>
-    </div>
-</div>
-    function toggleMamaChat() {
-        const modal = document.getElementById('mama-akos-modal');
-        modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
-    }
+            body.innerHTML += `<div style="background: #3b82f6; color: white; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; align-self: flex-end;">${text}</div>`;
+            input.value = '';
+            body.scrollTop = body.scrollHeight;
 
-    function handleMamaEnter(e) {
-        if (e.key === 'Enter') sendMamaMessage();
-    }
+            const loadingId = 'loading-' + Date.now();
+            body.innerHTML += `<div id="${loadingId}" style="background: #1f1f1f; color: #9ca3af; padding: 10px 14px; border-radius: 12px; font-size: 13px; align-self: flex-start;">Mama Akos is typing...</div>`;
+            body.scrollTop = body.scrollHeight;
 
-    async function sendMamaMessage() {
-    const input = document.getElementById('mama-chat-input');
-    const body = document.getElementById('mama-chat-body');
-    const text = input.value.trim();
-    if (!text) return;
-
-    body.innerHTML += `<div style="background: #3b82f6; color: white; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; align-self: flex-end;">${text}</div>`;
-    input.value = '';
-    body.scrollTop = body.scrollHeight;
-
-    const loadingId = 'loading-' + Date.now();
-    body.innerHTML += `<div id="${loadingId}" style="background: #1f1f1f; color: #9ca3af; padding: 10px 14px; border-radius: 12px; font-size: 13px; align-self: flex-start;">Mama Akos is typing...</div>`;
-    body.scrollTop = body.scrollHeight;
-
-    try {
-        const response = await fetch('/api/mama-akos', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: text })
-        });
-        const data = await response.json();
-        
-        document.getElementById(loadingId).remove();
-        body.innerHTML += `<div style="background: #1f1f1f; color: #e5e7eb; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; align-self: flex-start; border-left: 3px solid #f59e0b;">${data.reply}</div>`;
-    } catch (err) {
-        document.getElementById(loadingId).remove();
-        body.innerHTML += `<div style="background: #1f1f1f; color: #ef4444; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; align-self: flex-start;">Network trouble! Try again.</div>`;
-    }
-    body.scrollTop = body.scrollHeight;
-    }
-</script>
+            try {
+                const response = await fetch('/api/mama-akos', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text })
+                });
+                const data = await response.json();
+                
+                document.getElementById(loadingId).remove();
+                body.innerHTML += `<div style="background: #1f1f1f; color: #e5e7eb; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; align-self: flex-start; border-left: 3px solid #f59e0b;">${data.reply}</div>`;
+            } catch (err) {
+                document.getElementById(loadingId).remove();
+                body.innerHTML += `<div style="background: #1f1f1f; color: #ef4444; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; align-self: flex-start;">Network trouble! Try again.</div>`;
+            }
+            body.scrollTop = body.scrollHeight;
+        }
+    </script>
 </body>
 </html>
