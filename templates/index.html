@@ -52,6 +52,8 @@
 
         <!-- Copy Script Action Button -->
         <button id="copy-btn" onclick="copyScript()" style="width: 100%; margin-top: 10px; background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%); color: #f2c94c; font-weight: 600; font-size: 13px; padding: 10px 16px; border: 1px solid rgba(242, 201, 76, 0.4); border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+        <!-- Project History Vault Trigger -->
+<button type="button" class="vault-trigger-btn" id="open-vault-btn">📂 Open Script Vault (<span id="vault-count">0</span>)</button>
             <span style="font-size: 14px;">📋</span><span style="letter-spacing: 0.3px;">Copy Script</span>
         </button>
 
@@ -328,6 +330,17 @@
             console.log("Selected Subtitle Mode:", selectedSubtitleMode);
         });
     });
+<!-- Vault Modal Component -->
+<div id="script-vault-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(13, 17, 23, 0.85); backdrop-filter:blur(8px); z-index:1000; justify-content:center; align-items:center;">
+    <div class="vault-content-box" style="background:#161b22; border:2px solid #30363d; width:90%; max-width:500px; max-height:80vh; border-radius:20px; padding:25px; display:flex; flex-direction:column; box-shadow:0 25px 50px rgba(0,0,0,0.8);">
+        <div class="vault-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid #30363d; padding-bottom:10px;">
+            <h3 style="margin:0; font-size:1.1rem; color:#f1f5f9;">Saved Script Vault</h3>
+            <button type="button" class="vault-close-btn" id="close-vault-btn" style="background:#ef4444; border:none; color:white; padding:6px 12px; border-radius:8px; cursor:pointer; font-weight:bold;">X</button>
+        </div>
+        <div class="vault-list" id="vault-items-container" style="overflow-y:auto; flex-grow:1; display:flex; flex-direction:column; gap:10px;">
+            <p style="color:#64748b; text-align:center; font-size:0.9rem;">No saved scripts yet.</p>
+        </div>
+    </div>
 </script>
 </body>
 </html>
