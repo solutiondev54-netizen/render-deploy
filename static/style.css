@@ -267,3 +267,39 @@ h1 {
         transform: translateY(0) scale(1);
     }
 }
+
+/* --- Advanced Studio Additions Styles --- */
+.feature-section-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #94a3b8;
+    margin: 20px 0 10px 5px;
+    font-weight: 600;
+}
+
+.soundscape-grid, .subtitle-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.soundscape-pill, .subtitle-pill {
+    position: relative;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f1f5f9;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.soundscape-pill.active, .subtitle-pill.active {
+    background: linear-gradient(135deg, #6366f1, #a055f7);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
