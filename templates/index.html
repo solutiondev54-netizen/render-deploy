@@ -119,7 +119,7 @@
         </div>
     </div>
 
-    <script>
+<script>
         window.insertToken = (token) => {
             const input = document.getElementById('prompt-input');
             input.value += (input.value ? ", " : "") + token;
@@ -300,8 +300,6 @@ window.playAudioDrama = () => {
         <button onclick="sendMamaMessage()" style="background: #f59e0b; color: white; border: none; padding: 0 16px; border-radius: 10px; font-weight: bold; cursor: pointer;">Send</button>
     </div>
 </div>
-
-<script>
     function toggleMamaChat() {
         const modal = document.getElementById('mama-akos-modal');
         modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
