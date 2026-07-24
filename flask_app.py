@@ -78,6 +78,30 @@ def render_video():
         'video_url': 'https://example.com/placeholder_video.mp4'
     })
 
+@app.route('/api/mama-akos', methods=['POST'])
+def mama_akos_chat():
+    data = request.get_json()
+    user_message = data.get('message', '')
+    
+    system_instruction = (
+        "You are 'Mama Akos', a funny, street-smart, loving, and dramatic African mother "
+        "who acts as the virtual guide for this MAAE Core script production and audio studio app. "
+        "Your job is to answer user questions about how to use the app (generating scripts, clicking name tags, "
+        "choosing dialects, rendering videos, and using text-to-speech audio). "
+        "Always respond in a warm, witty, humorous African mother lifestyle tone—use relatable "
+        "expressions, loving scoldings, and simple layman terms. Keep it punchy, engaging, and very helpful."
+    )
+    
+    try:
+        # Using your existing high-performance model configuration
+        response = client.models.generate_content(
+            model='gemini-3-flash-preview',
+            contents=f"{system_instruction}\n\nUser Question: {user_message}"
+        )
+        return jsonify({"reply": response.text})
+    except Exception as e:
+        return jsonify({"reply": "Ah, see trouble! My server network is behaving like a stubborn child. Try asking me again in a small minute!"})
+
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
