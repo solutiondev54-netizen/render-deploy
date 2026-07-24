@@ -112,32 +112,32 @@
             <span style="color: white; font-weight: bold; font-size: 13px; letter-spacing: 0.02em;">Ask Mama Akos</span>
         </div>
 
-       <!-- Mama Akos Premium Chat Modal Window -->
-        <div id="mama-akos-modal" style="display: none; position: fixed; bottom: 90px; right: 25px; width: 360px; max-width: calc(100vw - 40px); background: linear-gradient(145deg, #0d1117, #161b22); border: 2px solid rgba(245, 158, 11, 0.4); border-radius: 20px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(245, 158, 11, 0.15); overflow: hidden; z-index: 10000; font-family: inherit;">
+        <!-- Mama Akos Premium Chat Modal Window -->
+        <div id="mama-akos-modal" style="display: none; position: fixed; bottom: 90px; right: 25px; width: 340px; max-width: calc(100vw - 40px); background: linear-gradient(145deg, #0d1117, #161b22); border: 2px solid rgba(245, 158, 11, 0.4); border-radius: 20px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(245, 158, 11, 0.15); overflow: hidden; z-index: 10000; font-family: inherit;">
             
             <!-- Premium Glass Header -->
-            <div style="background: linear-gradient(135deg, #1f242d, #11151c); padding: 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08);">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 10px rgba(245,158,11,0.3);">👩🏽‍🍳</div>
-                    <div>
-                        <h4 style="margin: 0; color: #ffffff; font-size: 15px; font-weight: 700; letter-spacing: 0.02em;">Mama Akos</h4>
-                        <p style="margin: 2px 0 0 0; color: #34d399; font-size: 11px; font-weight: 500; display: flex; align-items: center; gap: 4px;"><span style="width: 6px; height: 6px; background: #34d399; border-radius: 50%; display: inline-block;"></span> Online & Ready to Help</p>
+            <div style="background: linear-gradient(135deg, #1f242d, #11151c); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                <div style="display: flex; align-items: center; gap: 10px; min-width: 0;">
+                    <div style="width: 38px; height: 38px; min-width: 38px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 4px 10px rgba(245,158,11,0.3);">👩🏽‍🍳</div>
+                    <div style="min-width: 0;">
+                        <h4 style="margin: 0; color: #ffffff; font-size: 14px; font-weight: 700; letter-spacing: 0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Mama Akos</h4>
+                        <p style="margin: 2px 0 0 0; color: #34d399; font-size: 10px; font-weight: 500; display: flex; align-items: center; gap: 4px; white-space: nowrap;"><span style="width: 5px; height: 5px; background: #34d399; border-radius: 50%; display: inline-block;"></span> Online & Ready</p>
                     </div>
                 </div>
-                <button type="button" onclick="toggleMamaChat()" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; width: 30px; height: 30px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center;">&times;</button>
+                <button type="button" onclick="toggleMamaChat()" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; width: 28px; height: 28px; min-width: 28px; border-radius: 50%; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">&times;</button>
             </div>
 
             <!-- Styled Chat Body Container -->
-            <div id="mama-chat-body" style="height: 280px; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: #0a0e14;">
-                <div style="background: linear-gradient(135deg, #1f2937, #111827); color: #f3f4f6; padding: 12px 16px; border-radius: 14px; font-size: 13px; line-height: 1.5; max-width: 85%; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+            <div id="mama-chat-body" style="height: 260px; padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #0a0e14;">
+                <div style="background: linear-gradient(135deg, #1f2937, #111827); color: #f3f4f6; padding: 10px 14px; border-radius: 12px; font-size: 12px; line-height: 1.4; max-width: 85%; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
                     Ehn, welcome! What trouble are you facing with your script studio again? Let Mama Akos help you sort am. ✨
                 </div>
             </div>
 
             <!-- Sleek Input Footer -->
-            <div style="padding: 14px; background: #11151c; display: flex; gap: 8px; border-top: 1px solid rgba(255,255,255,0.08);">
-                <input type="text" id="mama-chat-input" placeholder="Ask Mama Akos anything..." onkeypress="handleMamaEnter(event)" style="flex: 1; background: #0d1117; border: 1px solid #30363d; border-radius: 12px; padding: 10px 14px; color: white; font-size: 13px; outline: none;">
-                <button type="button" onclick="sendMamaMessage()" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; border: none; border-radius: 12px; padding: 0 16px; font-weight: bold; cursor: pointer; font-size: 13px; box-shadow: 0 4px 12px rgba(245,158,11,0.3);">Send</button>
+            <div style="padding: 12px 14px; background: #11151c; display: flex; gap: 8px; border-top: 1px solid rgba(255,255,255,0.08);">
+                <input type="text" id="mama-chat-input" placeholder="Ask Mama Akos anything..." onkeypress="handleMamaEnter(event)" style="flex: 1; min-width: 0; background: #0d1117; border: 1px solid #30363d; border-radius: 10px; padding: 9px 12px; color: white; font-size: 12px; outline: none;">
+                <button type="button" onclick="sendMamaMessage()" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; border: none; border-radius: 10px; padding: 0 14px; font-weight: bold; cursor: pointer; font-size: 12px; box-shadow: 0 4px 12px rgba(245,158,11,0.3);">Send</button>
             </div>
         </div>
 
