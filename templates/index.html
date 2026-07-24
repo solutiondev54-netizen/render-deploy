@@ -312,38 +312,34 @@ window.playAudioDrama = () => {
     }
 
     async function sendMamaMessage() {
-        const input = document.getElementById('mama-chat-input');
-        const body = document.getElementById('mama-chat-body');
-        const text = input.value.trim();
-        if (!text) return;
+    const input = document.getElementById('mama-chat-input');
+    const body = document.getElementById('mama-chat-body');
+    const text = input.value.trim();
+    if (!text) return;
 
-        // Append user bubble
-        body.innerHTML += `<div style="background: #3b82f6; color: white; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; align-self: flex-end;">${text}</div>`;
-        input.value = '';
-        body.scrollTop = body.scrollHeight;
+    body.innerHTML += `<div style="background: #3b82f6; color: white; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; align-self: flex-end;">${text}</div>`;
+    input.value = '';
+    body.scrollTop = body.scrollHeight;
 
-        // Append loading indicator
-        const loadingId = 'loading-' + Date.now();
-        body.innerHTML += `<div id="${loadingId}" style="background: #1f1f1f; color: #9ca3af; padding: 10px 14px; border-radius: 12px; font-size: 13px; align-self: flex-start;">Mama Akos is shaking her head and typing...</div>`;
-        body.scrollTop = body.scrollHeight;
+    const loadingId = 'loading-' + Date.now();
+    body.innerHTML += `<div id="${loadingId}" style="background: #1f1f1f; color: #9ca3af; padding: 10px 14px; border-radius: 12px; font-size: 13px; align-self: flex-start;">Mama Akos is typing...</div>`;
+    body.scrollTop = body.scrollHeight;
 
-        try {
-            const response = await fetch('/api/mama-akos', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: text })
-            });
-            const data = await response.json();
-            
-            document.getElementById(loadingId).remove();
-            
-            // Append Mama Akos reply
-            body.innerHTML += `<div style="background: #1f1f1f; color: #e5e7eb; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; align-self: flex-start; border-left: 3px solid #f59e0b;">${data.reply}</div>`;
-        } catch (err) {
-            document.getElementById(loadingId).remove();
-            body.innerHTML += `<div style="background: #1f1f1f; color: #ef4444; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; align-self: flex-start;">Network trouble is worrying us. Try again!</div>`;
-        }
-        body.scrollTop = body.scrollHeight;
+    try {
+        const response = await fetch('/api/mama-akos', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: text })
+        });
+        const data = await response.json();
+        
+        document.getElementById(loadingId).remove();
+        body.innerHTML += `<div style="background: #1f1f1f; color: #e5e7eb; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; align-self: flex-start; border-left: 3px solid #f59e0b;">${data.reply}</div>`;
+    } catch (err) {
+        document.getElementById(loadingId).remove();
+        body.innerHTML += `<div style="background: #1f1f1f; color: #ef4444; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; align-self: flex-start;">Network trouble! Try again.</div>`;
+    }
+    body.scrollTop = body.scrollHeight;
     }
 </script>
 </body>
