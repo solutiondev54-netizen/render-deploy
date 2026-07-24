@@ -303,6 +303,31 @@
             }
             body.scrollTop = body.scrollHeight;
         }
-    </script>
+
+    // --- Paste the new features code here ---
+    const soundscapePills = document.querySelectorAll('.soundscape-pill');
+    let selectedSoundscape = 'none';
+
+    soundscapePills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            soundscapePills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            selectedSoundscape = pill.getAttribute('data-vibe');
+            console.log("Selected Soundscape Vibe:", selectedSoundscape);
+        });
+    });
+
+    const subtitlePills = document.querySelectorAll('.subtitle-pill');
+    let selectedSubtitleMode = 'srt';
+
+    subtitlePills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            subtitlePills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            selectedSubtitleMode = pill.getAttribute('data-sub');
+            console.log("Selected Subtitle Mode:", selectedSubtitleMode);
+        });
+    });
+</script>
 </body>
 </html>
