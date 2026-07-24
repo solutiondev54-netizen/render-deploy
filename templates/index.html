@@ -253,6 +253,162 @@
                 return;
             }
 
-            vaultContainer.innerHTML = '';
-            savedScripts.forEach(item => {
-                const div = document.createEle
+      vaultContainer.innerHTML = '';
+        savedScripts.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'vault-item';
+            div.style.cssText = "background: #21262d; padding: 12px 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); cursor: pointer;";
+            div.innerHTML = `<strong style="color:#818cf8; font-size:0.9rem;">${item.title}</strong><br><span style="font-size:0.75rem; color:#94a3b8;">${item.date}</span>`;
+            div.addEventListener('click', () => {
+                document.getElementById('workspace').innerText = item.text;
+                vaultModal.style.display = 'none';
+            });
+            vaultContainer.appendChild(div);
+        });
+    }
+
+    window.generateScript = async () => {
+        const btn = document.getElementById('script-btn');
+        const input = document.getElementById('prompt-input');
+        const workspace = document.getElementById('workspace');
+
+        if (!input.value.trim()) {
+            alert("Please enter a plot idea first!");
+            return;
+        }
+
+        btn.disabled = true;
+        btn.innerText = "WRITING...";
+        workspace.innerText = "Sourcing computational layers...";
+
+        try {
+            const response = await fetch('/api/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    prompt: input.value,
+                    dialect: activeDialect,
+                    tone: activeTone,
+                    soundscape: selectedSoundscape,
+                    subtitles: selectedSubtitleMode
+                })
+            });
+            const data = await response.json();
+            const outputText = data.script || data.message || "Error: No script returned.";
+            workspace.innerText = outputText;
+            saveScriptToVault(outputText, input.value);
+        } catch (e) {
+            workspace.innerText = "Connection error: " + e;
+        } finally {
+            btn.disabled = false;
+            btn.innerText = "SCRIPT ENGINE";
+        }
+    };
+
+    window.renderVideo = async () => {
+        const vBtn = document.getElementById('video-btn');
+        const feed = document.getElementById('video-feed');
+        const workspace = document.getElementById('workspace');
+        const scriptText = workspace.innerText;
+
+        vBtn.innerText = "RENDERING...";
+        feed.innerText = "Connecting to Video Production Node...";
+
+        try {
+            const response = await fetch('/api/render-video', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ script: scriptText, soundscape: selectedSoundscape, subtitles: selectedSubtitleMode })
+            });
+            const data = await response.json();
+            if (data.status === "success") {
+                feed.innerHTML = `<video controls width="100%"><source src="${data.video_url}" type="video/mp4"></video>`;
+            } else {
+                feed.innerText = "Render failed: " + data.message;
+            }
+        } catch (e) {
+            feed.innerText = "Connection error: " + e;
+        } finally {
+            vBtn.innerText = "RENDER VIDEO";
+        }
+    };
+
+    window.playAudioDrama = () => {
+        const scriptText = document.getElementById('workspace').innerText;
+        if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection")) {
+            alert("Please generate a valid script first!");
+            return;
+        }
+        if (!('speechSynthesis' in window)) {
+            alert("Text-to-speech is not supported in this browser.");
+            return;
+        }
+        window.speechSynthesis.cancel();
+        const speakText = () => {
+            const utterance = new SpeechSynthesisUtterance(scriptText);
+            utterance.rate = 0.95;
+            utterance.pitch = 1.05;
+            window.speechSynthesis.speak(utterance);
+        };
+        speakText();
+    };
+
+    window.copyScript = () => {
+        const scriptText = document.getElementById('workspace').innerText;
+        if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection")) {
+            alert("Please generate a script first!");
+            return;
+        }
+        navigator.clipboard.writeText(scriptText).then(() => {
+            const btn = document.getElementById('copy-btn');
+            btn.innerHTML = '<span style="font-size: 14px;">✅</span> <span style="letter-spacing: 0.3px;">Copied!</span>';
+            setTimeout(() => {
+                btn.innerHTML = '<span style="font-size: 14px;">📋</span> <span style="letter-spacing: 0.3px;">Copy Script</span>';
+            }, 2000);
+        }).catch(() => {
+            alert("Failed to copy script.");
+        });
+    };
+
+    // Mama Akos Chat Assistant Logic
+    function toggleMamaChat() {
+        const modal = document.getElementById('mama-akos-modal');
+        modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function handleMamaEnter(e) {
+        if (e.key === 'Enter') sendMamaMessage();
+    }
+
+    async function sendMamaMessage() {
+        const input = document.getElementById('mama-chat-input');
+        const body = document.getElementById('mama-chat-body');
+        const text = input.value.trim();
+        if (!text) return;
+
+        body.innerHTML += `<div style="background: #3b82f6; color: white; padding: 10px 14px; border-radius: 12px; font-size: 13px; align-self: flex-end; max-width: 85%;">${text}</div>`;
+        input.value = '';
+        body.scrollTop = body.scrollHeight;
+
+        const loadingId = 'loading-' + Date.now();
+        body.innerHTML += `<div id="${loadingId}" style="background: #1f1f1f; color: #9ca3af; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%;">Mama Akos is thinking...</div>`;
+        body.scrollTop = body.scrollHeight;
+
+        try {
+            const response = await fetch('/api/mama-akos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text })
+            });
+            const data = await response.json();
+            document.getElementById(loadingId).remove();
+            body.innerHTML += `<div style="background: #1f1f1f; color: #e5e7eb; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%;">${data.reply || "Ehn? Say that again!"}</div>`;
+        } catch (e) {
+            document.getElementById(loadingId).remove();
+            body.innerHTML += `<div style="background: #1f1f1f; color: #ef4444; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%;">Network wahala o! Try again.</div>`;
+        }
+        body.scrollTop = body.scrollHeight;
+    }
+</script>
+</body>
+</html>
