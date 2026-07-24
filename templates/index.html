@@ -112,7 +112,7 @@
             <span style="color: white; font-weight: bold; font-size: 13px; letter-spacing: 0.02em;">Ask Mama Akos</span>
         </div>
 
-    <   <!-- Mama Akos Premium Chat Modal Window -->
+       <!-- Mama Akos Premium Chat Modal Window -->
         <div id="mama-akos-modal" style="display: none; position: fixed; bottom: 90px; right: 25px; width: 360px; max-width: calc(100vw - 40px); background: linear-gradient(145deg, #0d1117, #161b22); border: 2px solid rgba(245, 158, 11, 0.4); border-radius: 20px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(245, 158, 11, 0.15); overflow: hidden; z-index: 10000; font-family: inherit;">
             
             <!-- Premium Glass Header -->
@@ -124,7 +124,7 @@
                         <p style="margin: 2px 0 0 0; color: #34d399; font-size: 11px; font-weight: 500; display: flex; align-items: center; gap: 4px;"><span style="width: 6px; height: 6px; background: #34d399; border-radius: 50%; display: inline-block;"></span> Online & Ready to Help</p>
                     </div>
                 </div>
-                <button type="button" onclick="toggleMamaChat()" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; width: 30px; height: 30px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">&times;</button>
+                <button type="button" onclick="toggleMamaChat()" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; width: 30px; height: 30px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center;">&times;</button>
             </div>
 
             <!-- Styled Chat Body Container -->
@@ -136,26 +136,10 @@
 
             <!-- Sleek Input Footer -->
             <div style="padding: 14px; background: #11151c; display: flex; gap: 8px; border-top: 1px solid rgba(255,255,255,0.08);">
-                <input type="text" id="mama-chat-input" placeholder="Ask Mama Akos anything..." onkeypress="handleMamaEnter(event)" style="flex: 1; background: #0d1117; border: 1px solid #30363d; border-radius: 12px; padding: 10px 14px; color: white; font-size: 13px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='#30363d'">
-                <button type="button" onclick="sendMamaMessage()" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; border: none; border-radius: 12px; padding: 0 16px; font-weight: bold; cursor: pointer; font-size: 13px; box-shadow: 0 4px 12px rgba(245,158,11,0.3); transition: transform 0.1s;">Send</button>
+                <input type="text" id="mama-chat-input" placeholder="Ask Mama Akos anything..." onkeypress="handleMamaEnter(event)" style="flex: 1; background: #0d1117; border: 1px solid #30363d; border-radius: 12px; padding: 10px 14px; color: white; font-size: 13px; outline: none;">
+                <button type="button" onclick="sendMamaMessage()" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; border: none; border-radius: 12px; padding: 0 16px; font-weight: bold; cursor: pointer; font-size: 13px; box-shadow: 0 4px 12px rgba(245,158,11,0.3);">Send</button>
             </div>
         </div>
-            <button onclick="toggleMamaChat()" style="background: none; border: none; color: #aaa; font-size: 20px; cursor: pointer;">&times;</button>
-        </div>
-
-        <!-- Chat Messages Body -->
-        <div id="mama-chat-body" style="flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
-            <div style="background: #1f1f2f; color: #e5e7eb; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%;">
-                Ehn, welcome! What trouble are you facing with your script studio again?
-            </div>
-        </div>
-
-        <!-- Input Footer -->
-        <div style="padding: 12px; background: #10101b; display: flex; gap: 8px; border-top: 1px solid rgba(255,255,255,0.05);">
-            <input type="text" id="mama-chat-input" placeholder="Ask Mama Akos anything..." onkeypress="handleMamaEnter(event)" style="flex: 1; padding: 10px 14px; background: #161b22; border: 1px solid #30363d; border-radius: 10px; color: white; font-size: 13px;">
-            <button onclick="sendMamaMessage()" style="background: #f59e0b; color: white; border: none; padding: 0 16px; border-radius: 10px; cursor: pointer; font-weight: bold;">Send</button>
-        </div>
-    </div>
 
     <!-- Script Vault Modal Window Component -->
     <div id="script-vault-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(13, 17, 23, 0.85); backdrop-filter:blur(8px); z-index:1000; justify-content:center; align-items:center;">
