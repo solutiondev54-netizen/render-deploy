@@ -1,11 +1,12 @@
 /* --- Global Studio Foundation --- */
 body {
-    background-color: #0D1117; /* Deep Midnight */
+    background-color: #0d1117; /* Deep Midnight */
     color: #E2E8F0;
-    font-family: 'Poppins', system-ui, sans-serif; /* A more playful, rounded font */
+    font-family: 'Poppins', system-ui, sans-serif;
     padding: 20px;
     display: flex;
     justify-content: center;
+    margin: 0;
 }
 
 .container {
@@ -15,32 +16,32 @@ body {
 
 /* --- Premium Typography for MAAE Core --- */
 h1 {
-  font-family: 'Inter', sans-serif;
-  font-size: 3.5rem;
-  font-weight: 800;
-  letter-spacing: -0.05em;
-  background: linear-gradient(90deg, #FFFFFF, #94A3B8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 0 0 10px 0;
-  text-transform: uppercase;
-  text-shadow: none;
-}
-.subtitle {
-  font-size: 0.9rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #6366f1;
-  margin-bottom: 40px;
-  font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    background: linear-gradient(90deg, #FFFFFF, #94A3B8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
 }
 
-/* --- The Playing Group Token Pills (The "Playful" Fix) --- */
-.token-bank {
+.subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #6366f1;
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+
+/* --- Token Pills & Dialect Selectors --- */
+.token-bank, #dialect-container {
     display: flex;
-    flex-wrap: wrap; /* Still wraps, but each item is styled */
+    flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .tag-token {
@@ -48,32 +49,31 @@ h1 {
     border: none;
     color: #F1F5F9;
     padding: 10px 24px;
-    border-radius: 50px; /* THIS CREATES THE PERFECT PILL SHAPE */
+    border-radius: 50px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 
-/* A playful, rainbow hover effect for the playing group */
 .tag-token:hover {
-    background: #6366f1; /* Primary Blue */
+    background: #6366f1;
     transform: translateY(-2px);
     box-shadow: 0 6px 10px rgba(99, 102, 241, 0.4);
 }
 
-.tag-token:nth-child(1):hover { background: #F9A826; } /* Yellow */
-.tag-token:nth-child(2):hover { background: #16A34A; } /* Green */
-.tag-token:nth-child(3):hover { background: #C2410C; } /* Red */
-.tag-token:nth-child(4):hover { background: #9333EA; } /* Purple */
+.tag-token:nth-child(1):hover { background: #F9A826; }
+.tag-token:nth-child(2):hover { background: #16A34A; }
+.tag-token:nth-child(3):hover { background: #C2410C; }
+.tag-token:nth-child(4):hover { background: #9333EA; }
 
-/* --- Input Field (Still clean, but rounded) --- */
+/* --- Input Field --- */
 #prompt-input {
     width: 100%;
     background: #111827;
     border: 2px solid #374151;
-    padding: 18px;
-    border-radius: 16px; /* Rounded input */
+    padding: 14px;
+    border-radius: 16px;
     color: white;
     margin-bottom: 15px;
     box-sizing: border-box;
@@ -85,28 +85,28 @@ h1 {
     outline: none;
 }
 
-/* --- The Hero Button (Big, Bubbly, and Energetic) --- */
+/* --- Hero Action Buttons --- */
 #script-btn {
-  width: 100%;
-  background: linear-gradient(135deg, #6366f1, #a855f7);
-  border: none;
-  border-radius: 12px;
-  padding: 18px;
-  color: white;
-  font-weight: 600;
-  font-size: 1rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-  margin-top: 10px;
+    width: 100%;
+    background: linear-gradient(135deg, #6366f1, #a055f7);
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    margin-top: 10px;
 }
 
 #script-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 15px 25px rgba(99, 102, 241, 0.6);
-    background: linear-gradient(270deg, #FF8A97, #8285f9);
+    background: linear-gradient(270deg, #FFBA97, #8285f9);
 }
 
 #script-btn:disabled {
@@ -116,234 +116,80 @@ h1 {
     transform: none;
 }
 
-/* --- The Premium Workspace --- */
+/* --- Premium Workspace --- */
 #workspace {
-  /* The Gradient Border Setup */
-  border: 3px solid transparent; /* Keeps the border area ready */
-  background-image: linear-gradient(rgba(20, 25, 35, 0.9), rgba(20, 25, 35, 0.9)), 
-                    linear-gradient(135deg, #6366f1, #a855f7, #ec4899); /* The mixed colors */
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  
-  /* Box size and look */
-  padding: 40px;
-  border-radius: 20px;
-  margin-top: 30px;
-  max-height: 400px;
-  overflow-y: auto;
-  color: #E0E8F6;
-  font-family: 'Courier Prime', monospace;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 3px solid transparent;
+    background-image: linear-gradient(rgba(20, 25, 35, 0.9), rgba(20, 25, 35, 0.9)),
+                      linear-gradient(135deg, #6366f1, #a055f7, #ec4899);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 30px;
+    max-height: 400px;
+    overflow-y: auto;
+    color: #E2E8F0;
+    font-family: 'Courier Prime', monospace;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* --- Premium Combined Video Section --- */
+/* --- Video Render Section --- */
 .container-box {
-  background: rgba(20, 25, 35, 0.9);
-  border: 3px solid transparent;
-  background-image: linear-gradient(rgba(20, 25, 35, 0.9), rgba(20, 25, 35, 0.9)), 
-                    linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  padding: 40px;
-  border-radius: 20px;
-  margin-top: 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    background: rgba(20, 25, 35, 0.9);
+    border: 3px solid transparent;
+    background-image: linear-gradient(rgba(20, 25, 35, 0.9), rgba(20, 25, 35, 0.9)),
+                      linear-gradient(135deg, #6366f1, #a055f7, #ec4899);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .render-video-btn {
-  width: 100%;
-  background: linear-gradient(135deg, #ec4899, #a855f7);
-  border: none;
-  border-radius: 12px;
-  padding: 18px;
-  color: white;
-  font-weight: 600;
-  font-size: 1rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+    width: 100%;
+    background: linear-gradient(135deg, #ec4899, #a055f7);
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
 }
 
 .render-video-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(236, 72, 153, 0.5);
-  filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(236, 72, 153, 0.5);
+    filter: brightness(1.1);
 }
 
-.hidden-notification {
-    display: none;
-    background: #ff4757; /* A nice red/pink to match your theme */
-    color: white;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    text-align: center;
+/* --- Mama Akos Widget Elite Polish --- */
+#mama-akos-trigger {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Premium Google Sign-In Button */
-.google-signin-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    background: linear-gradient(135deg, #1e1e2d 0%, #161622 100%);
-    color: #ffffff;
-    border: 1px solid rgba(212, 175, 55, 0.3); /* Subtle gold accent border */
-    padding: 12px 24px;
-    border-radius: 12px;
-    font-family: inherit;
-    font-size: 15px;
-    font-weight: 500;
-    text-decoration: none;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    backdrop-filter: blur(10px);
+#mama-akos-trigger:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(245, 158, 11, 0.5);
 }
 
-.google-signin-btn:hover {
-    background: linear-gradient(135deg, #252538 0%, #1b1b28 100%);
-    border-color: rgba(212, 175, 55, 0.8); /* Brighter gold on hover */
-    box-shadow: 0 6px 25px rgba(212, 175, 55, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    transform: translateY(-1px);
+#mama-akos-modal {
+    animation: slideUpModal 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.google-signin-btn:active {
-    transform: translateY(0);
-}
-
-/* User Profile Pill Container */
-.user-profile-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(25, 25, 35, 0.8);
-    border: 1px solid rgba(212, 175, 55, 0.25);
-    padding: 6px 16px 6px 6px;
-    border-radius: 50px;
-    color: #ffffff;
-    font-size: 14px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-.user-profile-pill .avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid #d4af37;
-}
-
-.user-profile-pill .logout-btn {
-    background: rgba(255, 75, 75, 0.15);
-    color: #ff6b6b;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    border: 1px solid rgba(255, 75, 75, 0.3);
-    margin-left: 6px;
-}
-
-.user-profile-pill .logout-btn:hover {
-    background: rgba(255, 75, 75, 0.3);
-    color: #ffffff;
-}
-
-/* --- Premium Gatekeeper Styles --- */
-
-/* The container that holds the login gate */
-.gatekeeper-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #0f0f13; /* Match your main body background */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999; /* Ensure it sits on top of everything */
-    opacity: 0;
-    animation: fadeInGate 0.8s ease-in forwards; /* Gentle fade in */
-}
-
-@keyframes fadeInGate {
-    to { opacity: 1; }
-}
-
-/* Elegant Title */
-.gatekeeper-title {
-    font-family: 'Montserrat', sans-serif; /* Assuming you use this */
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-    background: linear-gradient(135deg, #ffffff 0%, #a5a5c7 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: 1px;
-}
-
-/* Elegant Subtitle */
-.gatekeeper-subtitle {
-    font-size: 1rem;
-    color: #8a8a9e;
-    margin-bottom: 4rem;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-/* The Premium Google Button */
-.premium-google-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    background-color: #1e1e24; /* Slightly lighter dark for depth */
-    color: #e8eaed;
-    border: 1px solid #33333e;
-    padding: 16px 30px;
-    font-size: 1rem;
-    font-weight: 500;
-    font-family: 'Roboto', sans-serif; /* Google's preferred font */
-    border-radius: 8px;
-    cursor: pointer;
-    transition:all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    text-decoration: none;
-}
-
-.premium-google-btn:hover {
-    background-color: #2a2a35;
-    border-color: #4a4a5c;
-    box-shadow: 0 6px 10px rgba(0,0,0,0.2);
-}
-
-.premium-google-btn:active {
-    background-color: #16161a;
-    transform: translateY(1px);
-}
-
-/* The SVG G-Logo */
-.premium-google-btn svg {
-    width: 22px;
-    height: 22px;
-}
-
-/* --- Main Content Wrapper (Hidden until login) --- */
-#main-app-content {
-    display: none;
-}
-
-#main-app-content {
-    pointer-events: none;
-}
-
-#auth-gate {
-    pointer-events: auto;
+@keyframes slideUpModal {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
