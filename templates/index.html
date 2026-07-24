@@ -16,116 +16,142 @@
     <div class="container">
         <h1>MAAE Core</h1>
         <div class="subtitle">Production Studio Suite</div>
-
+        
         <!-- Studio Directive Manifest Section -->
         <div class="input-group">
             <label>STUDIO DIRECTIVE MANIFEST</label>
             <div class="token-bank" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
-                <span class="tag-token" onclick="insertToken('Mama Akos')" style="background: #1f1f2e; color: #f2c94c; border: 1px solid rgba(242, 201, 76, 0.4); padding: 6px 12px; border-radius: 6px; font-size: 13px; cursor: pointer;">+ Mama Akos</span>
-                <span class="tag-token" onclick="insertToken('Kofi')" style="background: #1f1f2e; color: #f2c94c; border: 1px solid rgba(242, 201, 76, 0.4); padding: 6px 12px; border-radius: 6px; font-size: 13px; cursor: pointer;">+ Kofi</span>
-                <span class="tag-token" onclick="insertToken('Papa Kofi')" style="background: #1f1f2e; color: #f2c94c; border: 1px solid rgba(242, 201, 76, 0.4); padding: 6px 12px; border-radius: 6px; font-size: 13px; cursor: pointer;">+ Papa Kofi</span>
-                <span class="tag-token" onclick="insertToken('Akos Kofi\'s sister')" style="background: #1f1f2e; color: #f2c94c; border: 1px solid rgba(242, 201, 76, 0.4); padding: 6px 12px; border-radius: 6px; font-size: 13px; cursor: pointer;">+ Akos Kofi's sister</span>
+                <span class="tag-token" onclick="insertToken('Mama Akos')" style="background: #1f1f2e; color: #f2c94c; border: 1px solid rgba(242, 201, 76, 0.3); padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">+ Mama Akos</span>
+                <span class="tag-token" onclick="insertToken('Kofi')" style="background: #1f1f2e; color: #f2c94c; border: 1px solid rgba(242, 201, 76, 0.3); padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">+ Kofi</span>
+                <span class="tag-token" onclick="insertToken('Papa Kofi')" style="background: #1f1f2e; color: #f2c94c; border: 1px solid rgba(242, 201, 76, 0.3); padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">+ Papa Kofi</span>
+                <span class="tag-token" onclick="insertToken('Akos Kofi\'s sister')" style="background: #1f1f2e; color: #f2c94c; border: 1px solid rgba(242, 201, 76, 0.3); padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">+ Akos Kofi's sister</span>
             </div>
-            
-            <button id="audio-btn" onclick="playAudioDrama()" title="Play African Audio Voice" style="background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%); color: #f2c94c; font-weight: 600; font-size: 13px; padding: 10px 16px; border: 1px solid rgba(242, 201, 76, 0.4); border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; width: 100%; justify-content: center;">
-                <span style="font-size: 14px;">▶</span><span style="letter-spacing: 0.3px;">Play African Audio Voice</span>
+
+            <button id="audio-btn" onclick="playAudioDrama()" title="Play African Audio Voice" style="background: linear-gradient(135deg, #1f1f2e, #2a2a3d); border: 1px solid #f2c94c; color: #f2c94c; width: 100%; padding: 12px; border-radius: 12px; cursor: pointer; font-weight: bold;">
+                <span style="font-size: 14px;">▶</span> <span style="letter-spacing: 0.3px;">Play African Audio Voice</span>
             </button>
         </div>
 
         <!-- Prompt Input Section -->
         <div class="input-group" style="margin-top: 15px;">
-            <input type="text" id="prompt-input" placeholder="Enter plot idea here...">
+            <input type="text" id="prompt-input" placeholder="Enter plot idea here..." style="width: 100%; padding: 14px; background: #161b22; border: 1px solid #30363d; border-radius: 12px; color: white;">
         </div>
 
         <!-- Select Dialect Style Section -->
         <div class="input-group" style="margin-top: 15px; text-align: left;">
-            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Select Dialect Style</label>
+            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Select Dialect Style</label>
             <div id="dialect-container" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;">
-                <div class="dialect-pill active" data-value="classic_family" onclick="selectDialect(this)" style="background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%); color: #f2c94c; border: 1px solid #f2c94c; padding: 10px 14px; border-radius: 8px; font-size: 12px; font-weight: 500; cursor: pointer; flex: 1; text-align: center;">Classic Sitcom</div>
-                <div class="dialect-pill" data-value="accra_pidgin" onclick="selectDialect(this)" style="background: #111118; color: #a0a0ab; border: 1px solid rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 8px; font-size: 12px; font-weight: 500; cursor: pointer; flex: 1; text-align: center;">Accra Pidgin</div>
-                <div class="dialect-pill" data-value="lagos_street" onclick="selectDialect(this)" style="background: #111118; color: #a0a0ab; border: 1px solid rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 8px; font-size: 12px; font-weight: 500; cursor: pointer; flex: 1; text-align: center;">Lagos Street</div>
+                <div class="dialect-pill active" data-value="classic_family" onclick="selectDialect(this)" style="background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%); color: #f2c94c; border: 1px solid #f2c94c; padding: 8px 14px; border-radius: 10px; font-size: 12px; cursor: pointer;">Classic Sitcom</div>
+                <div class="dialect-pill" data-value="accra_pidgin" onclick="selectDialect(this)" style="background: #111118; color: #a0a0ab; border: 1px solid rgba(255,255,255,0.1); padding: 8px 14px; border-radius: 10px; font-size: 12px; cursor: pointer;">Accra Pidgin</div>
+                <div class="dialect-pill" data-value="lagos_street" onclick="selectDialect(this)" style="background: #111118; color: #a0a0ab; border: 1px solid rgba(255,255,255,0.1); padding: 8px 14px; border-radius: 10px; font-size: 12px; cursor: pointer;">Lagos Street</div>
+            </div>
+        </div>
+
+        <!-- Interactive Character Tone Customizer (New Feature Added) -->
+        <div class="input-group" style="margin-top: 15px; text-align: left;">
+            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Character Vibe Tone</label>
+            <div class="tone-grid" id="tone-container" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;">
+                <button type="button" class="tone-pill active" data-tone="humorous" style="background: linear-gradient(135deg, #6366f1, #a055f7); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; font-weight: 600;">😄 Humorous</button>
+                <button type="button" class="tone-pill" data-tone="dramatic" style="background: #161b22; border: 1px solid #30363d; color: #94a3b8; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; font-weight: 600;">🎭 Dramatic</button>
+                <button type="button" class="tone-pill" data-tone="sarcastic" style="background: #161b22; border: 1px solid #30363d; color: #94a3b8; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; font-weight: 600;">🔥 Sarcastic</button>
             </div>
         </div>
 
         <!-- Script Engine Action Button -->
-        <button id="script-btn" onclick="generateScript()" style="width: 100%; margin-top: 20px; padding: 12px; background: linear-gradient(135deg, #8b5cf6, #6366f1); color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 15px rgba(99,102,241,0.4);">SCRIPT ENGINE</button>
+        <button type="button" id="script-btn" onclick="generateScript()" style="width: 100%; margin-top: 20px; padding: 14px; background: linear-gradient(135deg, #6366f1, #a055f7); border: none; border-radius: 12px; color: white; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em;">Script Engine</button>
 
-        <!-- Copy Script Action Button -->
-        <button id="copy-btn" onclick="copyScript()" style="width: 100%; margin-top: 10px; background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%); color: #f2c94c; font-weight: 600; font-size: 13px; padding: 10px 16px; border: 1px solid rgba(242, 201, 76, 0.4); border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-        <!-- Project History Vault Trigger -->
-<button type="button" class="vault-trigger-btn" id="open-vault-btn">📂 Open Script Vault (<span id="vault-count">0</span>)</button>
-            <span style="font-size: 14px;">📋</span><span style="letter-spacing: 0.3px;">Copy Script</span>
-        </button>
+        <!-- Copy & Vault Action Cluster -->
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <button type="button" id="copy-btn" onclick="copyScript()" style="flex: 1; padding: 12px; background: linear-gradient(135deg, #1f1f2e, #2a2a3d); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: white; cursor: pointer; font-weight: bold; font-size: 12px;">
+                <span style="font-size: 14px;">📋</span> <span style="letter-spacing: 0.3px;">Copy Script</span>
+            </button>
+            <button type="button" id="open-vault-btn" style="flex: 1; padding: 12px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border: none; border-radius: 12px; color: white; cursor: pointer; font-weight: bold; font-size: 12px; text-transform: uppercase;">
+                📂 Vault (<span id="vault-count">0</span>)
+            </button>
+        </div>
 
-        <!-- Workspace Output Display -->
-        <div id="workspace" style="margin-top: 20px; background: #0a0a0f; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; min-height: 120px; color: #e5e7eb; font-size: 13px; text-align: left; white-space: pre-wrap;"></div>
+        <!-- Workspace Output Display Box -->
+        <div id="workspace" style="margin-top: 15px; background: #0b0f19; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; min-height: 120px; color: #38ef7d; font-family: monospace; font-size: 13px; text-align: left; white-space: pre-wrap; word-break: break-word;"></div>
 
-         <!-- Background Soundscape / Vibe Mixer -->
-<div class="feature-section-title">Background Soundscape Vibe</div>
-<div class="soundscape-grid" id="soundscape-container">
-    <button type="button" class="soundscape-pill active" data-vibe="none">🚫 None</button>
-    <button type="button" class="soundscape-pill" data-vibe="accra-market">🛒 Accra Market</button>
-    <button type="button" class="soundscape-pill" data-vibe="lagos-traffic">🚗 Lagos Traffic</button>
-    <button type="button" class="soundscape-pill" data-vibe="highlife-beat">🎵 Chill Highlife</button>
-    <button type="button" class="soundscape-pill" data-vibe="sitcom-laugh">😂 Sitcom Laughs</button>
-</div>
+        <!-- Background Soundscape / Vibe Mixer -->
+        <div class="feature-section-title" style="font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: #94a3b8; margin: 20px 0 10px 5px; font-weight: 600; text-align: left;">Background Soundscape Vibe</div>
+        <div class="soundscape-grid" id="soundscape-container" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;">
+            <button type="button" class="soundscape-pill active" data-vibe="none" style="background: linear-gradient(135deg, #6366f1, #a055f7); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 6px 14px; border-radius: 20px; font-size: 11px; cursor: pointer; font-weight: 600;">🚫 None</button>
+            <button type="button" class="soundscape-pill" data-vibe="accra-market" style="background: #161b22; border: 1px solid #30363d; color: #94a3b8; padding: 6px 14px; border-radius: 20px; font-size: 11px; cursor: pointer; font-weight: 600;">🛒 Accra Market</button>
+            <button type="button" class="soundscape-pill" data-vibe="lagos-traffic" style="background: #161b22; border: 1px solid #30363d; color: #94a3b8; padding: 6px 14px; border-radius: 20px; font-size: 11px; cursor: pointer; font-weight: 600;">🚗 Lagos Traffic</button>
+            <button type="button" class="soundscape-pill" data-vibe="highlife-beat" style="background: #161b22; border: 1px solid #30363d; color: #94a3b8; padding: 6px 14px; border-radius: 20px; font-size: 11px; cursor: pointer; font-weight: 600;">🎵 Chill Highlife</button>
+            <button type="button" class="soundscape-pill" data-vibe="sitcom-laugh" style="background: #161b22; border: 1px solid #30363d; color: #94a3b8; padding: 6px 14px; border-radius: 20px; font-size: 11px; cursor: pointer; font-weight: 600;">😂 Sitcom Laughs</button>
+        </div>
 
-<!-- Multi-Language Subtitle Toggle -->
-<div class="feature-section-title">Subtitle / Caption Mode</div>
-<div class="subtitle-grid" id="subtitle-container">
-    <button type="button" class="subtitle-pill active" data-sub="srt">📄 Standard .SRT</button>
-    <button type="button" class="subtitle-pill" data-sub="pidgin-captions">🌍 Local Pidgin FX</button>
-    <button type="button" class="subtitle-pill" data-sub="none">❌ No Subtitles</button>
-</div>
+        <!-- Multi-Language Subtitle Toggle -->
+        <div class="feature-section-title" style="font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: #94a3b8; margin: 15px 0 10px 5px; font-weight: 600; text-align: left;">Subtitle / Caption Mode</div>
+        <div class="subtitle-grid" id="subtitle-container" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;">
+            <button type="button" class="subtitle-pill active" data-sub="srt" style="background: linear-gradient(135deg, #6366f1, #a055f7); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 6px 14px; border-radius: 20px; font-size: 11px; cursor: pointer; font-weight: 600;">📄 Standard .SRT</button>
+            <button type="button" class="subtitle-pill" data-sub="pidgin-captions" style="background: #161b22; border: 1px solid #30363d; color: #94a3b8; padding: 6px 14px; border-radius: 20px; font-size: 11px; cursor: pointer; font-weight: 600;">🌍 Local Pidgin FX</button>
+            <button type="button" class="subtitle-pill" data-sub="none" style="background: #161b22; border: 1px solid #30363d; color: #94a3b8; padding: 6px 14px; border-radius: 20px; font-size: 11px; cursor: pointer; font-weight: 600;">❌ No Subtitles</button>
+        </div>
+
         <!-- Video Render Feed Box -->
-        <button id="video-btn" class="render-video-btn" onclick="renderVideo()" style="width: 100%; margin-top: 15px; padding: 12px; background: #10b981; color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 14px; cursor: pointer;">RENDER VIDEO</button>
+        <button id="video-btn" class="render-video-btn" onclick="renderVideo()" style="width: 100%; margin-top: 10px; padding: 14px; background: #10b981; border: none; border-radius: 12px; color: white; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em;">Render Video</button>
         <div class="container-box" style="margin-top: 10px;">
             <div id="video-feed" style="color: #9ca3af; font-size: 12px; text-align: center;"></div>
         </div>
     </div>
 
     <!-- Mama Akos Floating Trigger Button -->
-    <div id="mama-akos-trigger" onclick="toggleMamaChat()" style="position: fixed; bottom: 25px; right: 25px; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 12px 20px; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 99999; display: flex; align-items: center; gap: 10px; font-family: sans-serif;">
-        <span style="font-size: 22px;">👩🏾‍🍳</span> Ask Mama Akos
+    <div id="mama-akos-trigger" onclick="toggleMamaChat()" style="position: fixed; bottom: 25px; right: 25px; background: linear-gradient(135deg, #f59e0b, #d97706); padding: 12px 20px; border-radius: 30px; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4); cursor: pointer; display: flex; align-items: center; gap: 8px; z-index: 999;">
+        <span style="font-size: 22px;">👩🏽‍🍳</span> <span style="color: white; font-weight: bold; font-size: 13px;">Ask Mama Akos</span>
     </div>
 
     <!-- Mama Akos Chat Modal Window -->
-    <div id="mama-akos-modal" style="display: none; position: fixed; bottom: 90px; right: 25px; width: 350px; max-width: 90vw; height: 480px; background: #121212; border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.6); z-index: 100000; flex-direction: column; overflow: hidden; font-family: sans-serif;">
+    <div id="mama-akos-modal" style="display: none; position: fixed; bottom: 90px; right: 25px; width: 350px; max-width: 90vw; height: 450px; background: #161b22; border: 2px solid #30363d; border-radius: 20px; flex-direction: column; z-index: 1000; box-shadow: 0 25px 50px rgba(0,0,0,0.8); overflow: hidden;">
         <!-- Header -->
-        <div style="background: linear-gradient(135deg, #1e1e1e, #2d2d2d); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <div style="background: linear-gradient(135deg, #1e1e2e, #2d2d2d); padding: 15px; display: flex; justify-content: space-between; align-items: center;">
             <div style="display: flex; align-items: center; gap: 10px;">
-                <div style="width: 35px; height: 35px; background: #f59e0b; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px;">👩🏾‍🍳</div>
+                <div style="width: 35px; height: 35px; background: #f59e0b; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px;">👩🏽‍🍳</div>
                 <div>
                     <h4 style="margin: 0; color: #ffffff; font-size: 15px;">Mama Akos</h4>
-                    <p style="margin: 0; color: #10b981; font-size: 11px;">● Online & ready to scold/help</p>
+                    <p style="margin: 0; color: #10b981; font-size: 11px;">● Online & ready to help</p>
                 </div>
             </div>
             <button onclick="toggleMamaChat()" style="background: none; border: none; color: #aaa; font-size: 20px; cursor: pointer;">&times;</button>
         </div>
 
         <!-- Chat Messages Body -->
-        <div id="mama-chat-body" style="flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: #0a0a0a;">
-            <div style="background: #1f1f1f; color: #e5e7eb; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; align-self: flex-start; border-left: 3px solid #f59e0b;">
-                Ehn, welcome! What trouble are you facing with your script studio again? Don't just sit there looking at the screen, talk to Mama!
+        <div id="mama-chat-body" style="flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
+            <div style="background: #1f1f2f; color: #e5e7eb; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%;">
+                Ehn, welcome! What trouble are you facing with your script studio again?
             </div>
         </div>
 
         <!-- Input Footer -->
-        <div style="padding: 12px; background: #18181b; display: flex; gap: 8px; border-top: 1px solid rgba(255,255,255,0.1);">
-            <input type="text" id="mama-chat-input" placeholder="Ask Mama Akos anything..." onkeypress="handleMamaEnter(event)" style="flex: 1; background: #27272a; border: 1px solid #3f3f46; color: white; padding: 10px 14px; border-radius: 10px; font-size: 13px; outline: none;">
-            <button onclick="sendMamaMessage()" style="background: #f59e0b; color: white; border: none; padding: 0 16px; border-radius: 10px; font-weight: bold; cursor: pointer;">Send</button>
+        <div style="padding: 12px; background: #10101b; display: flex; gap: 8px; border-top: 1px solid rgba(255,255,255,0.05);">
+            <input type="text" id="mama-chat-input" placeholder="Ask Mama Akos anything..." onkeypress="handleMamaEnter(event)" style="flex: 1; padding: 10px 14px; background: #161b22; border: 1px solid #30363d; border-radius: 10px; color: white; font-size: 13px;">
+            <button onclick="sendMamaMessage()" style="background: #f59e0b; color: white; border: none; padding: 0 16px; border-radius: 10px; cursor: pointer; font-weight: bold;">Send</button>
         </div>
     </div>
 
-    <!-- Complete JavaScript Client Architecture -->
+    <!-- Script Vault Modal Window Component -->
+    <div id="script-vault-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(13, 17, 23, 0.85); backdrop-filter:blur(8px); z-index:1000; justify-content:center; align-items:center;">
+        <div class="vault-content-box" style="background:#161b22; border:2px solid #30363d; width:90%; max-width:500px; max-height:80vh; border-radius:20px; padding:25px; display:flex; flex-direction:column; box-shadow:0 25px 50px rgba(0,0,0,0.8);">
+            <div class="vault-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid #30363d; padding-bottom:10px;">
+                <h3 style="margin:0; font-size:1.1rem; color:#f1f5f9;">Saved Script Vault</h3>
+                <button type="button" class="vault-close-btn" id="close-vault-btn" style="background:#ef4444; border:none; color:white; padding:6px 12px; border-radius:8px; cursor:pointer; font-weight:bold;">X</button>
+            </div>
+            <div class="vault-list" id="vault-items-container" style="overflow-y:auto; flex-grow:1; display:flex; flex-direction:column; gap:10px;">
+                <p style="color:#64748b; text-align:center; font-size:0.9rem;">No saved scripts yet.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Complete JavaScript Architecture -->
     <script>
         window.insertToken = (token) => {
             const input = document.getElementById('prompt-input');
-            input.value += (input.value ? " " : "") + token;
+            input.value = (input.value ? " " : "") + token;
         };
 
         let activeDialect = 'classic_family';
-
         window.selectDialect = (element) => {
             document.querySelectorAll('.dialect-pill').forEach(pill => {
                 pill.style.background = '#111118';
@@ -133,213 +159,100 @@
                 pill.style.borderColor = 'rgba(255,255,255,0.1)';
                 pill.classList.remove('active');
             });
-
             element.style.background = 'linear-gradient(135deg, #1f1f2e 0%, #111118 100%)';
             element.style.color = '#f2c94c';
             element.style.borderColor = '#f2c94c';
             element.classList.add('active');
-
             activeDialect = element.getAttribute('data-value');
         };
 
-        window.generateScript = async () => {
-            const btn = document.getElementById('script-btn');
-            const input = document.getElementById('prompt-input');
-            const workspace = document.getElementById('workspace');
-
-            if (input.value.trim() === "") {
-                alert("Please enter a plot idea first!");
-                return;
-            }
-
-            btn.disabled = true;
-            btn.innerText = "WRITING...";
-            workspace.innerText = "Sourcing computational layers...";
-
-            try {
-                const response = await fetch('/api/generate', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        prompt: input.value,
-                        dialect: activeDialect
-                    })
+        // Feature States
+        let activeTone = 'humorous';
+        document.querySelectorAll('.tone-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                document.querySelectorAll('.tone-pill').forEach(p => {
+                    p.style.background = '#161b22';
+                    p.style.borderColor = '#30363d';
+                    p.style.color = '#94a3b8';
+                    p.classList.remove('active');
                 });
-                const data = await response.json();
-                workspace.innerText = data.script || data.message || "Error: No script returned.";
-            } catch (e) {
-                workspace.innerText = "Connection error: " + e;
-            } finally {
-                btn.disabled = false;
-                btn.innerText = "SCRIPT ENGINE";
-            }
-        };
-
-        window.renderVideo = async () => {
-            const vBtn = document.getElementById('video-btn');
-            const feed = document.getElementById('video-feed');
-            const workspace = document.getElementById('workspace');
-            const scriptText = workspace.innerText;
-
-            vBtn.innerText = "RENDERING...";
-            feed.innerText = "Connecting to Video Production Node...";
-
-            try {
-                const response = await fetch('/api/render-video', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ script: scriptText })
-                });
-                const data = await response.json();
-                if (data.status === "success") {
-                    feed.innerHTML = `<video controls width="100%"><source src="${data.video_url}" type="video/mp4"></video>`;
-                } else {
-                    feed.innerText = "Render failed: " + data.message;
-                }
-            } catch (e) {
-                feed.innerText = "Connection error: " + e;
-            } finally {
-                vBtn.innerText = "RENDER VIDEO";
-            }
-        };
-
-        window.playAudioDrama = () => {
-            const scriptText = document.getElementById('workspace').innerText;
-            if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection") || scriptText.startsWith("Error")) {
-                alert("Please generate a valid script first!");
-                return;
-            }
-            if (!('speechSynthesis' in window)) {
-                alert("Text-to-speech is not supported in this browser.");
-                return;
-            }
-
-            window.speechSynthesis.cancel();
-
-            const speakText = () => {
-                const utterance = new SpeechSynthesisUtterance(scriptText);
-                utterance.rate = 0.95;
-                utterance.pitch = 1.05;
-
-                const voices = window.speechSynthesis.getVoices();
-                if (voices && voices.length > 0) {
-                    const selectedVoice = voices.find(v => 
-                        v.lang.includes('en-NG') || 
-                        v.lang.includes('en-GH') || 
-                        v.lang.includes('en-ZA') || 
-                        v.name.toLowerCase().includes('english')
-                    ) || voices[0];
-                    
-                    if (selectedVoice) {
-                        utterance.voice = selectedVoice;
-                    }
-                }
-
-                window.speechSynthesis.speak(utterance);
-            };
-
-            const voices = window.speechSynthesis.getVoices();
-            if (voices.length === 0) {
-                window.speechSynthesis.onvoiceschanged = () => {
-                    speakText();
-                };
-            } else {
-                speakText();
-            }
-        };
-
-        window.copyScript = () => {
-            const scriptText = document.getElementById('workspace').innerText;
-            if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection") || scriptText.startsWith("Error")) {
-                alert("Please generate a script first!");
-                return;
-            }
-            navigator.clipboard.writeText(scriptText).then(() => {
-                const btn = document.getElementById('copy-btn');
-                btn.innerHTML = `<span style="font-size: 14px;">✅</span><span style="letter-spacing: 0.3px;">Copied!</span>`;
-                setTimeout(() => {
-                    btn.innerHTML = `<span style="font-size: 14px;">📋</span><span style="letter-spacing: 0.3px;">Copy Script</span>`;
-                }, 2000);
-            }).catch(err => {
-                alert("Failed to copy script.");
+                pill.style.background = 'linear-gradient(135deg, #6366f1, #a055f7)';
+                pill.style.borderColor = 'rgba(255,255,255,0.3)';
+                pill.style.color = 'white';
+                pill.classList.add('active');
+                activeTone = pill.getAttribute('data-tone');
             });
-        };
+        });
 
-        // Mama Akos Chat Assistant Logic
-        function toggleMamaChat() {
-            const modal = document.getElementById('mama-akos-modal');
-            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
-        }
-
-        function handleMamaEnter(e) {
-            if (e.key === 'Enter') sendMamaMessage();
-        }
-
-        async function sendMamaMessage() {
-            const input = document.getElementById('mama-chat-input');
-            const body = document.getElementById('mama-chat-body');
-            const text = input.value.trim();
-            if (!text) return;
-
-            body.innerHTML += `<div style="background: #3b82f6; color: white; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; align-self: flex-end;">${text}</div>`;
-            input.value = '';
-            body.scrollTop = body.scrollHeight;
-
-            const loadingId = 'loading-' + Date.now();
-            body.innerHTML += `<div id="${loadingId}" style="background: #1f1f1f; color: #9ca3af; padding: 10px 14px; border-radius: 12px; font-size: 13px; align-self: flex-start;">Mama Akos is typing...</div>`;
-            body.scrollTop = body.scrollHeight;
-
-            try {
-                const response = await fetch('/api/mama-akos', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: text })
+        let selectedSoundscape = 'none';
+        document.querySelectorAll('.soundscape-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                document.querySelectorAll('.soundscape-pill').forEach(p => {
+                    p.style.background = '#161b22';
+                    p.style.borderColor = '#30363d';
+                    p.style.color = '#94a3b8';
+                    p.classList.remove('active');
                 });
-                const data = await response.json();
-                
-                document.getElementById(loadingId).remove();
-                body.innerHTML += `<div style="background: #1f1f1f; color: #e5e7eb; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; align-self: flex-start; border-left: 3px solid #f59e0b;">${data.reply}</div>`;
-            } catch (err) {
-                document.getElementById(loadingId).remove();
-                body.innerHTML += `<div style="background: #1f1f1f; color: #ef4444; padding: 10px 14px; border-radius: 12px; font-size: 13px; max-width: 85%; align-self: flex-start;">Network trouble! Try again.</div>`;
-            }
-            body.scrollTop = body.scrollHeight;
+                pill.style.background = 'linear-gradient(135deg, #6366f1, #a055f7)';
+                pill.style.borderColor = 'rgba(255,255,255,0.3)';
+                pill.style.color = 'white';
+                pill.classList.add('active');
+                selectedSoundscape = pill.getAttribute('data-vibe');
+            });
+        });
+
+        let selectedSubtitleMode = 'srt';
+        document.querySelectorAll('.subtitle-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                document.querySelectorAll('.subtitle-pill').forEach(p => {
+                    p.style.background = '#161b22';
+                    p.style.borderColor = '#30363d';
+                    p.style.color = '#94a3b8';
+                    p.classList.remove('active');
+                });
+                pill.style.background = 'linear-gradient(135deg, #6366f1, #a055f7)';
+                pill.style.borderColor = 'rgba(255,255,255,0.3)';
+                pill.style.color = 'white';
+                pill.classList.add('active');
+                selectedSubtitleMode = pill.getAttribute('data-sub');
+            });
+        });
+
+        // Vault Logic & Local Storage
+        let savedScripts = JSON.parse(localStorage.getItem('maae_script_vault') || '[]');
+        updateVaultUI();
+
+        const openVaultBtn = document.getElementById('open-vault-btn');
+        const closeVaultBtn = document.getElementById('close-vault-btn');
+        const vaultModal = document.getElementById('script-vault-modal');
+
+        openVaultBtn.addEventListener('click', () => { vaultModal.style.display = 'flex'; });
+        closeVaultBtn.addEventListener('click', () => { vaultModal.style.display = 'none'; });
+        window.addEventListener('click', (e) => { if (e.target === vaultModal) vaultModal.style.display = 'none'; });
+
+        function saveScriptToVault(scriptText, plotTitle) {
+            const newEntry = {
+                id: Date.now(),
+                title: plotTitle || "Untitled Production",
+                text: scriptText,
+                date: new Date().toLocaleDateString()
+            };
+            savedScripts.unshift(newEntry);
+            localStorage.setItem('maae_script_vault', JSON.stringify(savedScripts));
+            updateVaultUI();
         }
 
-    // --- Paste the new features code here ---
-    const soundscapePills = document.querySelectorAll('.soundscape-pill');
-    let selectedSoundscape = 'none';
+        function updateVaultUI() {
+            const countEl = document.getElementById('vault-count');
+            if (countEl) countEl.innerText = savedScripts.length;
+            const vaultContainer = document.getElementById('vault-items-container');
+            if (!vaultContainer) return;
 
-    soundscapePills.forEach(pill => {
-        pill.addEventListener('click', () => {
-            soundscapePills.forEach(p => p.classList.remove('active'));
-            pill.classList.add('active');
-            selectedSoundscape = pill.getAttribute('data-vibe');
-            console.log("Selected Soundscape Vibe:", selectedSoundscape);
-        });
-    });
+            if (savedScripts.length === 0) {
+                vaultContainer.innerHTML = '<p style="color:#64748b; text-align:center; font-size:0.9rem;">No saved scripts yet.</p>';
+                return;
+            }
 
-    const subtitlePills = document.querySelectorAll('.subtitle-pill');
-    let selectedSubtitleMode = 'srt';
-
-    subtitlePills.forEach(pill => {
-        pill.addEventListener('click', () => {
-            subtitlePills.forEach(p => p.classList.remove('active'));
-            pill.classList.add('active');
-            selectedSubtitleMode = pill.getAttribute('data-sub');
-            console.log("Selected Subtitle Mode:", selectedSubtitleMode);
-        });
-    });
-<!-- Vault Modal Component -->
-<div id="script-vault-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(13, 17, 23, 0.85); backdrop-filter:blur(8px); z-index:1000; justify-content:center; align-items:center;">
-    <div class="vault-content-box" style="background:#161b22; border:2px solid #30363d; width:90%; max-width:500px; max-height:80vh; border-radius:20px; padding:25px; display:flex; flex-direction:column; box-shadow:0 25px 50px rgba(0,0,0,0.8);">
-        <div class="vault-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid #30363d; padding-bottom:10px;">
-            <h3 style="margin:0; font-size:1.1rem; color:#f1f5f9;">Saved Script Vault</h3>
-            <button type="button" class="vault-close-btn" id="close-vault-btn" style="background:#ef4444; border:none; color:white; padding:6px 12px; border-radius:8px; cursor:pointer; font-weight:bold;">X</button>
-        </div>
-        <div class="vault-list" id="vault-items-container" style="overflow-y:auto; flex-grow:1; display:flex; flex-direction:column; gap:10px;">
-            <p style="color:#64748b; text-align:center; font-size:0.9rem;">No saved scripts yet.</p>
-        </div>
-</script>
-</body>
-</html>
+            vaultContainer.innerHTML = '';
+            savedScripts.forEach(item => {
+                const div = document.createEle
