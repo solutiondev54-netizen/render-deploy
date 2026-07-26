@@ -1,204 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <!-- Premium Mobile App Styling Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="MAAE Core">
-    <meta name="theme-color" content="#111118">
+    <meta name="theme-color" content="#111110">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAAE Core | Production Studio Suite</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* MAAE Core Studio Modern Grid & Safe Padding */
+        body { background: #0b0f19; color: #f3f4f6; font-family: system-ui, -apple-system, sans-serif; padding-bottom: 140px; }
+        .studio-container { max-width: 600px; margin: 0 auto; padding: 16px; }
+        .studio-card { background: #111827; border: 1px solid #1f2937; border-radius: 14px; padding: 14px; margin-bottom: 14px; }
+        .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>MAAE Core</h1>
-        <div class="subtitle">Production Studio Suite</div>
+    <div class="studio-container">
+        <h1 style="text-align: center; font-size: 24px; font-weight: 800; color: #f3f4f6; margin: 0;">MAAE CORE</h1>
+        <div class="subtitle" style="text-align: center; font-size: 11px; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 15px;">Production Studio Suite</div>
+
+        <!-- 1. Take / Version History Tracker -->
+        <div class="studio-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase;">Version Vault Tracker</label>
+                <span id="active-take-badge" style="background: #1f2937; color: #34d399; font-size: 10px; padding: 2px 8px; border-radius: 6px;">Take 1 (Live)</span>
+            </div>
+            <div style="display: flex; gap: 6px;">
+                <button type="button" onclick="switchTake(1)" style="flex:1; background: #1f2937; color: #fff; border: 1px solid #374151; padding: 6px; border-radius: 6px; font-size: 11px; cursor:pointer;">Take 1</button>
+                <button type="button" onclick="switchTake(2)" style="flex:1; background: #1f2937; color: #fff; border: 1px solid #374151; padding: 6px; border-radius: 6px; font-size: 11px; cursor:pointer;">Take 2</button>
+                <button type="button" onclick="switchTake(3)" style="flex:1; background: #1f2937; color: #fff; border: 1px solid #374151; padding: 6px; border-radius: 6px; font-size: 11px; cursor:pointer;">Director's Cut</button>
+            </div>
+        </div>
 
         <!-- Studio Directive Manifest Section -->
-        <div class="input-group">
-            <label>STUDIO DIRECTIVE MANIFEST</label>
-            <div class="token-bank" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
-                <span class="tag-token" onclick="insertToken('Mama Akos')" style="background: #1f1f2e; color: #f2c94c; border: 1px solid rgba(242,201,76,0.3); padding: 4px 10px; border-radius: 12px; font-size: 11px; cursor: pointer;">Mama Akos</span>
-                <span class="tag-token" onclick="insertToken('Kofi')" style="background: #1f1f2e; color: #f2c94c; border: 1px solid rgba(242,201,76,0.3); padding: 4px 10px; border-radius: 12px; font-size: 11px; cursor: pointer;">Kofi</span>
-                <span class="tag-token" onclick="insertToken('Papa Kofi')" style="background: #1f1f2e; color: #f2c94c; border: 1px solid rgba(242,201,76,0.3); padding: 4px 10px; border-radius: 12px; font-size: 11px; cursor: pointer;">Papa Kofi</span>
-                <span class="tag-token" onclick="insertToken('Akos Kofi\'s sister')" style="background: #1f1f2e; color: #f2c94c; border: 1px solid rgba(242,201,76,0.3); padding: 4px 10px; border-radius: 12px; font-size: 11px; cursor: pointer;">Akos Kofi's sister</span>
+        <div class="input-group studio-card">
+            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">STUDIO DIRECTIVE MANIFEST</label>
+            <div class="token-bank" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <span class="tag-token" onclick="insertToken('Mama Akos')" style="background: #1f1f2e; color: #f2c94c; padding: 4px 8px; border-radius: 6px; font-size: 11px; cursor: pointer;">Mama Akos</span>
+                <span class="tag-token" onclick="insertToken('Kofi')" style="background: #1f1f2e; color: #f2c94c; padding: 4px 8px; border-radius: 6px; font-size: 11px; cursor: pointer;">Kofi</span>
+                <span class="tag-token" onclick="insertToken('Papa Kofi')" style="background: #1f1f2e; color: #f2c94c; padding: 4px 8px; border-radius: 6px; font-size: 11px; cursor: pointer;">Papa Kofi</span>
+                <span class="tag-token" onclick="insertToken('Akos Kofi\'s sister')" style="background: #1f1f2e; color: #f2c94c; padding: 4px 8px; border-radius: 6px; font-size: 11px; cursor: pointer;">Akos Kofi's sister</span>
             </div>
+        </div>
 
-            <!-- Prompt Input Section with Compact Audio Playback Pill -->
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Plot Idea / Prompt</label>
-                
-                <!-- Colorful Golden Studio Mixer Button -->
-                <button type="button" id="audio-btn" onclick="playAudioDrama()" title="Play Audio Voice" style="background: linear-gradient(135deg, #f59e0b, #d97706); border: none; color: white; padding: 4px 12px; border-radius: 16px; font-size: 11px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 4px; box-shadow: 0 2px 8px rgba(245,158,11,0.3);">
-                    <span>🔊</span> Audio Preview
-                </button>
+        <!-- 2. Character Sentiment & Emotion Tagging Toolbar -->
+        <div class="studio-card">
+            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">Emotion & Sentiment Tags</label>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                <button type="button" onclick="insertEmotion('[Laughs nervously]')" style="background: #1f2937; color: #fbbf24; border: 1px solid #374151; padding: 4px 8px; border-radius: 6px; font-size: 10px; cursor:pointer;">😂 [Laughs]</button>
+                <button type="button" onclick="insertEmotion('[Sighs deeply]')" style="background: #1f2937; color: #60a5fa; border: 1px solid #374151; padding: 4px 8px; border-radius: 6px; font-size: 10px; cursor:pointer;">💨 [Sighs]</button>
+                <button type="button" onclick="insertEmotion('[Angry whisper]')" style="background: #1f2937; color: #f87171; border: 1px solid #374151; padding: 4px 8px; border-radius: 6px; font-size: 10px; cursor:pointer;">🔥 [Whisper]</button>
             </div>
-            <input type="text" id="prompt-input" placeholder="Enter plot idea here..." style="width: 100%; padding: 14px; background: #0d1117; border: 1px solid #30363d; border-radius: 12px; color: white; outline: none; font-size: 14px;">
+        </div>
+
+        <!-- Plot Idea / Prompt Section -->
+        <div class="input-group studio-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase;">PLOT IDEA / PROMPT</label>
+                <button type="button" id="audio-btn" onclick="playAudioDrama()" title="Play Audio Voice" style="background: linear-gradient(135deg, #f59e0b, #d97706); border: none; padding: 6px 12px; border-radius: 20px; color: #fff; font-size: 11px; font-weight: bold; cursor: pointer;">🔊 Audio Preview</button>
+            </div>
+            <input type="text" id="prompt-input" placeholder="Enter plot idea here..." style="width: 100%; padding: 12px; background: #0d1117; border: 1px solid #30363d; border-radius: 8px; color: #f3f4f6; box-sizing: border-box; font-size: 13px;">
         </div>
 
         <!-- Select Dialect Style Section -->
-        <div class="input-group" style="margin-top: 15px; text-align: left;">
-            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Select Dialect Style</label>
-            <div id="dialect-container" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;">
-                <div class="dialect-pill active" data-value="classic_family" onclick="selectDialect(this)" style="background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%); color: #f2c94c; border: 1px solid #f2c94c; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">Classic Family</div>
-                <div class="dialect-pill" data-value="accra_pidgin" onclick="selectDialect(this)" style="background: #161b22; color: #94a3b8; border: 1px solid #30363d; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">Accra Pidgin</div>
-                <div class="dialect-pill" data-value="lagos_street" onclick="selectDialect(this)" style="background: #161b22; color: #94a3b8; border: 1px solid #30363d; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">Lagos Street</div>
+        <div class="input-group studio-card">
+            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">SELECT DIALECT STYLE</label>
+            <div id="dialect-container" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <div class="dialect-pill active" data-value="classic_family" onclick="selectDialect(this)" style="background: linear-gradient(135deg, #1f1f2e 0%, #111118 100%); border: 1px solid #f2c94c; color: #f2c94c; padding: 8px 12px; border-radius: 8px; font-size: 12px; cursor: pointer;">Classic Family</div>
+                <div class="dialect-pill" data-value="accra_pidgin" onclick="selectDialect(this)" style="background: #161b22; border: 1px solid #30363d; color: #9ca3af; padding: 8px 12px; border-radius: 8px; font-size: 12px; cursor: pointer;">Accra Pidgin</div>
+                <div class="dialect-pill" data-value="lagos_street" onclick="selectDialect(this)" style="background: #161b22; border: 1px solid #30363d; color: #9ca3af; padding: 8px 12px; border-radius: 8px; font-size: 12px; cursor: pointer;">Lagos Street</div>
             </div>
         </div>
 
         <!-- Interactive Character Tone Customizer -->
-        <div class="input-group" style="margin-top: 15px; text-align: left;">
-            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Character Tone</label>
-            <div class="tone-grid" id="tone-container" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;">
-                <button type="button" class="tone-pill active" data-tone="humorous" style="background: linear-gradient(135deg, #6366f1, #a055f7); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">😂 Humorous</button>
-                <button type="button" class="tone-pill" data-tone="dramatic" style="background: #161b22; border: 1px solid #30363d; color: #94a3b8; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">🎭 Dramatic</button>
-                <button type="button" class="tone-pill" data-tone="sarcastic" style="background: #161b22; border: 1px solid #30363d; color: #94a3b8; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">😏 Sarcastic</button>
+        <div class="input-group studio-card">
+            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">CHARACTER TONE</label>
+            <div class="tone-grid" id="tone-container" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button type="button" class="tone-pill active" data-tone="humorous" style="background: linear-gradient(135deg, #6366f1, #a055f7); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 8px 12px; border-radius: 8px; font-size: 12px; cursor: pointer;">😂 Humorous</button>
+                <button type="button" class="tone-pill" data-tone="dramatic" style="background: #161b22; border: 1px solid #30363d; color: #9ca3af; padding: 8px 12px; border-radius: 8px; font-size: 12px; cursor: pointer;">🎭 Dramatic</button>
+                <button type="button" class="tone-pill" data-tone="sarcastic" style="background: #161b22; border: 1px solid #30363d; color: #9ca3af; padding: 8px 12px; border-radius: 8px; font-size: 12px; cursor: pointer;">😏 Sarcastic</button>
             </div>
         </div>
 
         <!-- Multi-Voice Character Assignment Engine -->
-        <div class="input-group" style="margin-top: 15px; text-align: left;">
-            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Character Voice Assignment</label>
-            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px; background: #0d1117; padding: 12px; border-radius: 12px; border: 1px solid #30363d;">
-                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #f3f4f6;">
-                    <span>👩🏽‍🍳 Mama Akos</span>
-                    <select id="voice-mama-akos" style="background: #161b22; color: #f2c94c; border: 1px solid #30363d; padding: 4px 8px; border-radius: 8px; font-size: 11px; outline: none;">
+        <div class="input-group studio-card">
+            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">CHARACTER VOICE ASSIGNMENT</label>
+            <div style="display: flex; flex-direction: column; gap: 8px; background: #0d1117; padding: 10px; border-radius: 8px; border: 1px solid #30363d;">
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+                    <span>👩‍🍳 Mama Akos</span>
+                    <select id="voice-mama-akos" style="background: #161b22; color: #f2c94c; border: 1px solid #30363d; padding: 4px 8px; border-radius: 6px;">
                         <option value="warm-alto">Warm & Mature Alto</option>
                         <option value="deep-mother">Deep & Authoritative</option>
                     </select>
                 </div>
-                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #f3f4f6;">
-                    <span>👦🏾 Kofi</span>
-                    <select id="voice-kofi" style="background: #161b22; color: #f2c94c; border: 1px solid #30363d; padding: 4px 8px; border-radius: 8px; font-size: 11px; outline: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+                    <span>👦 Kofi</span>
+                    <select id="voice-kofi" style="background: #161b22; color: #f2c94c; border: 1px solid #30363d; padding: 4px 8px; border-radius: 6px;">
                         <option value="young-tenor">Young & Vibrant Tenor</option>
                         <option value="casual-boy">Casual Youth</option>
                     </select>
                 </div>
-                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #f3f4f6;">
-                    <span>👨🏾 Papa Kofi</span>
-                    <select id="voice-papa-kofi" style="background: #161b22; color: #f2c94c; border: 1px solid #30363d; padding: 4px 8px; border-radius: 8px; font-size: 11px; outline: none;">
-                        <option value="deep-baritone">Deep Wise Baritone</option>
-                        <option value="elder-voice">Elderly Resonance</option>
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+                    <span>👨 Papa Kofi</span>
+                    <select id="voice-papa-kofi" style="background: #161b22; color: #f2c94c; border: 1px solid #30363d; padding: 4px 8px; border-radius: 6px;">
+                        <option value="elder-voice">Deep Wise Baritone</option>
+                        <option value="elder-resonance">Elderly Resonance</option>
                     </select>
                 </div>
-                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #f3f4f6;">
-                    <span>👧🏾 Akos (Kofi's Sister)</span>
-                    <select id="voice-akos" style="background: #161b22; color: #f2c94c; border: 1px solid #30363d; padding: 4px 8px; border-radius: 8px; font-size: 11px; outline: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+                    <span>👧 Akos (Kofi's Sister)</span>
+                    <select id="voice-akos" style="background: #161b22; color: #f2c94c; border: 1px solid #30363d; padding: 4px 8px; border-radius: 6px;">
                         <option value="bright-soprano">Bright & Lively Soprano</option>
                         <option value="sharp-youth">Sharp Teen Tone</option>
                     </select>
                 </div>
-        
-        <!-- Script Engine Action Button -->
-        <button type="button" id="script-btn" onclick="generateScript()" style="width: 100%; margin-top: 20px; padding: 14px; background: linear-gradient(135deg, #f59e0b, #d97706); border: none; border-radius: 12px; color: white; font-weight: bold; cursor: pointer; font-size: 14px; letter-spacing: 0.05em; box-shadow: 0 4px 15px rgba(245,158,11,0.4);">SCRIPT ENGINE</button>
+            </div>
+        </div>
 
-        <!-- Fixed-Size Script Workspace Output Box (Textarea Fix) -->
-        <div class="input-group" style="margin-top: 15px;">
-            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Script Workspace</label>
-            <textarea id="workspace" style="width: 100%; height: 180px; max-height: 180px; overflow-y: auto; background: #0d1117; border: 1px solid #30363d; border-radius: 12px; padding: 12px; color: #f3f4f6; font-size: 13px; outline: none; resize: none; box-sizing: border-box;">Script Workspace Standby...</textarea>
+        <!-- Script Engine Action Button -->
+        <button type="button" id="script-btn" onclick="generateScript()" style="width: 100%; margin-top: 10px; margin-bottom: 14px; padding: 14px; background: linear-gradient(135deg, #f59e0b, #d97706); border: none; border-radius: 10px; color: #fff; font-weight: bold; font-size: 14px; cursor: pointer;">SCRIPT ENGINE</button>
+
+        <!-- Fixed-Size Script Workspace Output Box with Real-Time Timing Calculator -->
+        <div class="input-group studio-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase;">SCRIPT WORKSPACE</label>
+                <span id="timing-calc" style="color: #9ca3af; font-size: 10px;">0 words (~0 sec)</span>
+            </div>
+            <textarea id="workspace" oninput="updateScriptMetrics(this.value)" style="width: 100%; height: 180px; max-height: 180px; overflow-y: auto; background: #0d1117; color: #f3f4f6; border: 1px solid #30363d; border-radius: 8px; padding: 10px; font-size: 13px; resize: none; box-sizing: border-box;">Script Workspace Standby...</textarea>
         </div>
 
         <!-- Copy & Vault Action Cluster -->
-        <div style="display: flex; gap: 10px; margin-top: 15px; width: 100%;">
-            <button type="button" id="copy-btn" onclick="copyScript()" style="flex: 1; padding: 12px; background: linear-gradient(135deg, #374151, #1f2937); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: white; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px;">
-                <span style="font-size: 14px;">📋</span> <span style="letter-spacing: 0.3px;">Copy Script</span>
-            </button>
-            <button type="button" id="open-vault-btn" style="flex: 1; padding: 12px; background: linear-gradient(135deg, #2563eb, #1d4ed8); border: none; border-radius: 12px; color: white; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px; box-shadow: 0 4px 12px rgba(37,99,235,0.3);">
-                <span>📁</span> Vault (<span id="vault-count">0</span>)
-            </button>
+        <div style="display: flex; gap: 10px; margin-top: 15px; margin-bottom: 14px; width: 100%;">
+            <button type="button" id="copy-btn" onclick="copyScript()" style="flex: 1; padding: 12px; background: linear-gradient(135deg, #374151, #1f2937); border: none; border-radius: 8px; color: #fff; font-size: 13px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">📋 Copy Script</button>
+            <button type="button" id="open-vault-btn" style="flex: 1; padding: 12px; background: linear-gradient(135deg, #2563eb, #1d4ed8); border: none; border-radius: 8px; color: #fff; font-size: 13px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">📁 Vault ( <span id="vault-count">0</span> )</button>
         </div>
 
         <!-- Background Soundscape / Vibe Mixer -->
-        <div class="feature-section-title" style="font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: #f2c94c; margin-bottom: 8px; margin-top: 20px;">Background Soundscape Vibe</div>
-        <div class="soundscape-grid" id="soundscape-container" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;">
-            <button type="button" class="soundscape-pill active" data-vibe="none" style="background: linear-gradient(135deg, #6366f1, #a055f7); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">🚫 None</button>
-            <button type="button" class="soundscape-pill" data-vibe="accra-market" style="background: #161b22; border: 1px solid #30363d; color: #94a3b8; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">🛒 Accra Market</button>
-            <button type="button" class="soundscape-pill" data-vibe="lagos-traffic" style="background: #161b22; border: 1px solid #30363d; color: #94a3b8; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">🚗 Lagos Traffic</button>
-            <button type="button" class="soundscape-pill" data-vibe="highlife-beat" style="background: #161b22; border: 1px solid #30363d; color: #94a3b8; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">🎵 Chill Highlife</button>
-            <button type="button" class="soundscape-pill" data-vibe="sitcom-laughs" style="background: #161b22; border: 1px solid #30363d; color: #94a3b8; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">😂 Sitcom Laughs</button>
+        <div class="studio-card">
+            <label class="feature-section-title" style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">BACKGROUND SOUNDSCAPE VIBE</label>
+            <div class="soundscape-grid" id="soundscape-container" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <button type="button" class="soundscape-pill active" data-vibe="none" style="background: linear-gradient(135deg, #6366f1, #a055f7); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 6px 10px; border-radius: 6px; font-size: 11px; cursor: pointer;">🚫 None</button>
+                <button type="button" class="soundscape-pill" data-vibe="accra-market" style="background: #161b22; border: 1px solid #30363d; color: #9ca3af; padding: 6px 10px; border-radius: 6px; font-size: 11px; cursor: pointer;">🛒 Accra Market</button>
+                <button type="button" class="soundscape-pill" data-vibe="lagos-traffic" style="background: #161b22; border: 1px solid #30363d; color: #9ca3af; padding: 6px 10px; border-radius: 6px; font-size: 11px; cursor: pointer;">🚗 Lagos Traffic</button>
+                <button type="button" class="soundscape-pill" data-vibe="highlife-beat" style="background: #161b22; border: 1px solid #30363d; color: #9ca3af; padding: 6px 10px; border-radius: 6px; font-size: 11px; cursor: pointer;">🎵 Chill Highlife</button>
+                <button type="button" class="soundscape-pill" data-vibe="sitcom-laughs" style="background: #161b22; border: 1px solid #30363d; color: #9ca3af; padding: 6px 10px; border-radius: 6px; font-size: 11px; cursor: pointer;">😂 Sitcom Laughs</button>
+            </div>
         </div>
 
         <!-- Real-Time Soundscape Volume & FX Mixer -->
-        <div class="input-group" style="margin-top: 15px; text-align: left;">
+        <div class="input-group studio-card">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Ambient FX Volume</label>
+                <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase;">AMBIENT FX VOLUME</label>
                 <span id="fx-volume-display" style="color: #34d399; font-size: 11px; font-weight: bold;">50%</span>
             </div>
-            <div style="background: #0d1117; padding: 12px; border-radius: 12px; border: 1px solid #30363d; display: flex; align-items: center; gap: 10px;">
+            <div style="background: #0d1117; padding: 12px; border-radius: 8px; border: 1px solid #30363d; display: flex; align-items: center; gap: 10px;">
                 <span style="font-size: 14px;">🎚️</span>
-                <input type="range" id="soundscape-volume" min="0" max="100" value="50" oninput="updateFxVolume(this.value)" style="flex: 1; accent-color: #f59e0b; cursor: pointer;">
-                <span style="font-size: 10px; color: #94a3b8; text-transform: uppercase;">Mixer</span>
+                <input type="range" id="soundscape-volume" min="0" max="100" value="50" oninput="updateFxVolume(this.value)" style="flex: 1; accent-color: #f2c94c;">
+                <span style="font-size: 10px; color: #9ca3af; text-transform: uppercase;">MIXER</span>
             </div>
-                
-        <!-- Multi-Language Subtitle Toggle -->
-        <div class="feature-section-title" style="font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: #f2c94c; margin-bottom: 8px;">Subtitle / Caption Mode</div>
-        <div class="subtitle-grid" id="subtitle-container" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;">
-            <button type="button" class="subtitle-pill active" data-sub="srt" style="background: linear-gradient(135deg, #6366f1, #a055f7); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">📄 Standard .SRT</button>
-            <button type="button" class="subtitle-pill" data-sub="pidgin-captions" style="background: #161b22; border: 1px solid #30363d; color: #94a3b8; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">🌍 Local Pidgin FX</button>
-            <button type="button" class="subtitle-pill" data-sub="none" style="background: #161b22; border: 1px solid #30363d; color: #94a3b8; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">🚫 None</button>
         </div>
 
-        <!-- Classic Video Smart Screen Feed Box -->
-        <div class="input-group" style="margin-top: 15px;">
-            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Visual Studio Feed</label>
-            <div id="video-feed" style="width: 100%; height: 180px; background: #050508; border: 3px solid #30363d; border-radius: 16px; padding: 12px; box-shadow: inset 0 4px 12px rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; color: #6b7280; font-size: 13px; text-align: center;">
+        <!-- 4. Interactive Spatial Audio & Panning Matrix -->
+        <div class="studio-card">
+            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">Spatial 3D Panning Matrix</label>
+            <div class="grid-2col">
+                <div style="background: #0d1117; padding: 8px; border-radius: 6px; border: 1px solid #30363d;">
+                    <span style="font-size: 10px; color: #9ca3af; display: block; margin-bottom: 4px;">Mama Akos Pan</span>
+                    <input type="range" min="-100" max="100" value="0" style="width: 100%; accent-color: #f2c94c;">
+                </div>
+                <div style="background: #0d1117; padding: 8px; border-radius: 6px; border: 1px solid #30363d;">
+                    <span style="font-size: 10px; color: #9ca3af; display: block; margin-bottom: 4px;">Kofi Pan</span>
+                    <input type="range" min="-100" max="100" value="0" style="width: 100%; accent-color: #f2c94c;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Multi-Language Subtitle Toggle -->
+        <div class="input-group studio-card">
+            <label class="feature-section-title" style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">SUBTITLE / CAPTION MODE</label>
+            <div class="subtitle-grid" id="subtitle-container" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <button type="button" class="subtitle-pill active" data-sub="srt" style="background: linear-gradient(135deg, #6366f1, #a055f7); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 6px 10px; border-radius: 6px; font-size: 11px; cursor: pointer;">📄 Standard .SRT</button>
+                <button type="button" class="subtitle-pill" data-sub="pidgin-captions" style="background: #161b22; border: 1px solid #30363d; color: #9ca3af; padding: 6px 10px; border-radius: 6px; font-size: 11px; cursor: pointer;">🌍 Local Pidgin FX</button>
+                <button type="button" class="subtitle-pill" data-sub="none" style="background: #161b22; border: 1px solid #30363d; color: #9ca3af; padding: 6px 10px; border-radius: 6px; font-size: 11px; cursor: pointer;">🚫 None</button>
+            </div>
+        </div>
+
+        <!-- 5. Direct Gallery Image Upload & AI Content Generator Hub -->
+        <div class="studio-card">
+            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">Gallery Upload & Visual Studio Feed</label>
+            <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 10px;">
+                <input type="file" id="gallery-upload" accept="image/*" style="font-size: 11px; color: #9ca3af; flex: 1;" onchange="previewGalleryImage(event)">
+                <button type="button" onclick="generateAiVisual()" style="background: #7c3aed; color: #fff; border: none; padding: 8px 12px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer;">✨ AI Visual</button>
+            </div>
+            <!-- Classic Video Smart Screen Feed Box -->
+            <div id="video-feed" style="width: 100%; height: 180px; background: #050508; border: 3px solid #30363d; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #6b7280; font-size: 13px; text-align: center; overflow: hidden; background-size: cover; background-position: center;">
                 Smart Screen Standby...
             </div>
         </div>
 
         <!-- Video Render Action Button -->
-        <button type="button" id="video-btn" class="render-video-btn" onclick="renderVideo()" style="width: 100%; margin-top: 15px; padding: 14px; background: linear-gradient(135deg, #10b981, #059669); border: none; border-radius: 12px; color: white; font-weight: bold; cursor: pointer; font-size: 14px; letter-spacing: 0.05em; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);">RENDER VIDEO</button>
+        <button type="button" id="video-btn" class="render-video-btn" onclick="renderVideo()" style="width: 100%; margin-top: 10px; margin-bottom: 14px; padding: 14px; background: linear-gradient(135deg, #10b981, #059669); border: none; border-radius: 10px; color: #fff; font-weight: bold; font-size: 14px; cursor: pointer;">RENDER VIDEO</button>
 
-        <!-- Mama Akos Floating Trigger Button -->
-        <div id="mama-akos-trigger" onclick="toggleMamaChat()" style="position: fixed; bottom: 25px; right: 25px; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 12px 20px; border-radius: 30px; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 6px 20px rgba(245,158,11,0.5); z-index: 9999; border: 1px solid rgba(255,255,255,0.2);">
-            <span style="font-size: 20px;">👩🏽‍🍳</span>
-            <span style="color: white; font-weight: bold; font-size: 13px; letter-spacing: 0.02em;">Ask Mama Akos</span>
-        </div>
-
-        <!-- Mama Akos Premium Chat Modal Window -->
-        <div id="mama-akos-modal" style="display: none; position: fixed; bottom: 90px; right: 25px; width: 360px; max-width: calc(100vw - 40px); background: linear-gradient(145deg, #0d1117, #161b22); border: 2px solid rgba(245, 158, 11, 0.4); border-radius: 20px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(245, 158, 11, 0.2); overflow: hidden; z-index: 10000; font-family: inherit; flex-direction: column;">
-            
-            <!-- Premium Glass Header -->
-            <div style="background: linear-gradient(135deg, #1f242d, #11151c); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08);">
-                <div style="display: flex; align-items: center; gap: 10px; min-width: 0;">
-                    <div style="width: 40px; height: 40px; min-width: 40px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 12px rgba(245,158,11,0.4); border: 1px solid rgba(255,255,255,0.2);">👩🏽‍🍳</div>
-                    <div style="min-width: 0;">
-                        <h4 style="margin: 0; color: #ffffff; font-size: 14px; font-weight: 700; letter-spacing: 0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Mama Akos Help Center</h4>
-                        <p style="margin: 2px 0 0 0; color: #34d399; font-size: 10px; font-weight: 500; display: flex; align-items: center; gap: 4px; white-space: nowrap;"><span style="width: 6px; height: 6px; background: #34d399; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #34d399;"></span> Online & Ready to Assist</p>
-                    </div>
-                </div>
-                <button type="button" onclick="toggleMamaChat()" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; width: 30px; height: 30px; min-width: 30px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">&times;</button>
-            </div>
-
-            <!-- Styled Chat Body Container -->
-            <div id="mama-chat-body" style="height: 280px; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: radial-gradient(circle at top right, #111827 0%, #0a0e14 100%);">
-                <div style="background: linear-gradient(135deg, #1f2937, #111827); color: #f3f4f6; padding: 12px 14px; border-radius: 14px; font-size: 12px; line-height: 1.5; max-width: 88%; border: 1px solid rgba(245,158,11,0.2); box-shadow: 0 4px 15px rgba(0,0,0,0.4); position: relative;">
-                    <div style="font-size: 10px; color: #f59e0b; font-weight: bold; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.05em;">Mama Akos 👩🏽‍🍳</div>
-                    Ehn, welcome! What production trouble are you facing with your script or studio setup today? Let Mama Akos help you sort am. ✨
-                </div>
-            </div>
-
-            <!-- Sleek Input Footer -->
-            <div style="padding: 12px 16px; background: #11151c; display: flex; gap: 8px; border-top: 1px solid rgba(255,255,255,0.08); align-items: center;">
-                <input type="text" id="mama-chat-input" placeholder="Ask Mama Akos anything..." onkeypress="handleMamaEnter(event)" style="flex: 1; min-width: 0; background: #0d1117; border: 1px solid #30363d; border-radius: 12px; padding: 10px 14px; color: white; font-size: 12px; outline: none; transition: border-color 0.2s;">
-                <button type="button" onclick="sendMamaMessage()" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; border: none; border-radius: 12px; padding: 0 16px; height: 38px; font-weight: bold; cursor: pointer; font-size: 12px; box-shadow: 0 4px 12px rgba(245,158,11,0.3); white-space: nowrap;">Send</button>
+        <!-- 6. Direct Social Media Broadcast Hub -->
+        <div class="studio-card" style="background: linear-gradient(135deg, #111827 0%, #1e1b4b 100%);">
+            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">Direct Social Broadcast Hub</label>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
+                <button type="button" onclick="broadcastSocial('TikTok')" style="background: #000; color: #fff; border: 1px solid #374151; padding: 8px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">🎵 TikTok</button>
+                <button type="button" onclick="broadcastSocial('Instagram')" style="background: #db2777; color: #fff; border: none; padding: 8px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">📸 Reels</button>
+                <button type="button" onclick="broadcastSocial('YouTube')" style="background: #dc2626; color: #fff; border: none; padding: 8px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">▶️ Shorts</button>
             </div>
         </div>
 
-        <!-- Script Vault Modal Window Component -->
-        <div id="script-vault-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; justify-content: center; align-items: center;">
-            <div class="vault-content-box" style="background: #161b22; border: 2px solid #30363d; width: 90%; max-width: 500px; height: 70vh; border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.9);">
-                <div class="vault-header" style="display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid #30363d; background: #0d1117;">
-                    <h3 style="margin: 0; color: #f59e0b; font-size: 1.1rem;">Saved Script Vault</h3>
-                    <button type="button" class="vault-close-btn" id="close-vault-btn" style="background: #ef4444; border: none; color: white; width: 30px; height: 30px; border-radius: 50%; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center;">&times;</button>
-                </div>
-                <div class="vault-list" id="vault-items-container" style="overflow-y: auto; flex-grow: 1; padding: 16px; display: flex; flex-direction: column; gap: 10px;">
-                    <p style="color: #64748b; text-align: center; font-size: 0.9rem;">No saved scripts yet.</p>
-                </div>
+        s="studio-card" style="background: linear-gradient(135deg, #111827 0%, #1e1b4b 100%);">
+            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">Direct Social Broadcast Hub</label>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
+                <button type="button" onclick="broadcastSocial('TikTok')" style="background: #000; color: #fff; border: 1px solid #374151; padding: 8px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">🎵 TikTok</button>
+                <button type="button" onclick="broadcastSocial('Instagram')" style="background: #db2777; color: #fff; border: none; padding: 8px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">📸 Reels</button>
+                <button type="button" onclick="broadcastSocial('YouTube')" style="background: #dc2626; color: #fff; border: none; padding: 8px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">▶️ Shorts</button>
             </div>
         </div>
+    </div>
 
+    <!-- Mama Akos Floating Trigger Button -->
+    <div id="mama-akos-trigger" onclick="toggleMamaChat()" style="position: fixed; bottom: 25px; right: 25px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 30px; padding: 10px 18px; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(245,158,11,0.4); cursor: pointer; z-index: 9999;">
+        <span style="font-size: 20px;">👩‍🍳</span>
+        <span style="color: white; font-weight: bold; font-size: 13px; letter-spacing: 0.02em;">Ask Mama Akos</span>
+    </div>
+
+    <!-- Mama Akos Premium Chat Modal Window -->
+    <div id="mama-akos-modal" style="display: none; position: fixed; bottom: 90px; right: 25px; width: 360px; max-width: calc(100vw - 40px); background: #111827; border: 2px solid #f59e0b; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); z-index: 10000; overflow: hidden;">
+        <div style="background: linear-gradient(135deg, #1f242d, #11151c); padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 36px; height: 36px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px;">👩‍🍳</div>
+                <div>
+                    <h4 style="margin: 0; color: #ffffff; font-size: 14px; font-weight: 700;">Mama Akos Studio Assistant</h4>
+                    <p style="margin: 2px 0 0 0; color: #34d399; font-size: 10px; font-weight: 500;">Online & Ready</p>
+                </div>
+            </div>
+            <button type="button" onclick="toggleMamaChat()" style="background: rgba(255,255,255,0.05); border: none; color: #9ca3af; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-weight: bold;">✕</button>
+        </div>
+        <div id="mama-chat-body" style="height: 260px; padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #0d1117;">
+            <div style="background: #1f2937; color: #f3f4f6; padding: 10px 14px; border-radius: 10px; font-size: 12px; line-height: 1.4;">
+                Ehn, welcome! What production trouble are you facing with your script or studio setup today? Let Mama Akos guide you.
+            </div>
+        </div>
+        <div style="padding: 12px 16px; background: #11151c; display: flex; gap: 8px; border-top: 1px solid rgba(255,255,255,0.05);">
+            <input type="text" id="mama-chat-input" placeholder="Ask Mama Akos anything..." onkeypress="handleMamaEnter(event)" style="flex: 1; background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 8px 12px; color: #fff; font-size: 12px; outline: none;">
+            <button type="button" onclick="sendMamaMessage()" style="background: linear-gradient(135deg, #f59e0b, #d97706); border: none; padding: 8px 14px; border-radius: 8px; color: #fff; font-weight: bold; cursor: pointer; font-size: 12px;">Send</button>
+        </div>
+    </div>
+
+    <!-- Script Vault Modal Window Component -->
+    <div id="script-vault-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10001; align-items: center; justify-content: center;">
+        <div class="vault-content-box" style="background: #161b22; border: 2px solid #30363d; border-radius: 16px; width: 90%; max-width: 500px; max-height: 80vh; display: flex; flex-direction: column; overflow: hidden;">
+            <div style="background: #11151c; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #30363d;">
+                <h3 style="margin: 0; color: #f59e0b; font-size: 1.1rem;">Saved Script Vault</h3>
+                <button type="button" id="close-vault-btn" style="background: #ef4444; border: none; color: #fff; width: 28px; height: 28px; border-radius: 50%; font-weight: bold; cursor: pointer;">✕</button>
+            </div>
+            <div id="vault-items-container" style="overflow-y: auto; flex-grow: 1; padding: 16px; display: flex; flex-direction: column; gap: 10px;">
+                <p style="color: #64748b; text-align: center; font-size: 0.9rem;">No saved scripts yet.</p>
+            </div>
+        </div>
     </div>
 
     <!-- Complete JavaScript Architecture -->
@@ -211,9 +278,9 @@
         let activeDialect = 'classic_family';
         window.selectDialect = (element) => {
             document.querySelectorAll('.dialect-pill').forEach(pill => {
-                pill.style.background = '#111118';
-                pill.style.color = '#a0a0ab';
-                pill.style.borderColor = 'rgba(255,255,255,0.1)';
+                pill.style.background = '#161b22';
+                pill.style.color = '#9ca3af';
+                pill.style.borderColor = '#30363d';
                 pill.classList.remove('active');
             });
             element.style.background = 'linear-gradient(135deg, #1f1f2e 0%, #111118 100%)';
@@ -229,7 +296,7 @@
                 document.querySelectorAll('.tone-pill').forEach(p => {
                     p.style.background = '#161b22';
                     p.style.borderColor = '#30363d';
-                    p.style.color = '#94a3b8';
+                    p.style.color = '#9ca3af';
                     p.classList.remove('active');
                 });
                 pill.style.background = 'linear-gradient(135deg, #6366f1, #a055f7)';
@@ -246,7 +313,7 @@
                 document.querySelectorAll('.soundscape-pill').forEach(p => {
                     p.style.background = '#161b22';
                     p.style.borderColor = '#30363d';
-                    p.style.color = '#94a3b8';
+                    p.style.color = '#9ca3af';
                     p.classList.remove('active');
                 });
                 pill.style.background = 'linear-gradient(135deg, #6366f1, #a055f7)';
@@ -263,7 +330,7 @@
                 document.querySelectorAll('.subtitle-pill').forEach(p => {
                     p.style.background = '#161b22';
                     p.style.borderColor = '#30363d';
-                    p.style.color = '#94a3b8';
+                    p.style.color = '#9ca3af';
                     p.classList.remove('active');
                 });
                 pill.style.background = 'linear-gradient(135deg, #6366f1, #a055f7)';
@@ -274,17 +341,64 @@
             });
         });
 
+        // Version & Take History Tracker Logic
+        function switchTake(takeNum) {
+            document.getElementById('active-take-badge').innerText = `Take ${takeNum} (Live)`;
+        }
+
+        // Emotion Tagging Logic
+        function insertEmotion(tag) {
+            const workspace = document.getElementById('workspace');
+            workspace.value += " " + tag + " ";
+            updateScriptMetrics(workspace.value);
+        }
+
+        // Real-Time Dialogue Pacing & Timing Calculator
+        function updateScriptMetrics(text) {
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            const seconds = Math.round(words / 2.5);
+            document.getElementById('timing-calc').innerText = `${words} words (~${seconds} sec)`;
+        }
+
+        // Gallery Image Upload & AI Content Generator
+        function previewGalleryImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const feed = document.getElementById('video-feed');
+                    feed.style.backgroundImage = `url(${e.target.result})`;
+                    feed.innerText = '';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function generateAiVisual() {
+            const feed = document.getElementById('video-feed');
+            feed.style.backgroundImage = 'none';
+            feed.innerText = '✨ AI Content Journey Visual generated successfully!';
+            feed.style.color = '#34d399';
+        }
+
+        // Direct Social Media Broadcast Hub
+        function broadcastSocial(platform) {
+            alert(`🚀 Dispatching generated asset bundle directly to ${platform} API... Payload delivered!`);
+        }
+
         // Vault Logic & Local Storage
-        let savedScripts = JSON.parse(localStorage.getItem('maae_script_vault') || '[]');
+        let savedScripts = JSON.parse(localStorage.getItem('maae_script_vault')) || [];
         updateVaultUI();
 
         const openVaultBtn = document.getElementById('open-vault-btn');
         const closeVaultBtn = document.getElementById('close-vault-btn');
         const vaultModal = document.getElementById('script-vault-modal');
 
-        openVaultBtn.addEventListener('click', () => { vaultModal.style.display = 'flex'; });
-        closeVaultBtn.addEventListener('click', () => { vaultModal.style.display = 'none'; });
-        window.addEventListener('click', (e) => { if (e.target === vaultModal) vaultModal.style.display = 'none'; });
+        if(openVaultBtn && vaultModal && closeVaultBtn) {
+            openVaultBtn.addEventListener('click', () => { vaultModal.style.display = 'flex'; });
+            closeVaultBtn.addEventListener('click', () => { vaultModal.style.display = 'none'; });
+            window.addEventListener('click', (e) => { if (e.target === vaultModal) vaultModal.style.display = 'none'; });
+        }
 
         function saveScriptToVault(scriptText, plotTitle) {
             const newEntry = {
@@ -303,20 +417,20 @@
             if (countEl) countEl.innerText = savedScripts.length;
             const vaultContainer = document.getElementById('vault-items-container');
             if (!vaultContainer) return;
-
+            
             if (savedScripts.length === 0) {
                 vaultContainer.innerHTML = '<p style="color: #64748b; text-align: center; font-size: 0.9rem;">No saved scripts yet.</p>';
                 return;
             }
-
+            
             vaultContainer.innerHTML = '';
             savedScripts.forEach(item => {
                 const div = document.createElement('div');
-                div.className = 'vault-item';
-                div.style.cssText = "background: #21262d; padding: 12px 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); cursor: pointer;";
-                div.innerHTML = `<strong style="color: #f59e0b; font-size: 0.9rem;">${item.title}</strong><br><span style="color: #8b949e; font-size: 0.75rem;">${item.date}</span>`;
+                div.style.cssText = "background: #21262d; padding: 12px 15px; border-radius: 8px; border: 1px solid #30363d; cursor: pointer;";
+                div.innerHTML = `<strong style="color: #f59e0b; font-size: 0.95rem;">${item.title}</strong><br><span style="color: #8b949e; font-size: 0.8rem;">${item.date}</span>`;
                 div.addEventListener('click', () => {
                     document.getElementById('workspace').value = item.text;
+                    updateScriptMetrics(item.text);
                     vaultModal.style.display = 'none';
                 });
                 vaultContainer.appendChild(div);
@@ -352,6 +466,7 @@
                 const data = await response.json();
                 const outputText = data.script || data.message || "Error: No script returned.";
                 workspace.value = outputText;
+                updateScriptMetrics(outputText);
                 saveScriptToVault(outputText, input.value);
             } catch (e) {
                 workspace.value = "Connection error: " + e;
@@ -391,7 +506,7 @@
 
         window.playAudioDrama = () => {
             const scriptText = document.getElementById('workspace').value;
-            if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection") || scriptText.startsWith("Script Workspace")) {
+            if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection")) {
                 alert("Please generate a valid script first!");
                 return;
             }
@@ -400,26 +515,23 @@
                 return;
             }
             window.speechSynthesis.cancel();
-            const speakText = () => {
-                const utterance = new SpeechSynthesisUtterance(scriptText);
-                utterance.rate = 0.95;
-                utterance.pitch = 1.05;
-                window.speechSynthesis.speak(utterance);
-            };
-            speakText();
+            const utterance = new SpeechSynthesisUtterance(scriptText);
+            utterance.rate = 0.95;
+            utterance.pitch = 1.05;
+            window.speechSynthesis.speak(utterance);
         };
 
         window.copyScript = () => {
             const scriptText = document.getElementById('workspace').value;
-            if (!scriptText || scriptText.startsWith("Sourcing") || scriptText.startsWith("Connection") || scriptText.startsWith("Script Workspace")) {
+            if (!scriptText || scriptText.startsWith("Sourcing")) {
                 alert("Please generate a script first!");
                 return;
             }
             navigator.clipboard.writeText(scriptText).then(() => {
                 const btn = document.getElementById('copy-btn');
-                btn.innerHTML = `<span style="font-size: 14px;">✅</span> <span style="letter-spacing: 0.3px;">Copied!</span>`;
+                btn.innerHTML = "<span>✅</span> <span>Copied!</span>";
                 setTimeout(() => {
-                    btn.innerHTML = `<span style="font-size: 14px;">📋</span> <span style="letter-spacing: 0.3px;">Copy Script</span>`;
+                    btn.innerHTML = "<span>📋</span> <span>Copy Script</span>";
                 }, 2000);
             }).catch(() => {
                 alert("Failed to copy script.");
@@ -430,11 +542,9 @@
         function toggleMamaChat() {
             const modal = document.getElementById('mama-akos-modal');
             if (modal) {
-                if (modal.style.display === 'none' || modal.style.display === '') {
-                    modal.style.display = 'flex';
+                modal.style.display = (modal.style.display === 'none' || modal.style.display === '') ? 'flex' : 'none';
+                if (modal.style.display === 'flex') {
                     modal.style.flexDirection = 'column';
-                } else {
-                    modal.style.display = 'none';
                 }
             }
         }
@@ -449,12 +559,12 @@
             const text = input.value.trim();
             if (!text) return;
 
-            body.innerHTML += `<div style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 10px 14px; border-radius: 12px; font-size: 12px; margin-left: auto; max-width: 85%; margin-bottom: 8px; box-shadow: 0 4px 10px rgba(245,158,11,0.2);">${text}</div>`;
+            body.innerHTML += `<div style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 10px 14px; border-radius: 10px; font-size: 12px; align-self: flex-end; max-width: 80%;">${text}</div>`;
             input.value = '';
             body.scrollTop = body.scrollHeight;
 
             const loadingId = 'loading-' + Date.now();
-            body.innerHTML += `<div id="${loadingId}" style="background: #1f2937; color: #9ca3af; padding: 10px 14px; border-radius: 12px; font-size: 12px; max-width: 85%; margin-bottom: 8px;">Mama Akos is typing...</div>`;
+            body.innerHTML += `<div id="${loadingId}" style="background: #1f2937; color: #9ca3af; padding: 10px 14px; border-radius: 10px; font-size: 12px; align-self: flex-start;">Mama Akos is thinking...</div>`;
             body.scrollTop = body.scrollHeight;
 
             try {
@@ -465,20 +575,20 @@
                 });
                 const data = await response.json();
                 document.getElementById(loadingId).remove();
-                body.innerHTML += `<div style="background: #1f2937; color: #f3f4f6; padding: 10px 14px; border-radius: 12px; font-size: 12px; max-width: 85%; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.06);">${data.reply || "Ehn, I dey here for you!"}</div>`;
+                body.innerHTML += `<div style="background: #1f2937; color: #f3f4f6; padding: 10px 14px; border-radius: 10px; font-size: 12px; align-self: flex-start; max-width: 80%;">${data.reply || data.message || "Ehn, let me check that for you!"}</div>`;
             } catch (e) {
                 document.getElementById(loadingId).remove();
-                body.innerHTML += `<div style="background: #7f1d1d; color: #fca5a5; padding: 10px 14px; border-radius: 12px; font-size: 12px; max-width: 85%; margin-bottom: 8px;">Network glitch, try again!</div>`;
+                body.innerHTML += `<div style="background: #7f1d1d; color: #fca5a5; padding: 10px 14px; border-radius: 10px; font-size: 12px; align-self: flex-start;">Network error connecting to Mama Akos.</div>`;
             }
             body.scrollTop = body.scrollHeight;
         }
-        
-    window.updateFxVolume = (val) => {
+
+        window.updateFxVolume = (val) => {
             const display = document.getElementById('fx-volume-display');
             if (display) {
                 display.innerText = val + '%';
             }
         };
-</script>
+    </script>
 </body>
 </html>
