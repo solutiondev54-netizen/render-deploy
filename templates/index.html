@@ -472,6 +472,13 @@
             }
             body.scrollTop = body.scrollHeight;
         }
+        
+    window.updateFxVolume = (val) => {
+            const display = document.getElementById('fx-volume-display');
+            if (display) {
+                display.innerText = val + '%';
+            }
+        };
 </script>
 </body>
 </html>
