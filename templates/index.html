@@ -119,6 +119,18 @@
             <button type="button" class="soundscape-pill" data-vibe="sitcom-laughs" style="background: #161b22; border: 1px solid #30363d; color: #94a3b8; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;">😂 Sitcom Laughs</button>
         </div>
 
+        <!-- Real-Time Soundscape Volume & FX Mixer -->
+        <div class="input-group" style="margin-top: 15px; text-align: left;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Ambient FX Volume</label>
+                <span id="fx-volume-display" style="color: #34d399; font-size: 11px; font-weight: bold;">50%</span>
+            </div>
+            <div style="background: #0d1117; padding: 12px; border-radius: 12px; border: 1px solid #30363d; display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 14px;">🎚️</span>
+                <input type="range" id="soundscape-volume" min="0" max="100" value="50" oninput="updateFxVolume(this.value)" style="flex: 1; accent-color: #f59e0b; cursor: pointer;">
+                <span style="font-size: 10px; color: #94a3b8; text-transform: uppercase;">Mixer</span>
+            </div>
+                
         <!-- Multi-Language Subtitle Toggle -->
         <div class="feature-section-title" style="font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: #f2c94c; margin-bottom: 8px;">Subtitle / Caption Mode</div>
         <div class="subtitle-grid" id="subtitle-container" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;">
