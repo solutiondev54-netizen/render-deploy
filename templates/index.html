@@ -87,46 +87,67 @@
             </div>
         </div>
 
-        <!-- 3. Character Voice Assignment (4 Core Cast) - Premium Edition -->
+        <!-- 3. Character Voice Assignment (4 Core Cast) - Custom Premium UI -->
     <div class="studio-card" style="background: linear-gradient(135deg, #161b22 0%, #1f242d 100%); border: 1px solid rgba(242, 201, 76, 0.3); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
             <label style="color: #f2c94c; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Character Voice Assignment</label>
             <span style="background: linear-gradient(135deg, #f2c94c, #f59e0b); color: #0b0f19; font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px; text-transform: uppercase;">Premium</span>
         </div>
         
-        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(13, 17, 23, 0.8); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(242, 201, 76, 0.15); margin-bottom: 8px;">
-            <span style="font-size: 12px; color: #f3f4f6; font-weight: 600; white-space: nowrap; margin-right: 8px;">👩‍🍳 Mama Akos</span>
-            <select style="background: #161b22; color: #f2c94c; border: 1px solid rgba(242, 201, 76, 0.3); padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: bold; outline: none; cursor: pointer; width: 160px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
-                <option value="warm_alto">Warm & Mature Alto</option>
-                <option value="authoritative">Authoritative Matriarch</option>
-            </select>
+        <!-- Mama Akos -->
+        <div style="background: rgba(13, 17, 23, 0.8); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(242, 201, 76, 0.15); margin-bottom: 8px;">
+            <div style="font-size: 12px; color: #f3f4f6; font-weight: 600; margin-bottom: 6px;">👩‍🍳 Mama Akos</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                <button type="button" class="voice-btn-mama active" onclick="setVoice('mama', 'warm_alto', this)" style="background: linear-gradient(135deg, #6366f1, #a055f7); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 6px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Warm & Mature Alto</button>
+                <button type="button" class="voice-btn-mama" onclick="setVoice('mama', 'authoritative', this)" style="background: #161b22; color: #9ca3af; border: 1px solid #30363d; padding: 6px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Authoritative Matriarch</button>
+            </div>
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(13, 17, 23, 0.8); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(242, 201, 76, 0.15); margin-bottom: 8px;">
-            <span style="font-size: 12px; color: #f3f4f6; font-weight: 600; white-space: nowrap; margin-right: 8px;">👦 Kofi</span>
-            <select style="background: #161b22; color: #f2c94c; border: 1px solid rgba(242, 201, 76, 0.3); padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: bold; outline: none; cursor: pointer; width: 160px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
-                <option value="vibrant_tenor">Young & Vibrant Tenor</option>
-                <option value="playful">Playful Youth Cadence</option>
-            </select>
+        <!-- Kofi -->
+        <div style="background: rgba(13, 17, 23, 0.8); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(242, 201, 76, 0.15); margin-bottom: 8px;">
+            <div style="font-size: 12px; color: #f3f4f6; font-weight: 600; margin-bottom: 6px;">👦 Kofi</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                <button type="button" class="voice-btn-kofi active" onclick="setVoice('kofi', 'vibrant_tenor', this)" style="background: linear-gradient(135deg, #6366f1, #a055f7); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 6px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Young & Vibrant Tenor</button>
+                <button type="button" class="voice-btn-kofi" onclick="setVoice('kofi', 'playful', this)" style="background: #161b22; color: #9ca3af; border: 1px solid #30363d; padding: 6px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Playful Youth Cadence</button>
+            </div>
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(13, 17, 23, 0.8); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(242, 201, 76, 0.15); margin-bottom: 8px;">
-            <span style="font-size: 12px; color: #f3f4f6; font-weight: 600; white-space: nowrap; margin-right: 8px;">👴 Papa Kofi</span>
-            <select style="background: #161b22; color: #f2c94c; border: 1px solid rgba(242, 201, 76, 0.3); padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: bold; outline: none; cursor: pointer; width: 160px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
-                <option value="deep_baritone">Deep Wise Baritone</option>
-                <option value="elderly_resonance">Elderly Traditional Depth</option>
-            </select>
+        <!-- Papa Kofi -->
+        <div style="background: rgba(13, 17, 23, 0.8); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(242, 201, 76, 0.15); margin-bottom: 8px;">
+            <div style="font-size: 12px; color: #f3f4f6; font-weight: 600; margin-bottom: 6px;">👴 Papa Kofi</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                <button type="button" class="voice-btn-papa active" onclick="setVoice('papa', 'deep_baritone', this)" style="background: linear-gradient(135deg, #6366f1, #a055f7); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 6px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Deep Wise Baritone</button>
+                <button type="button" class="voice-btn-papa" onclick="setVoice('papa', 'elderly_resonance', this)" style="background: #161b22; color: #9ca3af; border: 1px solid #30363d; padding: 6px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Elderly Traditional</button>
+            </div>
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(13, 17, 23, 0.8); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(242, 201, 76, 0.15);">
-            <span style="font-size: 12px; color: #f3f4f6; font-weight: 600; white-space: nowrap; margin-right: 8px;">👧 Akos (Sister)</span>
-            <select style="background: #161b22; color: #f2c94c; border: 1px solid rgba(242, 201, 76, 0.3); padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: bold; outline: none; cursor: pointer; width: 160px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
-                <option value="lively_soprano">Bright & Lively Soprano</option>
-                <option value="expressive_fast">Expressive Modern Delivery</option>
-            </select>
+        <!-- Akos (Sister) -->
+        <div style="background: rgba(13, 17, 23, 0.8); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(242, 201, 76, 0.15);">
+            <div style="font-size: 12px; color: #f3f4f6; font-weight: 600; margin-bottom: 6px;">👧 Akos (Sister)</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                <button type="button" class="voice-btn-sister active" onclick="setVoice('sister', 'lively_soprano', this)" style="background: linear-gradient(135deg, #6366f1, #a055f7); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 6px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Bright & Lively Soprano</button>
+                <button type="button" class="voice-btn-sister" onclick="setVoice('sister', 'expressive_fast', this)" style="background: #161b22; color: #9ca3af; border: 1px solid #30363d; padding: 6px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Expressive Modern</button>
+            </div>
         </div>
     </div>
 
+    <!-- Quick Script Logic for Custom Buttons -->
+    <script>
+        function setVoice(character, value, element) {
+            const groupClass = 'voice-btn-' + character;
+            document.querySelectorAll('.' + groupClass).forEach(btn => {
+                btn.style.background = '#161b22';
+                btn.style.color = '#9ca3af';
+                btn.style.borderColor = '#30363d';
+                btn.classList.remove('active');
+            });
+            element.style.background = 'linear-gradient(135deg, #6366f1, #a055f7)';
+            element.style.color = 'white';
+            element.style.borderColor = 'rgba(255,255,255,0.3)';
+            element.classList.add('active');
+        }
+                                                                </script>
+        
         <!-- Script Engine Action Button -->
         <button type="button" id="script-btn" onclick="generateScript()" style="width: 100%; margin-top: 10px; margin-bottom: 14px; padding: 14px; background: linear-gradient(135deg, #f59e0b, #d97706); border: none; border-radius: 10px; color: #fff; font-weight: bold; font-size: 14px; cursor: pointer;">SCRIPT ENGINE</button>
 
