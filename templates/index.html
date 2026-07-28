@@ -650,42 +650,25 @@
             }
         };
 
-    // --- Premium Local WebGPU AI Visual Generator ---
-let stableDiffusionPipeline = null;
-
-async function initWebGPUPipeline() {
-    if (stableDiffusionPipeline) return;
-    const statusText = document.getElementById('ai-progress-text');
-    const overlay = document.getElementById('ai-loading-overlay');
-    overlay.style.display = 'flex';
-    
-    try {
-        statusText.innerText = "Initializing WebGPU Engine...";
-        if (typeof WebGPUDiffusion === 'undefined') {
-            // Fallback safe simulation if external CDN is bypassed, ensuring zero error breakages
-            console.warn("WebGPU Diffusion bundle missing; falling back to high-end cinematic vector generator.");
-        }
-        setTimeout(() => overlay.style.display = 'none', 1000);
-    } catch (error) {
-        console.error("Init Error:", error);
-        overlay.style.display = 'none';
-    }
-}
-
 async function generatePremiumLocalVisual() {
     const visualOutput = document.getElementById('final-visual-output');
     const scriptContent = document.getElementById('workspace').value;
     const projectTitle = document.getElementById('plot-input').value || "MAAE Production";
+    const statusText = document.getElementById('feed-status-text');
     
-    if (!scriptContent || scriptContent.startsWith("Script Workspace Standby")) {
-        alert("Please generate a script with the Google Engine first!");
+    // Check if script is empty and show a visual error instead of an alert!
+    if (!scriptContent || scriptContent.trim() === "" || scriptContent.startsWith("Script Workspace Standby")) {
+        statusText.innerHTML = `<div style="font-size: 1.5rem; margin-bottom: 8px;">⚠️</div><span style="color: #ef4444;">Please generate a script with the Google Engine first!</span>`;
         return;
     }
 
     const overlay = document.getElementById('ai-loading-overlay');
-    const statusText = document.getElementById('ai-progress-text');
+    const progressText = document.getElementById('ai-progress-text');
+    
+    // Start Loading UI
     overlay.style.display = 'flex';
-    statusText.innerText = "Rendering Cinematic Frame...";
+    progressText.innerText = "Rendering Cinematic Frame...";
+    progressText.style.color = '#4ade80';
 
     // Premium high-end canvas render fallback guaranteeing zero billing & absolute reliability
     setTimeout(() => {
@@ -719,22 +702,9 @@ async function generatePremiumLocalVisual() {
         ctx.fillText("MAAE Core Cinematic Visual Studio", canvas.width / 2, 235);
 
         visualOutput.style.backgroundImage = `url(${canvas.toDataURL()})`;
-        visualOutput.querySelector('#feed-status-text').style.display = 'none';
-        overlay.style.display = 'none';
+        statusText.style.display = 'none'; // Hide the placeholder text
+        overlay.style.display = 'none';    // Hide the loading spinner
     }, 1200);
-}
-
-function handlePremiumUpload(input) {
-    const file = input.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const visualOutput = document.getElementById('final-visual-output');
-            visualOutput.style.backgroundImage = `url(${e.target.result})`;
-            visualOutput.querySelector('#feed-status-text').style.display = 'none';
-        };
-        reader.readAsDataURL(file);
-    }
         }
     </script>
 </body>
