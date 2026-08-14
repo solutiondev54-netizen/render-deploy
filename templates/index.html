@@ -447,56 +447,61 @@
             alert(`🚀 Dispatching generated asset bundle directly to ${platform} API... Payload delivered!`);
         }
 
-        // Vault Logic & Local Storage
-        let savedScripts = JSON.parse(localStorage.getItem('maae_script_vault')) || [];
+        // --- MAAE Core: Premium Local Vault Engine ---
+const maaeVault = new MAAEVaultManager('maae_script_vault'); // Uses your existing key
+
+window.updateVaultUI = () => {
+    const vault = maaeVault.getVault();
+    const countEl = document.getElementById('vault-count');
+    const vaultContainer = document.getElementById('vault-items-container');
+    
+    if (countEl) countEl.innerText = vault.length;
+    if (!vaultContainer) return;
+
+    if (vault.length === 0) {
+        vaultContainer.innerHTML = '<p style="color: #64748b; text-align: center; font-size: 0.9rem;">No saved scripts.</p>';
+        return;
+    }
+
+    vaultContainer.innerHTML = '';
+    vault.forEach(item => {
+        const div = document.createElement('div');
+        div.style.cssText = "background: #21262d; padding: 12px 15px; border-radius: 8px; border: 1px solid #30363d; margin-bottom: 8px; cursor: pointer;";
+        div.innerHTML = `
+            <div style="display:flex; justify-content:space-between;">
+                <strong style="color: #f59e0b; font-size: 0.9rem;">${item.title}</strong>
+                <span style="color: #64748b; font-size: 0.7rem;">${item.timestamp}</span>
+            </div>
+            <div style="color: #c9d1d9; font-size: 0.8rem; margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${item.content.substring(0, 50)}...</div>
+        `;
+        div.onclick = () => {
+            document.getElementById('workspace').value = item.content;
+            document.getElementById('script-vault-modal').style.display = 'none';
+        };
+        vaultContainer.appendChild(div);
+    });
+};
+
+// Hook up your existing modal buttons
+const openVaultBtn = document.getElementById('open-vault-btn');
+const closeVaultBtn = document.getElementById('close-vault-btn');
+const vaultModal = document.getElementById('script-vault-modal');
+
+if (openVaultBtn && vaultModal && closeVaultBtn) {
+    openVaultBtn.addEventListener('click', () => { 
+        vaultModal.style.display = 'flex'; 
+        updateVaultUI(); 
+    });
+    closeVaultBtn.addEventListener('click', () => { vaultModal.style.display = 'none'; });
+}
+
+// Added Purge Functionality
+window.purgeVaultData = () => {
+    if (confirm("Permanently purge all scripts from your vault?")) {
+        maaeVault.purgeVault();
         updateVaultUI();
-
-        const openVaultBtn = document.getElementById('open-vault-btn');
-        const closeVaultBtn = document.getElementById('close-vault-btn');
-        const vaultModal = document.getElementById('script-vault-modal');
-
-        if(openVaultBtn && vaultModal && closeVaultBtn) {
-            openVaultBtn.addEventListener('click', () => { vaultModal.style.display = 'flex'; });
-            closeVaultBtn.addEventListener('click', () => { vaultModal.style.display = 'none'; });
-            window.addEventListener('click', (e) => { if (e.target === vaultModal) vaultModal.style.display = 'none'; });
-        }
-
-        function saveScriptToVault(scriptText, plotTitle) {
-            const newEntry = {
-                id: Date.now(),
-                title: plotTitle || "Untitled Production",
-                text: scriptText,
-                date: new Date().toLocaleDateString()
-            };
-            savedScripts.unshift(newEntry);
-            localStorage.setItem('maae_script_vault', JSON.stringify(savedScripts));
-            updateVaultUI();
-        }
-
-        function updateVaultUI() {
-            const countEl = document.getElementById('vault-count');
-            if (countEl) countEl.innerText = savedScripts.length;
-            const vaultContainer = document.getElementById('vault-items-container');
-            if (!vaultContainer) return;
-            
-            if (savedScripts.length === 0) {
-                vaultContainer.innerHTML = '<p style="color: #64748b; text-align: center; font-size: 0.9rem;">No saved scripts yet.</p>';
-                return;
-            }
-            
-            vaultContainer.innerHTML = '';
-            savedScripts.forEach(item => {
-                const div = document.createElement('div');
-                div.style.cssText = "background: #21262d; padding: 12px 15px; border-radius: 8px; border: 1px solid #30363d; cursor: pointer;";
-                div.innerHTML = `<strong style="color: #f59e0b; font-size: 0.95rem;">${item.title}</strong><br><span style="color: #8b949e; font-size: 0.8rem;">${item.date}</span>`;
-                div.addEventListener('click', () => {
-                    document.getElementById('workspace').value = item.text;
-                    updateScriptMetrics(item.text);
-                    vaultModal.style.display = 'none';
-                });
-                vaultContainer.appendChild(div);
-            });
-        }
+    }
+};
 
         window.generateScript = async () => {
             const btn = document.getElementById('script-btn');
