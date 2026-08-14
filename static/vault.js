@@ -65,3 +65,25 @@ window.saveCurrentWorkspaceToVault = () => {
 
     alert("Script successfully secured to your private local vault.");
 };
+
+// --- Premium Vault Clearing & Purge Extension ---
+window.confirmAndClearVault = () => {
+    const vault = maaeVault.getVault();
+    
+    if (vault.length === 0) {
+        alert("Your vault is already empty.");
+        return;
+    }
+
+    const userConfirmed = confirm("SECURE VAULT PURGE:\n\nAre you sure you want to permanently clear all saved productions from your local vault? This action cannot be undone.");
+    
+    if (userConfirmed) {
+        maaeVault.purgeVault();
+        alert("Vault successfully purged. All local production data has been cleared.");
+        
+        // Optional: Refresh any active vault UI list if present
+        if (typeof window.renderVaultUI === 'function') {
+            window.renderVaultUI();
+        }
+    }
+};
