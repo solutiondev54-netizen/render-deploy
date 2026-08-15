@@ -672,6 +672,13 @@ async function generatePremiumLocalVisual() {
         overlay.style.display = 'none';    // Hide the loading spinner
     }, 1200);
         }
+
+// --- Initialize Vault UI Counter on Page Load ---
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof updateVaultUI === 'function') {
+        updateVaultUI();
+    }
+});
     </script>
 </body>
 </html>
