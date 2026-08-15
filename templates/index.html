@@ -448,63 +448,6 @@
         }
 
 // --- MAAE Core: Standalone Local Vault Engine ---
-const maaeVault = {
-    getVault: () => JSON.parse(localStorage.getItem('maae_script_vault')) || [],
-    purgeVault: () => localStorage.removeItem('maae_script_vault')
-};
-
-window.updateVaultUI = () => {
-    const vault = maaeVault.getVault();
-    const countEl = document.getElementById('vault-count');
-    const vaultContainer = document.getElementById('vault-items-container');
-    
-    if (countEl) countEl.innerText = vault.length;
-    if (!vaultContainer) return;
-
-    if (vault.length === 0) {
-        vaultContainer.innerHTML = '<p style="color: #64748b; text-align: center; font-size: 0.9rem;">No saved scripts.</p>';
-        return;
-    }
-
-    vaultContainer.innerHTML = '';
-    vault.forEach(item => {
-        const div = document.createElement('div');
-        div.style.cssText = "background: #21262d; padding: 12px 15px; border-radius: 8px; border: 1px solid #30363d; margin-bottom: 8px; cursor: pointer;";
-        div.innerHTML = `
-            <div style="display:flex; justify-content:space-between;">
-                <strong style="color: #f59e0b; font-size: 0.9rem;">${item.title || 'Untitled Production'}</strong>
-                <span style="color: #64748b; font-size: 0.7rem;">${item.timestamp || ''}</span>
-            </div>
-            <div style="color: #c9d1d9; font-size: 0.8rem; margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${(item.content || item.text || '').substring(0, 50)}...</div>
-        `;
-        div.onclick = () => {
-            document.getElementById('workspace').value = item.content || item.text || '';
-            document.getElementById('script-vault-modal').style.display = 'none';
-        };
-        vaultContainer.appendChild(div);
-    });
-};
-
-// Hook up your existing modal buttons
-const openVaultBtn = document.getElementById('open-vault-btn');
-const closeVaultBtn = document.getElementById('close-vault-btn');
-const vaultModal = document.getElementById('script-vault-modal');
-
-if (openVaultBtn && vaultModal && closeVaultBtn) {
-    openVaultBtn.addEventListener('click', () => { 
-        vaultModal.style.display = 'flex'; 
-        updateVaultUI(); 
-    });
-    closeVaultBtn.addEventListener('click', () => { vaultModal.style.display = 'none'; });
-}
-
-// Purge Functionality
-window.purgeVaultData = () => {
-    if (confirm("Permanently purge all scripts from your vault?")) {
-        maaeVault.purgeVault();
-        updateVaultUI();
-    }
-};
 
         window.generateScript = async () => {
             const btn = document.getElementById('script-btn');
