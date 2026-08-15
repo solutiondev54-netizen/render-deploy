@@ -483,40 +483,26 @@ window.updateVaultUI = () => {
 };
 
 // Hook up your existing modal buttons
-const openVaultBtn = document.getElementById('open-vault-btn');
-const closeVaultBtn = document.getElementById('close-vault-btn');
-const vaultModal = document.getElementById('script-vault-modal');
+    const openVaultBtn = document.getElementById('open-vault-btn');
+    const closeVaultBtn = document.getElementById('close-vault-btn');
+    const vaultModal = document.getElementById('script-vault-modal');
 
-if (openVaultBtn && vaultModal && closeVaultBtn) {
-    openVaultBtn.addEventListener('click', () => { 
-        vaultModal.style.display = 'flex'; 
-        updateVaultUI(); 
-        
-        // Auto-inject Purge button dynamically
-        let modalFooter = document.getElementById('vault-footer-purge');
-        if (!modalFooter) {
-            modalFooter = document.createElement('div');
-            modalFooter.id = 'vault-footer-purge';
-            modalFooter.style.cssText = "padding: 10px 15px; border-top: 1px solid #30363d; display: flex; justify-content: space-between; align-items: center; background: #161b22; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;";
-            modalFooter.innerHTML = `
-                <button type="button" onclick="purgeVaultData()" style="background: #1f2937; color: #ff5c5c; border: 1px solid #ff5c5c; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer;">Purge All</button>
-                <span style="color: #64748b; font-size: 0.7rem;">MAAE Vault Engine</span>
-            `;
-            // Append it to the inner modal dialog container
-            const modalContentBox = vaultModal.querySelector('div');
-            if (modalContentBox) modalContentBox.appendChild(modalFooter);
-        }
-    });
-    closeVaultBtn.addEventListener('click', () => { vaultModal.style.display = 'none'; });
-}
-
-// Added Purge Functionality
-window.purgeVaultData = () => {
-    if (confirm("Permanently purge all scripts from your vault?")) {
-        maaeVault.purgeVault();
-        updateVaultUI();
+    if (openVaultBtn && vaultModal && closeVaultBtn) {
+        openVaultBtn.addEventListener('click', () => { 
+            vaultModal.style.display = 'flex'; 
+            updateVaultUI(); 
+        });
+        closeVaultBtn.addEventListener('click', () => { vaultModal.style.display = 'none'; });
     }
-};
+
+    // Added Purge Functionality
+    window.purgeVaultData = () => {
+        if (confirm("Permanently purge all scripts from your vault?")) {
+            maaeVault.purgeVault();
+            updateVaultUI();
+        }
+    };
+
 
         window.generateScript = async () => {
             const btn = document.getElementById('script-btn');
