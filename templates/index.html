@@ -447,7 +447,21 @@
             alert(`🚀 Dispatching generated asset bundle directly to ${platform} API... Payload delivered!`);
         }
 
-// --- MAAE Core: Standalone Local Vault Engine ---
+// --- Vault Save Helper ---
+function saveScriptToVault(content, title) {
+    try {
+        const vault = JSON.parse(localStorage.getItem('maae_script_vault')) || [];
+        vault.unshift({
+            title: title || 'Untitled Script',
+            content: content,
+            timestamp: new Date().toLocaleString()
+        });
+        localStorage.setItem('maae_script_vault', JSON.stringify(vault));
+        if (typeof updateVaultUI === 'function') updateVaultUI();
+    } catch (e) {
+        console.error("Could not save to vault:", e);
+    }
+}
 
         window.generateScript = async () => {
             const btn = document.getElementById('script-btn');
