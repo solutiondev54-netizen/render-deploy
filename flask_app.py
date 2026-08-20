@@ -67,9 +67,9 @@ def generate():
                 return jsonify({
                     'status': 'error',
                     'script': f"SERVER ERROR: Model capacity exhausted or rate limit reached. Details: {error_message}"
-                }, 500)
-
- @app.route('/api/render-video', methods=['POST'])
+                }, 500) 
+            
+@app.route('/api/render-video', methods=['POST'])
 def render_video():
     # Providing a robust cinematic preview URL so it renders instantly
     return jsonify({
