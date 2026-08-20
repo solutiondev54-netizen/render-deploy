@@ -16,9 +16,14 @@ window.MAAEVisuals = {
                 <div style="font-size:0.75rem; color:#9ca3af;">Communicating with backend server...</div>`;
         }
 
-        const realismEnhancers = "shot on 35mm lens, Fujifilm Eterna film stock, natural skin texture, anamorphic lighting, professional color grading, photorealistic, 8k resolution, film grain";
-        const finalPrompt = userPrompt ? `${userPrompt}, ${realismEnhancers}` : `Cinematic professional studio shot, ${realismEnhancers}`;
-
+        // Permanent African Cultural & Demographic Lock-in
+        const culturalGuardrail = "authentic West African subject, rich natural melanin skin tones, African heritage, natural hair texture";
+        const realismEnhancers = "shot on 35mm lens, Fujifilm Eterna film stock, anamorphic lighting, professional color grading, photorealistic, 8k resolution, cinematic composition";
+        
+        const finalPrompt = userPrompt 
+            ? `${userPrompt}, featuring ${culturalGuardrail}, ${realismEnhancers}` 
+            : `Cinematic professional portrait of a ${culturalGuardrail}, ${realismEnhancers}`;
+       
         try {
             const response = await fetch('/api/render-video', {
                 method: 'POST',
