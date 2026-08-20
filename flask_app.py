@@ -71,10 +71,22 @@ def generate():
             
 @app.route('/api/render-video', methods=['POST'])
 def render_video():
-    # Providing a robust cinematic preview URL so it renders instantly
+    data = request.get_json() or {}
+    user_prompt = data.get('prompt', '')
+    
+    # Enforce strict demographic lock on the server side
+    forced_demographic = "authentic West African person, rich melanin skin tones, African heritage"
+    
+    if forced_demographic.lower() not in user_prompt.lower():
+        final_render_prompt = f"{user_prompt}, featuring {forced_demographic}, professional cinematic lighting, 8k"
+    else:
+        final_render_prompt = user_prompt
+
+    # Here you can map your final_render_prompt to your image/video generation API (e.g., Imagen or Stable Diffusion)
+    # For now, returning our high-end curated cinematic preview URL:
     return jsonify({
         'status': 'success',
-        'url': 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80'
+        'url': 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=1200&q=80'
     })
 
 @app.route('/api/mama-akos', methods=['POST'])
