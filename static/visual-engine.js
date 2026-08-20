@@ -1,4 +1,4 @@
-// --- MAAE Core: Professional Cinematic Visual Engine ---
+// --- MAAE Core: Professional Cinematic Visual Engine (Diagnostic) ---
 window.MAAEVisuals = {
     activeCharacter: "African Cinematic Subject",
 
@@ -10,11 +10,10 @@ window.MAAEVisuals = {
         
         if (!visualOutput) return;
 
-        // Apply loading state to matching HTML structure
         if (statusText) {
             statusText.innerHTML = `
                 <div style="font-weight:700; font-size:0.95rem; margin-bottom: 6px; color:#f59e0b;">SYNTHESIZING CINEMATIC FRAME...</div>
-                <div style="font-size:0.75rem; color:#9ca3af;">Applying 35mm lens optics & professional color grading...</div>`;
+                <div style="font-size:0.75rem; color:#9ca3af;">Communicating with backend server...</div>`;
         }
 
         const realismEnhancers = "shot on 35mm lens, Fujifilm Eterna film stock, natural skin texture, anamorphic lighting, professional color grading, photorealistic, 8k resolution, film grain";
@@ -28,17 +27,23 @@ window.MAAEVisuals = {
             });
             
             const data = await response.json();
+            console.log("Backend render response:", data); // Check your browser console for this!
             
-            if (data.status === "success" || data.url) {
+            if (data.status === "success" || data.url || data.image_url) {
                 visualOutput.style.backgroundImage = `url('${data.url || data.image_url}')`;
                 visualOutput.style.backgroundSize = "cover";
                 visualOutput.style.backgroundPosition = "center";
                 if (statusText) statusText.innerHTML = ""; 
             } else {
-                if (statusText) statusText.innerHTML = `<span style="color: #ef4444;">Render failed: ${data.message || 'Unknown error'}</span>`;
+                if (statusText) {
+                    statusText.innerHTML = `<div style="color: #ef4444; font-size: 0.75rem; padding: 10px;">Server Error: ${data.message || JSON.stringify(data)}</div>`;
+                }
             }
         } catch (e) {
-            if (statusText) statusText.innerHTML = `<span style="color: #ef4444;">Connection error: ${e.message}</span>`;
+            console.error("Render catch error:", e);
+            if (statusText) {
+                statusText.innerHTML = `<div style="color: #ef4444; font-size: 0.75rem; padding: 10px;">Exception: ${e.message}</div>`;
+            }
         }
     }
 };
