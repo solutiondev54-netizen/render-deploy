@@ -34,11 +34,11 @@ window.MAAEVisuals = {
             const data = await response.json();
             console.log("Backend render response:", data); // Check your browser console for this!
             
-            if (data.status === "success" || data.url || data.image_url) {
-                visualOutput.style.backgroundImage = `url('${data.url || data.image_url}')`;
-                visualOutput.style.backgroundSize = "cover";
-                visualOutput.style.backgroundPosition = "center";
-                if (statusText) statusText.innerHTML = ""; 
+        if (data.status === "success" && data.url) {
+            visualOutput.style.backgroundImage = `url('${data.url}')`;
+            visualOutput.style.backgroundSize = "cover";
+            visualOutput.style.backgroundPosition = "center";
+            if (statusText) statusText.innerHTML = ""; 
             } else {
                 if (statusText) {
                     statusText.innerHTML = `<div style="color: #ef4444; font-size: 0.75rem; padding: 10px;">Server Error: ${data.message || JSON.stringify(data)}</div>`;
