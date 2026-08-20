@@ -616,63 +616,6 @@ function saveScriptToVault(content, title) {
             }
         };
 
-async function generatePremiumLocalVisual() {
-    const visualOutput = document.getElementById('final-visual-output');
-    const scriptContent = document.getElementById('workspace').value;
-    const projectTitle = document.getElementById('plot-input').value || "MAAE Production";
-    const statusText = document.getElementById('feed-status-text');
-    
-    // Check if script is empty and show a visual error instead of an alert!
-    if (!scriptContent || scriptContent.trim() === "" || scriptContent.startsWith("Script Workspace Standby")) {
-        statusText.innerHTML = `<div style="font-size: 1.5rem; margin-bottom: 8px;">⚠️</div><span style="color: #ef4444;">Please generate a script with the Google Engine first!</span>`;
-        return;
-    }
-
-    const overlay = document.getElementById('ai-loading-overlay');
-    const progressText = document.getElementById('ai-progress-text');
-    
-    // Start Loading UI
-    overlay.style.display = 'flex';
-    progressText.innerText = "Rendering Cinematic Frame...";
-    progressText.style.color = '#4ade80';
-
-    // Premium high-end canvas render fallback guaranteeing zero billing & absolute reliability
-    setTimeout(() => {
-        const canvas = document.createElement('canvas');
-        canvas.width = 800;
-        canvas.height = 450;
-        const ctx = canvas.getContext('2d');
-
-        // Cinematic Dark Gradient Base
-        const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-        grad.addColorStop(0, '#111827');
-        grad.addColorStop(0.5, '#1e1b4b');
-        grad.addColorStop(1, '#0f172a');
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Premium Accent Glows
-        ctx.fillStyle = 'rgba(192, 132, 252, 0.15)';
-        ctx.beginPath();
-        ctx.arc(400, 225, 200, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Title Overlay Text
-        ctx.fillStyle = '#f2c94c';
-        ctx.font = 'bold 24px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText(projectTitle.toUpperCase(), canvas.width / 2, 200);
-
-        ctx.fillStyle = '#9ca3af';
-        ctx.font = '14px sans-serif';
-        ctx.fillText("MAAE Core Cinematic Visual Studio", canvas.width / 2, 235);
-
-        visualOutput.style.backgroundImage = `url(${canvas.toDataURL()})`;
-        statusText.style.display = 'none'; // Hide the placeholder text
-        overlay.style.display = 'none';    // Hide the loading spinner
-    }, 1200);
-        }
-
 // --- Initialize Vault UI Counter on Page Load ---
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof updateVaultUI === 'function') {
