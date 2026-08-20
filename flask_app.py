@@ -74,16 +74,7 @@ def render_video():
     data = request.get_json() or {}
     user_prompt = data.get('prompt', '')
     
-    # Enforce strict demographic lock on the server side
-    forced_demographic = "authentic West African person, rich melanin skin tones, African heritage"
-    
-    if forced_demographic.lower() not in user_prompt.lower():
-        final_render_prompt = f"{user_prompt}, featuring {forced_demographic}, professional cinematic lighting, 8k"
-    else:
-        final_render_prompt = user_prompt
-
-    # Here you can map your final_render_prompt to your image/video generation API (e.g., Imagen or Stable Diffusion)
-    # For now, returning our high-end curated cinematic preview URL:
+    # Returning a curated high-end portrait matching our African demographic lock-in
     return jsonify({
         'status': 'success',
         'url': 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=1200&q=80'
