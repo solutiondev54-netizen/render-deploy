@@ -1,11 +1,33 @@
 {% extends "base.html" %}
 {% block title %}Creator Commons | MAAE Ecosystem{% endblock %}
 {% block content %}
-<div style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #30363d; border-radius: 10px; padding: 14px;">
-    <h2 style="margin: 0 0 10px 0; color: #f59e0b; font-size: 1rem;">🌐 Creator Commons</h2>
-    <p style="color: #9ca3af; font-size: 10px; margin-bottom: 12px;">Global multi-studio network hub.</p>
-    <div style="background: #0d1117; border: 1px dashed #30363d; padding: 25px; text-align: center; border-radius: 6px; color: #64748b; font-size: 11px;">
-        Network link established. Broadcast feed online.
+<div style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #30363d; border-radius: 10px; padding: 14px; margin-bottom: 10px;">
+    <h2 style="margin: 0 0 6px 0; color: #f59e0b; font-size: 1rem;">🌐 Creator Commons</h2>
+    <p style="color: #9ca3af; font-size: 10px; margin-bottom: 12px;">Global multi-studio broadcast feed and node exchange.</p>
+    
+    <div id="feed-box" style="background: #0d1117; border: 1px solid #30363d; height: 140px; border-radius: 6px; padding: 8px; overflow-y: auto; font-size: 11px; color: #f3f4f6; margin-bottom: 8px; display: flex; flex-direction: column; gap: 6px;">
+        <div style="background: #161b22; padding: 6px; border-radius: 4px; border-left: 2px solid #f59e0b;">
+            <span style="color: #f2c94c; font-weight: bold; font-size: 9px;">[SYSTEM BROADCAST]</span><br>
+            Welcome to the next-century creator network. Studio nodes active across West Africa.
+        </div>
     </div>
+
+    <input type="text" id="broadcast-input" placeholder="Broadcast message to network..." style="width: 100%; padding: 8px; background: #0d1117; border: 1px solid #30363d; color: #fff; border-radius: 6px; box-sizing: border-box; font-size: 11px; margin-bottom: 8px;">
+    <button type="button" onclick="sendBroadcast()" style="width: 100%; padding: 8px; background: #f59e0b; color: #000; border: none; border-radius: 6px; font-weight: bold; font-size: 10px; text-transform: uppercase; cursor: pointer;">Transmit to Commons</button>
 </div>
+
+<script>
+    function sendBroadcast() {
+        const input = document.getElementById('broadcast-input');
+        const feed = document.getElementById('feed-box');
+        if (!input.value.trim()) return;
+
+        const msg = document.createElement('div');
+        msg.style.cssText = "background: #161b22; padding: 6px; border-radius: 4px; border-left: 2px solid #10b981;";
+        msg.innerHTML = `<span style="color: #10b981; font-weight: bold; font-size: 9px;">[LOCAL CREATOR]</span><br>${input.value}`;
+        feed.appendChild(msg);
+        input.value = '';
+        feed.scrollTop = feed.scrollHeight;
+    }
+</script>
 {% endblock %}
