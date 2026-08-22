@@ -15,8 +15,20 @@ CORS(app)
 client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def studio():
+    return render_template('studio.html', active_page='studio')
+
+@app.route('/vault')
+def vault():
+    return render_template('vault.html', active_page='vault')
+
+@app.route('/community')
+def community():
+    return render_template('community.html', active_page='community')
+
+@app.route('/founder')
+def founder():
+    return render_template('founder.html', active_page='founder')
 
 @app.route('/api/generate', methods=['POST'])
 def generate():
