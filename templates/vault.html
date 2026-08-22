@@ -1,11 +1,44 @@
 {% extends "base.html" %}
 {% block title %}Version Vault | MAAE Ecosystem{% endblock %}
 {% block content %}
-<div style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #30363d; border-radius: 10px; padding: 14px;">
-    <h2 style="margin: 0 0 10px 0; color: #f59e0b; font-size: 1rem;">📁 Secure Version Vault</h2>
-    <p style="color: #9ca3af; font-size: 10px; margin-bottom: 12px;">Your persistent project storage node.</p>
-    <div style="background: #0d1117; border: 1px dashed #30363d; padding: 25px; text-align: center; border-radius: 6px; color: #64748b; font-size: 11px;">
-        Vault storage active. No local snapshots recorded yet.
+<div style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #30363d; border-radius: 10px; padding: 14px; margin-bottom: 10px;">
+    <h2 style="margin: 0 0 6px 0; color: #f59e0b; font-size: 1rem;">📁 Secure Version Vault</h2>
+    <p style="color: #9ca3af; font-size: 10px; margin-bottom: 12px;">Persistent project storage buffer. Saved scripts live here locally.</p>
+    
+    <div id="vault-container" style="display: flex; flex-direction: column; gap: 8px;">
+        <!-- Dynamic vault items will load here -->
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('vault-container');
+        const savedScripts = JSON.parse(localStorage.getItem('maae_vault') || '[]');
+
+        if (savedScripts.length === 0) {
+            container.innerHTML = `<div style="background: #0d1117; border: 1px dashed #30363d; padding: 20px; text-align: center; border-radius: 6px; color: #64748b; font-size: 11px;">Vault is currently empty. Save a script from the Studio to archive it here.</div>`;
+            return;
+        }
+
+        container.innerHTML = '';
+        savedScripts.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.style.cssText = "background: #0d1117; border: 1px solid #30363d; padding: 10px; border-radius: 6px; font-size: 11px;";
+            card.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                    <span style="color: #f2c94c; font-weight: bold;">Take #${index + 1} - ${item.date}</span>
+                    <button onclick="loadScript(${index})" style="background: #f59e0b; color: #000; border: none; padding: 3px 8px; border-radius: 4px; font-size: 9px; font-weight: bold; cursor: pointer;">Load to Studio</button>
+                </div>
+                <div style="color: #9ca3af; white-space: pre-wrap; max-height: 60px; overflow: hidden; text-overflow: ellipsis;">${item.script}</div>
+            `;
+            container.appendChild(card);
+        });
+    });
+
+    function loadScript(index) {
+        const savedScripts = JSON.parse(localStorage.getItem('maae_vault') || '[]');
+        localStorage.setItem('active_loaded_script', savedScripts[index].script);
+        window.location.href = "{{ url_for('studio') }}";
+    }
+</script>
 {% endblock %}
