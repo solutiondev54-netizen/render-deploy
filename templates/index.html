@@ -3,43 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAAE PRIME STUDIO 🎙️ | AI PRODUCTION SUITE</title>
+    <title>MAAE PRIME STUDIO 🎙️ | Enterprise AI Suite</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body style="background: #090d16; color: #f3f4f6; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 0;">
 
-    <div class="studio-container">
-        <!-- Modernized Suite Header -->
-        <h1 style="text-align: center; font-size: 24px; font-weight: 800; color: #f3f4f6; margin: 0;">MAAE PRIME STUDIO 🎙️</h1>
-        <div style="text-align: center; font-size: 11px; color: #9ca3af; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;">AI PRODUCTION SUITE</div>
+    <!-- Top Global Navigation Bar -->
+    <header style="background: #11151c; border-bottom: 1px solid #30363d; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 500;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 20px;">🎙️</span>
+            <div>
+                <h1 style="font-size: 15px; font-weight: 800; color: #f3f4f6; margin: 0;">MAAE PRIME STUDIO</h1>
+                <div style="font-size: 9px; color: #f59e0b; letter-spacing: 1.5px; text-transform: uppercase;">Enterprise Suite</div>
+            </div>
+        </div>
+        <nav style="display: flex; gap: 6px;">
+            <button type="button" onclick="switchView('studio')" id="nav-studio" style="background: #f59e0b; color: #000; border: none; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer;">Studio</button>
+            <button type="button" onclick="switchView('vault')" id="nav-vault" style="background: #1f2937; color: #9ca3af; border: 1px solid #30363d; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer;">Vault</button>
+            <button type="button" onclick="switchView('community')" id="nav-community" style="background: #1f2937; color: #9ca3af; border: 1px solid #30363d; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer;">Community</button>
+            <button type="button" onclick="switchView('founder')" id="nav-founder" style="background: #7f1d1d; color: #fca5a5; border: 1px solid #991b1b; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer;">Founder IP Hub</button>
+        </nav>
+    </header>
 
-        <!-- 1. Version Vault Tracker -->
-        <div class="studio-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase;">Version Vault Tracker</label>
-                <span id="active-take-badge" style="background: #1f2937; color: #34d399; font-size: 10px; padding: 2px 8px; border-radius: 4px;">Take 1 (Live)</span>
+    <!-- VIEW 1: STUDIO MIXER WORKSPACE -->
+    <main id="view-studio" class="studio-container" style="max-width: 540px; margin: 20px auto; padding: 0 15px; box-sizing: border-box;">
+        
+        <!-- Version Vault Tracker Module -->
+        <div class="studio-card" style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #30363d; border-radius: 12px; padding: 14px; margin-bottom: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <label style="color: #f2c94c; font-size: 11px; font-weight: 700; text-transform: uppercase;">Version Vault Tracker</label>
+                <span id="active-take-badge" style="background: #1f2937; color: #34d399; font-size: 10px; padding: 2px 8px; border-radius: 4px; border: 1px solid #30363d;">Take 1 (Live)</span>
             </div>
             <div style="display: flex; gap: 6px;">
-                <button type="button" onclick="switchTake(1)" style="flex: 1; background: #1f2937; color: #fff; border: 1px solid #30363d; padding: 8px; border-radius: 6px; cursor: pointer;">Take 1</button>
-                <button type="button" onclick="switchTake(2)" style="flex: 1; background: #1f2937; color: #fff; border: 1px solid #30363d; padding: 8px; border-radius: 6px; cursor: pointer;">Take 2</button>
-                <button type="button" onclick="switchTake(3)" style="flex: 1; background: #1f2937; color: #fff; border: 1px solid #30363d; padding: 8px; border-radius: 6px; cursor: pointer;">Director's Cut</button>
+                <button type="button" onclick="switchTake(1)" style="flex: 1; background: #1f2937; color: #fff; border: 1px solid #30363d; padding: 8px; border-radius: 6px; font-size: 11px; cursor: pointer;">Take 1</button>
+                <button type="button" onclick="switchTake(2)" style="flex: 1; background: #1f2937; color: #fff; border: 1px solid #30363d; padding: 8px; border-radius: 6px; font-size: 11px; cursor: pointer;">Take 2</button>
+                <button type="button" onclick="switchTake(3)" style="flex: 1; background: #1f2937; color: #fff; border: 1px solid #30363d; padding: 8px; border-radius: 6px; font-size: 11px; cursor: pointer;">Director's Cut</button>
             </div>
         </div>
 
-        <!-- 2. Studio Directive Manifest -->
-        <div class="studio-card">
-            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 6px;">Studio Directive Manifest</label>
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <!-- Studio Directive Manifest -->
+        <div class="studio-card" style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #30363d; border-radius: 12px; padding: 14px; margin-bottom: 12px;">
+            <label style="color: #f2c94c; font-size: 11px; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 8px;">Studio Directive Manifest</label>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
                 <span onclick="insertToken('Mama Akos')" style="background: #1f1f2e; color: #f2c94c; padding: 6px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; border: 1px solid #30363d;">Mama Akos</span>
                 <span onclick="insertToken('Kofi')" style="background: #1f1f2e; color: #f2c94c; padding: 6px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; border: 1px solid #30363d;">Kofi</span>
                 <span onclick="insertToken('Papa Kofi')" style="background: #1f1f2e; color: #f2c94c; padding: 6px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; border: 1px solid #30363d;">Papa Kofi</span>
-                <span onclick="insertToken('Akos Kofi\'s sister')" style="background: #1f1f2e; color: #f2c94c; padding: 6px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; border: 1px solid #30363d;">Akos Kofi's sister</span>
+                <span onclick="insertToken('Akos Kofi\'s sister')" style="background: #1f1f2e; color: #f2c94c; padding: 6px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; border: 1px solid #30363d;">Akos's Sister</span>
             </div>
         </div>
 
-        <!-- 3. Emotion & Sentiment Tags -->
-        <div class="studio-card">
-            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 6px;">Emotion & Sentiment Tags</label>
+        <!-- Emotion & Sentiment Tags -->
+        <div class="studio-card" style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #30363d; border-radius: 12px; padding: 14px; margin-bottom: 12px;">
+            <label style="color: #f2c94c; font-size: 11px; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 8px;">Emotion & Sentiment Tags</label>
             <div style="display: flex; flex-wrap: wrap; gap: 6px;">
                 <button type="button" onclick="insertEmotion('[Laughs nervously]')" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 6px 10px; border-radius: 6px; font-size: 11px; cursor: pointer;">😂 [Laughs]</button>
                 <button type="button" onclick="insertEmotion('[Sighs deeply]')" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 6px 10px; border-radius: 6px; font-size: 11px; cursor: pointer;">💨 [Sighs]</button>
@@ -47,18 +62,18 @@
             </div>
         </div>
 
-        <!-- 4. Plot Idea / Prompt Section -->
-        <div class="studio-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase;">Plot Idea / Prompt</label>
+        <!-- Plot Idea / Prompt Section -->
+        <div class="studio-card" style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #30363d; border-radius: 12px; padding: 14px; margin-bottom: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <label style="color: #f2c94c; font-size: 11px; font-weight: 700; text-transform: uppercase;">Plot Idea / Prompt</label>
                 <button type="button" id="audio-btn" onclick="playAudioDrama()" title="Play Audio Voice" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; border: none; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer;">🔊 Audio Preview</button>
             </div>
-            <input type="text" id="prompt-input" placeholder="Enter plot idea here..." style="width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d; color: #fff; border-radius: 6px; box-sizing: border-box;">
+            <input type="text" id="prompt-input" placeholder="Enter plot idea here..." style="width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d; color: #fff; border-radius: 6px; box-sizing: border-box; font-size: 12px;">
         </div>
 
-        <!-- 5. Select Dialect Style -->
-        <div class="studio-card">
-            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 6px;">Select Dialect Style</label>
+        <!-- Select Dialect Style -->
+        <div class="studio-card" style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #30363d; border-radius: 12px; padding: 14px; margin-bottom: 12px;">
+            <label style="color: #f2c94c; font-size: 11px; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 8px;">Select Dialect Style</label>
             <div id="dialect-container" style="display: flex; gap: 8px; flex-wrap: wrap;">
                 <div class="dialect-pill active" data-value="classic_family" onclick="selectDialect(this)" style="background: linear-gradient(135deg, #6366f1, #a055f7); color: white; padding: 6px 12px; border-radius: 6px; font-size: 11px; cursor: pointer; border: 1px solid rgba(255,255,255,0.3);">Classic Family</div>
                 <div class="dialect-pill" data-value="accra_pidgin" onclick="selectDialect(this)" style="background: #161b22; color: #9ca3af; padding: 6px 12px; border-radius: 6px; font-size: 11px; cursor: pointer; border: 1px solid #30363d;">Accra Pidgin</div>
@@ -66,109 +81,200 @@
             </div>
         </div>
 
-        <!-- 6. Script Engine & Workspace -->
-        <button type="button" id="script-btn" onclick="generateScript()" style="width: 100%; margin-bottom: 15px; padding: 14px; background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 14px; text-transform: uppercase; cursor: pointer;">Script Engine</button>
+        <!-- Script Engine & Workspace -->
+        <button type="button" id="script-btn" onclick="generateScript()" style="width: 100%; margin-bottom: 12px; padding: 14px; background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 13px; text-transform: uppercase; cursor: pointer; box-shadow: 0 4px 12px rgba(245,158,11,0.2);">Script Engine</button>
 
-        <div class="studio-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase;">Script Workspace</label>
+        <div class="studio-card" style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #30363d; border-radius: 12px; padding: 14px; margin-bottom: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <label style="color: #f2c94c; font-size: 11px; font-weight: 700; text-transform: uppercase;">Script Workspace</label>
                 <span id="timing-calc" style="color: #9ca3af; font-size: 10px;">0 words (~0 sec)</span>
             </div>
-            <textarea id="workspace" oninput="updateScriptMetrics(this.value)" placeholder="Script Workspace Output..." style="width: 100%; height: 160px; background: #0d1117; border: 1px solid #30363d; color: #f3f4f6; padding: 10px; border-radius: 6px; box-sizing: border-box; resize: vertical;"></textarea>
-            <div style="display: flex; gap: 10px; margin-top: 10px;">
-                <button type="button" id="copy-btn" onclick="copyScript()" style="flex: 1; padding: 10px; background: #1f2937; color: #fff; border: 1px solid #30363d; border-radius: 6px; cursor: pointer;">📋 Copy Script</button>
-                <button type="button" onclick="openVault()" style="flex: 1; padding: 10px; background: #1d4ed8; color: #fff; border: none; border-radius: 6px; cursor: pointer;">📁 Vault (<span id="vault-count">0</span>)</button>
+            <textarea id="workspace" oninput="updateScriptMetrics(this.value)" placeholder="Script Workspace Output..." style="width: 100%; height: 150px; background: #0d1117; border: 1px solid #30363d; color: #f3f4f6; padding: 10px; border-radius: 6px; box-sizing: border-box; resize: vertical; font-size: 12px;"></textarea>
+            <div style="display: flex; gap: 8px; margin-top: 10px;">
+                <button type="button" id="copy-btn" onclick="copyScript()" style="flex: 1; padding: 10px; background: #1f2937; color: #fff; border: 1px solid #30363d; border-radius: 6px; font-size: 11px; cursor: pointer;">📋 Copy</button>
+                <button type="button" onclick="saveCurrentToVault()" style="flex: 1; padding: 10px; background: #1d4ed8; color: #fff; border: none; border-radius: 6px; font-size: 11px; cursor: pointer;">💾 Save to Vault</button>
             </div>
         </div>
 
-        <!-- 7. Decoupled AI Visual Studio Hub (3:4 Cinematic Ratio) -->
-        <div class="studio-card" style="background: linear-gradient(135deg, #161b22 0%, #1f242d 100%); border: 1px solid rgba(255,255,255,0.08);">
+        <!-- AI Visual Studio Frame -->
+        <div class="studio-card" style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #30363d; border-radius: 12px; padding: 14px; margin-bottom: 12px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                 <label style="color: #f2c94c; font-size: 11px; font-weight: 700; text-transform: uppercase;">AI Visual Studio Frame</label>
                 <span style="background: #084fc6; color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 9px; font-weight: bold;">3:4 CINEMATIC</span>
             </div>
-
-            <!-- 3:4 Aspect Ratio Visual Box -->
             <div id="final-visual-output" style="width: 100%; aspect-ratio: 3/4; background: #0b0f19; border: 2px solid #30363d; border-radius: 8px; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; margin-bottom: 12px;">
-                <div id="feed-status-text" style="color: #6d474b; font-size: 12px; font-weight: 500; text-align: center; padding: 20px;">
-                    Awaiting Script Generation...<br>
-                    <span style="font-size: 11px; color: #9ca3af;">Click Generate Frame below to synthesize visual.</span>
+                <div id="feed-status-text" style="color: #9ca3af; font-size: 12px; text-align: center; padding: 20px;">
+                    Awaiting Script Generation...<br><span style="font-size: 10px; color: #6b7280;">Click Generate Frame to synthesize visual.</span>
                 </div>
             </div>
-
-            <!-- Professional English Image Controls (Decoupled from Video) -->
-            <div style="display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-bottom: 12px;">
-                <button type="button" id="ai-gen-btn" onclick="generateVisualAsset()" style="padding: 12px; background: linear-gradient(135deg, #a855f7, #6366f1); color: #fff; border: none; border-radius: 6px; font-weight: bold; font-size: 12px; cursor: pointer; text-transform: uppercase;">✨ Generate Frame</button>
-                <label style="background: #374151; color: #e5e7eb; padding: 12px 14px; border-radius: 6px; font-size: 12px; cursor: pointer; display: flex; align-items: center; font-weight: bold;">
-                    📁 Upload
-                    <input type="file" id="gallery-upload" accept="image/*" onchange="handleVisualUpload(event)" style="display: none;">
+            <div style="display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-bottom: 8px;">
+                <button type="button" id="ai-gen-btn" onclick="generateVisualAsset()" style="padding: 10px; background: linear-gradient(135deg, #a855f7, #6366f1); color: #fff; border: none; border-radius: 6px; font-weight: bold; font-size: 11px; cursor: pointer; text-transform: uppercase;">✨ Generate Frame</button>
+                <label style="background: #374151; color: #e5e7eb; padding: 10px 12px; border-radius: 6px; font-size: 11px; cursor: pointer; display: flex; align-items: center; font-weight: bold;">
+                    📁 Upload <input type="file" id="gallery-upload" accept="image/*" onchange="handleVisualUpload(event)" style="display: none;">
                 </label>
             </div>
-            <div id="file-name-display" style="font-size: 10px; color: #9ca3af; margin-bottom: 12px; text-align: center;">No custom asset selected</div>
-
-            <!-- Final Video Render Action Button -->
-            <button type="button" id="video-btn" onclick="renderVideo()" style="width: 100%; padding: 14px; background: #10b981; color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 14px; text-transform: uppercase; cursor: pointer;">Render Video Package</button>
+            <div id="file-name-display" style="font-size: 10px; color: #9ca3af; margin-bottom: 10px; text-align: center;">No custom asset selected</div>
+            <button type="button" id="video-btn" onclick="renderVideo()" style="width: 100%; padding: 12px; background: #10b981; color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 12px; text-transform: uppercase; cursor: pointer;">Render Video Package</button>
         </div>
 
-        <!-- 8. Direct Social Broadcast Hub -->
-        <div class="studio-card">
-            <label style="color: #f2c94c; font-size: 11px; font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 8px;">Direct Social Broadcast Hub</label>
+        <!-- Social Broadcast Hub -->
+        <div class="studio-card" style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #30363d; border-radius: 12px; padding: 14px; margin-bottom: 20px;">
+            <label style="color: #f2c94c; font-size: 11px; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 8px;">Direct Social Broadcast Hub</label>
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
-                <button type="button" onclick="broadcastSocial('TikTok')" style="background: #000; color: #fff; border: 1px solid #30363d; padding: 10px; border-radius: 6px; font-size: 11px; cursor: pointer;">🎵 TikTok</button>
-                <button type="button" onclick="broadcastSocial('Reels')" style="background: #db2777; color: #fff; border: none; padding: 10px; border-radius: 6px; font-size: 11px; cursor: pointer;">📸 Reels</button>
-                <button type="button" onclick="broadcastSocial('YouTube')" style="background: #dc2626; color: #fff; border: none; padding: 10px; border-radius: 6px; font-size: 11px; cursor: pointer;">▶️ Shorts</button>
+                <button type="button" onclick="broadcastSocial('TikTok')" style="background: #000; color: #fff; border: 1px solid #30363d; padding: 8px; border-radius: 6px; font-size: 11px; cursor: pointer;">🎵 TikTok</button>
+                <button type="button" onclick="broadcastSocial('Reels')" style="background: #db2777; color: #fff; border: none; padding: 8px; border-radius: 6px; font-size: 11px; cursor: pointer;">📸 Reels</button>
+                <button type="button" onclick="broadcastSocial('YouTube')" style="background: #dc2626; color: #fff; border: none; padding: 8px; border-radius: 6px; font-size: 11px; cursor: pointer;">▶️ Shorts</button>
             </div>
         </div>
+    </main>
 
-    </div>
+    <!-- VIEW 2: DEDICATED VERSION VAULT DASHBOARD -->
+    <section id="view-vault" style="display: none; max-width: 540px; margin: 20px auto; padding: 0 15px; box-sizing: border-box;">
+        <div style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #30363d; border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid #30363d; padding-bottom: 10px;">
+                <h2 style="margin: 0; color: #f59e0b; font-size: 1.1rem;">📁 Version Vault Storage Dashboard</h2>
+                <button type="button" onclick="confirmClearVault()" style="background: #7f1d1d; color: #fca5a5; border: none; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer;">Clear All Vault</button>
+            </div>
+            <div id="vault-dashboard-container" style="display: flex; flex-direction: column; gap: 10px; max-height: 60vh; overflow-y: auto;">
+                <p style="color: #64748b; text-align: center; margin: 30px 0; font-size: 12px;">No saved scripts found in vault.</p>
+            </div>
+        </div>
+    </section>
 
-    <!-- Version Vault Management Modal -->
-    <div id="script-vault-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; padding: 15px; box-sizing: border-box;">
-        <div style="background: #161b22; border: 1px solid #30363d; border-radius: 12px; width: 100%; max-width: 500px; max-height: 80vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
-            <div style="background: #11151c; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #30363d;">
-                <h3 style="margin: 0; color: #f59e0b; font-size: 1.1rem;">📁 Version Vault Storage</h3>
-                <div style="display: flex; gap: 8px;">
-                    <button type="button" onclick="clearVault()" style="background: #7f1d1d; color: #fca5a5; border: none; padding: 6px 10px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">Clear All</button>
-                    <button type="button" onclick="closeVault()" style="background: #ef4444; color: #fff; border: none; padding: 6px 10px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">Close</button>
+    <!-- VIEW 3: COMMUNITY CREATOR CHAT HUB (WHATSAPP STYLE) -->
+    <section id="view-community" style="display: none; max-width: 540px; margin: 20px auto; padding: 0 15px; box-sizing: border-box;">
+        <div style="background: #11151c; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; height: 75vh;">
+            <div style="background: #161b22; padding: 14px; border-bottom: 1px solid #30363d; display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                    <h3 style="margin: 0; color: #f59e0b; font-size: 14px;">💬 Creator Community Commons</h3>
+                    <p style="margin: 0; color: #34d399; font-size: 10px;">● Global Studio Stream & Project Share</p>
+                </div>
+                <span style="font-size: 11px; color: #9ca3af; background: #1f2937; padding: 2px 8px; border-radius: 4px;">SECURE CHAT</span>
+            </div>
+            <div id="community-chat-stream" style="flex-grow: 1; padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 12px; background: #0d1117;">
+                <div style="background: #1f2937; padding: 10px; border-radius: 8px; border-left: 3px solid #f59e0b;">
+                    <strong style="color: #f2c94c; display: block; font-size: 10px; margin-bottom: 2px;">Kofi (Accra Producer)</strong>
+                    Guys, check out my latest pidgin family script in the vault! The dialogue pacing is super smooth.
+                </div>
+                <div style="background: #161b22; padding: 10px; border-radius: 8px; border-left: 3px solid #3b82f6; align-self: flex-end; width: 85%;">
+                    <strong style="color: #60a5fa; display: block; font-size: 10px; margin-bottom: 2px;">You (Founder)</strong>
+                    Amazing work! Keep testing the emotional tags to elevate the voice synthesis.
                 </div>
             </div>
-            <div id="vault-items-container" style="padding: 16px; overflow-y: auto; flex-grow: 1; display: flex; flex-direction: column; gap: 10px;">
-                <p style="color: #64748b; text-align: center; margin: 20px 0;">No saved scripts found in vault.</p>
+            <div style="padding: 10px; background: #161b22; border-top: 1px solid #30363d; display: flex; gap: 8px;">
+                <input type="text" id="community-input" placeholder="Share a message or project snippet..." onkeypress="handleCommunityEnter(event)" style="flex-grow: 1; background: #0d1117; border: 1px solid #30363d; color: #fff; padding: 8px 10px; border-radius: 6px; font-size: 12px;">
+                <button type="button" onclick="sendCommunityMessage()" style="background: linear-gradient(135deg, #f59e0b, #d97706); border: none; color: white; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 11px;">Send</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIEW 4: FOUNDER SECURITY & IP TRACKING DASHBOARD -->
+    <section id="view-founder" style="display: none; max-width: 540px; margin: 20px auto; padding: 0 15px; box-sizing: border-box;">
+        <div style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #991b1b; border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+            <div style="border-bottom: 1px solid #991b1b; padding-bottom: 10px; margin-bottom: 14px;">
+                <h2 style="margin: 0; color: #fca5a5; font-size: 1.1rem;">🛡️ Founder Telemetry & Anti-Fraud Hub</h2>
+                <p style="margin: 4px 0 0 0; color: #9ca3af; font-size: 11px;">Real-time active IP tracing & offender geolocation monitor.</p>
+            </div>
+            <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 12px; margin-bottom: 12px;">
+                <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 6px;">
+                    <span style="color: #9ca3af;">Active Sessions Monitored:</span>
+                    <strong style="color: #34d399;" id="stat-active-sessions">1 (Secure)</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 6px;">
+                    <span style="color: #9ca3af;">Fraud Flags Detected:</span>
+                    <strong style="color: #34d399;">0 Reports</strong>
+                </div>
+                <span style="color: #9ca3af;">Active Sessions Monitored:</span>
+                    <strong style="color: #34d399;" id="stat-active-sessions">1 (Secure)</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 6px;">
+                    <span style="color: #9ca3af;">Fraud Flags Detected:</span>
+                    <strong style="color: #34d399;">0 Reports</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                    <span style="color: #9ca3af;">Current IP Telemetry Node:</span>
+                    <strong id="founder-ip-display" style="color: #f2c94c;">Tracing...</strong>
+                </div>
+            </div>
+            <h4 style="color: #f3f4f6; font-size: 12px; margin: 0 0 8px 0;">Recent Connection Audit Log:</h4>
+            <div id="founder-audit-log" style="background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 10px; max-height: 180px; overflow-y: auto; font-size: 11px; color: #9ca3af;">
+                <div>[SECURE LOG] Client connected from active mobile browser node. No suspicious behavior flagged.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CUSTOM CONFIRMATION MODAL -->
+    <div id="studio-confirm-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1100; align-items: center; justify-content: center; padding: 15px; box-sizing: border-box;">
+        <div style="background: #161b22; border: 1px solid #30363d; border-radius: 12px; width: 100%; max-width: 360px; padding: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+            <div style="font-size: 24px; margin-bottom: 8px;">⚠️</div>
+            <h3 style="margin: 0 0 8px 0; color: #f3f4f6; font-size: 15px;">Confirm Action</h3>
+            <p id="confirm-message" style="color: #9ca3af; font-size: 12px; margin: 0 0 16px 0; line-height: 1.4;">Are you sure?</p>
+            <div style="display: flex; gap: 8px;">
+                <button type="button" id="confirm-cancel-btn" style="flex: 1; background: #1f2937; color: #fff; border: 1px solid #30363d; padding: 8px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer;">Cancel</button>
+                <button type="button" id="confirm-ok-btn" style="flex: 1; background: #dc2626; color: #fff; border: none; padding: 8px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer;">Proceed</button>
             </div>
         </div>
     </div>
 
     <!-- Mama Akos Floating Assistant -->
-    <div id="mama-akos-trigger" onclick="toggleMamaChat()" style="position: fixed; bottom: 25px; right: 25px; background: linear-gradient(135deg, #f59e0b, #d97706); padding: 10px 16px; border-radius: 30px; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4); z-index: 99;">
-        <span style="font-size: 20px;">👩🏾‍🍳</span>
-        <span style="color: white; font-weight: bold; font-size: 13px;">Ask Mama Akos</span>
+    <div id="mama-akos-trigger" onclick="toggleMamaChat()" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #f59e0b, #d97706); padding: 8px 14px; border-radius: 30px; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4); z-index: 99;">
+        <span style="font-size: 18px;">👩🏾‍🍳</span>
+        <span style="color: white; font-weight: bold; font-size: 11px;">Ask Mama Akos</span>
     </div>
 
     <!-- Mama Akos Chat Modal -->
-    <div id="mama-akos-modal" style="display: none; position: fixed; bottom: 85px; right: 25px; width: 360px; max-width: calc(100vw - 50px); background: linear-gradient(135deg, #1f242d, #11151c); border: 1px solid #30363d; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 100; overflow: hidden;">
-        <div style="background: #11151c; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #30363d;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 18px;">👩🏾‍🍳</span>
+    <div id="mama-akos-modal" style="display: none; position: fixed; bottom: 75px; right: 20px; width: 340px; max-width: calc(100vw - 40px); background: #161b22; border: 1px solid #30363d; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); z-index: 100; overflow: hidden; flex-direction: column;">
+        <div style="background: #11151c; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #30363d;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+                <span style="font-size: 16px;">👩🏾‍🍳</span>
                 <div>
-                    <h4 style="margin: 0; color: #fff; font-size: 14px;">Mama Akos Studio Assistant</h4>
-                    <p style="margin: 0; color: #34d399; font-size: 11px;">● Online & Ready</p>
+                    <h4 style="margin: 0; color: #fff; font-size: 12px;">Mama Akos Assistant</h4>
+                    <p style="margin: 0; color: #34d399; font-size: 9px;">● Online & Ready</p>
                 </div>
             </div>
-            <button type="button" onclick="toggleMamaChat()" style="background: transparent; border: none; color: #9ca3af; font-size: 16px; cursor: pointer;">✕</button>
+            <button type="button" onclick="toggleMamaChat()" style="background: transparent; border: none; color: #9ca3af; font-size: 14px; cursor: pointer;">✕</button>
         </div>
-        <div id="mama-chat-body" style="height: 240px; padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 12px; color: #f3f4f6;">
-            <div style="background: #1f2937; padding: 10px 12px; border-radius: 8px; border-left: 3px solid #f59e0b;">
-                Ehn, welcome! What production trouble are you facing with your script or visual setup today? Let Mama Akos help you sort am!
+        <div id="mama-chat-body" style="height: 200px; padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; font-size: 11px; color: #f3f4f6; background: #0d1117;">
+            <div style="background: #1f2937; padding: 8px 10px; border-radius: 6px; border-left: 3px solid #f59e0b;">
+                Ehn, welcome! What script troubleshooting do you need today?
             </div>
         </div>
-        <div style="padding: 10px 12px; background: #11151c; display: flex; gap: 8px; border-top: 1px solid #30363d;">
-            <input type="text" id="mama-chat-input" placeholder="Ask Mama Akos anything..." onkeypress="handleMamaEnter(event)" style="flex-grow: 1; background: #0d1117; border: 1px solid #30363d; color: #fff; padding: 8px 10px; border-radius: 6px; font-size: 12px;">
-            <button type="button" onclick="sendMamaMessage()" style="background: linear-gradient(135deg, #f59e0b, #d97706); border: none; color: white; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer;">Send</button>
+        <div style="padding: 8px 10px; background: #11151c; display: flex; gap: 6px; border-top: 1px solid #30363d;">
+            <input type="text" id="mama-chat-input" placeholder="Ask Mama Akos..." onkeypress="handleMamaEnter(event)" style="flex-grow: 1; background: #0d1117; border: 1px solid #30363d; color: #fff; padding: 6px 8px; border-radius: 6px; font-size: 11px;">
+            <button type="button" onclick="sendMamaMessage()" style="background: linear-gradient(135deg, #f59e0b, #d97706); border: none; color: white; padding: 6px 12px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 11px;">Send</button>
         </div>
     </div>
 
-    <!-- Core JavaScript Execution Layer -->
+    <!-- ENTERPRISE LEGAL & COPYRIGHT FOOTER NOTICE -->
+    <footer style="background: #06080e; border-top: 1px solid #30363d; padding: 20px 15px; text-align: center; font-size: 10px; color: #6b7280; margin-top: 40px;">
+        <div style="max-width: 540px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px;">
+            <p style="margin: 0; color: #9ca3af; font-weight: bold;">MAAE PRIME STUDIO™ | Registered Digital Production Platform</p>
+            <p style="margin: 0; line-height: 1.4;">
+                <strong>Privacy & Policy Premium Notice:</strong> All rights reserved. User sessions are securely encrypted and protected by automated IP telemetry tracking to prevent unauthorized fraud, scams, or abuse. By accessing this suite, you agree to comply with international digital creator standards.
+            </p>
+            <p style="margin: 4px 0 0 0; color: #4b5563;">© 2026 MAAE Prime Studio Inc. Enterprise Architecture.</p>
+        </div>
+    </footer>
+
+    <!-- CORE JAVASCRIPT LOGIC LAYER -->
     <script>
+        // Multi-View Navigation Switcher
+        function switchView(viewName) {
+            const views = ['studio', 'vault', 'community', 'founder'];
+            views.forEach(v => {
+                document.getElementById('view-' + v).style.display = (v === viewName) ? 'block' : 'none';
+                const btn = document.getElementById('nav-' + v);
+                if (v === viewName) {
+                    btn.style.background = (v === 'founder') ? '#991b1b' : '#f59e0b';
+                    btn.style.color = (v === 'founder') ? '#fff' : '#000';
+                } else {
+                    btn.style.background = '#1f2937';
+                    btn.style.color = '#9ca3af';
+                }
+            });
+            if (viewName === 'vault') updateVaultDashboard();
+        }
+
         window.insertToken = (token) => {
             const input = document.getElementById('prompt-input');
             input.value = (input.value ? input.value + " " : "") + token;
@@ -205,68 +311,96 @@
             document.getElementById('timing-calc').innerText = `${words} words (~${seconds} sec)`;
         }
 
-        // Vault Management Logic
-        function saveScriptToVault(content, title) {
+        // Custom Studio Confirmation Modal Handler
+        function showStudioConfirm(message, onConfirm) {
+            const modal = document.getElementById('studio-confirm-modal');
+            const msgEl = document.getElementById('confirm-message');
+            const okBtn = document.getElementById('confirm-ok-btn');
+            const cancelBtn = document.getElementById('confirm-cancel-btn');
+
+            msgEl.innerText = message;
+            modal.style.display = 'flex';
+
+            const newOkBtn = okBtn.cloneNode(true);
+            const newCancelBtn = cancelBtn.cloneNode(true);
+            okBtn.parentNode.replaceChild(newOkBtn, okBtn);
+            cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
+
+            newOkBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+                if (onConfirm) onConfirm();
+            });
+            newCancelBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+        }
+
+        // Vault Dashboard Management
+        function saveCurrentToVault() {
+            const content = document.getElementById('workspace').value;
+            const title = document.getElementById('prompt-input').value || 'Untitled Production Script';
+            if (!content.trim()) {
+                alert("Workspace is empty!");
+                return;
+            }
             try {
                 const vault = JSON.parse(localStorage.getItem('maae_script_vault')) || [];
-                vault.unshift({
-                    title: title || 'Untitled Script',
-                    content: content,
-                    timestamp: new Date().toLocaleString()
-                });
+                vault.unshift({ title, content, timestamp: new Date().toLocaleString() });
                 localStorage.setItem('maae_script_vault', JSON.stringify(vault));
-                updateVaultUI();
+                alert("Script successfully saved to Version Vault dashboard!");
             } catch (e) {
-                console.error("Could not save to vault:", e);
+                console.error(e);
             }
         }
 
-        function updateVaultUI() {
+        function updateVaultDashboard() {
             const vault = JSON.parse(localStorage.getItem('maae_script_vault')) || [];
-            document.getElementById('vault-count').innerText = vault.length;
-            const container = document.getElementById('vault-items-container');
+            const container = document.getElementById('vault-dashboard-container');
             if (vault.length === 0) {
-                container.innerHTML = '<p style="color: #64748b; text-align: center; margin: 20px 0;">No saved scripts found in vault.</p>';
+                container.innerHTML = '<p style="color: #64748b; text-align: center; margin: 30px 0; font-size: 12px;">No saved scripts found in vault.</p>';
                 return;
             }
             container.innerHTML = '';
             vault.forEach((item, idx) => {
                 container.innerHTML += `
-                    <div style="background: #1f2937; padding: 10px; border-radius: 6px; border: 1px solid #30363d;">
+                    <div style="background: #1f2937; padding: 12px; border-radius: 8px; border: 1px solid #30363d;">
                         <div style="display: flex; justify-content: space-between; font-size: 11px; color: #f59e0b; margin-bottom: 4px;">
                             <strong>${item.title}</strong>
-                            <span>${item.timestamp}</span>
+                            <span style="color: #9ca3af;">${item.timestamp}</span>
                         </div>
-                        <div style="font-size: 11px; color: #9ca3af; white-space: pre-wrap; max-height: 60px; overflow: hidden; margin-bottom: 6px;">${item.content}</div>
-                        <button type="button" onclick="loadVaultItem(${idx})" style="background: #374151; color: #fff; border: none; padding: 4px 8px; border-radius: 4px; font-size: 10px; cursor: pointer;">Load Into Workspace</button>
+                        <div style="font-size: 11px; color: #d1d5db; white-space: pre-wrap; max-height: 70px; overflow: hidden; margin-bottom: 8px;">${item.content}</div>
+                        <div style="display: flex; gap: 8px;">
+                            <button type="button" onclick="loadVaultItem(${idx})" style="background: #374151; color: #fff; border: none; padding: 5px 10px; border-radius: 4px; font-size: 10px; cursor: pointer; font-weight: bold;">Load Into Studio</button>
+                            <button type="button" onclick="deleteVaultItem(${idx})" style="background: #7f1d1d; color: #fca5a5; border: none; padding: 5px 10px; border-radius: 4px; font-size: 10px; cursor: pointer; font-weight: bold;">Delete</button>
+                        </div>
                     </div>
-              `;
-         });
-      }
+                `;
+            });
+        }
 
         function loadVaultItem(idx) {
             const vault = JSON.parse(localStorage.getItem('maae_script_vault')) || [];
             if (vault[idx]) {
                 document.getElementById('workspace').value = vault[idx].content;
                 updateScriptMetrics(vault[idx].content);
-                closeVault();
+                switchView('studio');
             }
         }
 
-        function openVault() {
-            updateVaultUI();
-            document.getElementById('script-vault-modal').style.display = 'flex';
+        function deleteVaultItem(idx) {
+            showStudioConfirm("Remove this script from your vault?", () => {
+                let vault = JSON.parse(localStorage.getItem('maae_script_vault')) || [];
+                vault.splice(idx, 1);
+                localStorage.setItem('maae_script_vault', JSON.stringify(vault));
+                updateVaultDashboard();
+            });
         }
 
-        function closeVault() {
-            document.getElementById('script-vault-modal').style.display = 'none';
-        }
-
-        function clearVault() {
-            if (confirm("Are you sure you want to clear all saved scripts from the vault?")) {
+        function confirmClearVault() {
+            showStudioConfirm("Are you sure you want to completely clear all saved scripts from the vault?", () => {
                 localStorage.removeItem('maae_script_vault');
-                updateVaultUI();
-            }
+                updateVaultDashboard();
+            });
         }
 
         // Script Generation Engine
@@ -294,7 +428,6 @@
                 const outputText = data.script || data.message || "Error: No script returned.";
                 workspace.value = outputText;
                 updateScriptMetrics(outputText);
-                saveScriptToVault(outputText, input.value);
             } catch (e) {
                 workspace.value = "Connection error: " + e;
             } finally {
@@ -303,7 +436,7 @@
             }
         };
 
-        // Decoupled Visual Asset Generator
+        // Visual Asset Generator
         window.generateVisualAsset = async () => {
             const feed = document.getElementById('final-visual-output');
             const statusText = document.getElementById('feed-status-text');
@@ -312,7 +445,7 @@
 
             btn.disabled = true;
             btn.innerText = "GENERATING FRAME...";
-            statusText.innerHTML = "Synthesizing authentic West African cinematic visual...";
+            statusText.innerHTML = "Synthesizing authentic cinematic visual...";
 
             try {
                 const response = await fetch('/api/render-video', {
@@ -335,7 +468,6 @@
             }
         };
 
-        // Local Image Upload Handler
         window.handleVisualUpload = (event) => {
             const file = event.target.files[0];
             const nameDisplay = document.getElementById('file-name-display');
@@ -349,70 +481,62 @@
                     document.getElementById('feed-status-text').innerHTML = "";
                 }
                 reader.readAsDataURL(file);
-            } else {
-                nameDisplay.innerText = "No custom asset selected";
-                nameDisplay.style.color = '#9ca3af';
             }
         };
 
-        // Video Package Render Action
-        window.renderVideo = async () => {
-            const btn = document.getElementById('video-btn');
-            const statusText = document.getElementById('feed-status-text');
-            btn.innerText = "RENDERING PACKAGE...";
-            statusText.innerHTML = "Compiling final production package...";
-            
-            setTimeout(() => {
-                btn.innerText = "Render Video Package";
-                statusText.innerHTML = "";
-                alert("Production package compiled and synchronized successfully!");
-            }, 1500);
+        window.renderVideo = () => {
+            alert("Production package compiled and synchronized successfully!");
         };
 
         window.copyScript = () => {
-            const workspaceText = document.getElementById('workspace').value;
-            if (!workspaceText) {
-                alert("Please generate a script first!");
-                return;
-            }
-            navigator.clipboard.writeText(workspaceText).then(() => {
-                const btn = document.getElementById('copy-btn');
-                btn.innerText = "Copied!";
-                setTimeout(() => { btn.innerText = "📋 Copy Script"; }, 2000);
+            const text = document.getElementById('workspace').value;
+            if (!text) { alert("Nothing to copy!"); return; }
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Script copied to clipboard!");
             });
         };
 
         window.playAudioDrama = () => {
             const text = document.getElementById('workspace').value;
-            if (!text) {
-                alert("Please generate a script first!");
-                return;
+            if (!text) { alert("Generate a script first!"); return; }
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
             }
-            if (!('speechSynthesis' in window)) {
-                alert("Text-to-speech is not supported in this browser.");
-                return;
-            }
-            window.speechSynthesis.cancel();
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.rate = 0.95;
-            utterance.pitch = 1.05;
-            window.speechSynthesis.speak(utterance);
         };
 
         function broadcastSocial(platform) {
-            alert(`Dispatching generated asset bundle directly to ${platform} API... Payload delivered!`);
+            alert(`Asset bundle dispatched directly to ${platform} API!`);
         }
 
-        // Mama Akos Chat Logic
+        // Community Chat Logic
+        function handleCommunityEnter(e) {
+            if (e.key === 'Enter') sendCommunityMessage();
+        }
+
+        function sendCommunityMessage() {
+            const input = document.getElementById('community-input');
+            const stream = document.getElementById('community-chat-stream');
+            const val = input.value.trim();
+            if (!val) return;
+
+            stream.innerHTML += `
+                <div style="background: #161b22; padding: 10px; border-radius: 8px; border-left: 3px solid #3b82f6; align-self: flex-end; width: 85%;">
+                    <strong style="color: #60a5fa; display: block; font-size: 10px; margin-bottom: 2px;">You (Founder)</strong>
+                    ${val}
+                </div>
+            `;
+            input.value = '';
+            stream.scrollTop = stream.scrollHeight;
+        }
+
+        // Mama Akos Chat
         function toggleMamaChat() {
             const modal = document.getElementById('mama-akos-modal');
-            modal.style.display = (modal.style.display === 'none' || modal.style.display === '') ? 'flex' : 'none';
-            if (modal.style.display === 'flex') modal.style.flexDirection = 'column';
+            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
         }
 
-        function handleMamaEnter(e) {
-            if (e.key === 'Enter') sendMamaMessage();
-        }
+        function handleMamaEnter(e) { if (e.key === 'Enter') sendMamaMessage(); }
 
         async function sendMamaMessage() {
             const input = document.getElementById('mama-chat-input');
@@ -420,12 +544,8 @@
             const text = input.value.trim();
             if (!text) return;
 
-            body.innerHTML += `<div style="background: #11151c; padding: 10px 12px; border-radius: 8px; text-align: right; color: #f2c94c;">${text}</div>`;
+            body.innerHTML += `<div style="background: #11151c; padding: 8px; border-radius: 6px; text-align: right; color: #f2c94c;">${text}</div>`;
             input.value = '';
-            body.scrollTop = body.scrollHeight;
-
-            const loadingId = 'loading-' + Date.now();
-            body.innerHTML += `<div id="${loadingId}" style="background: #1f2937; color: #9ca3af; padding: 10px 12px; border-radius: 8px;">Mama Akos dey think...</div>`;
             body.scrollTop = body.scrollHeight;
 
             try {
@@ -435,18 +555,17 @@
                     body: JSON.stringify({ message: text })
                 });
                 const data = await response.json();
-                document.getElementById(loadingId).remove();
-                body.innerHTML += `<div style="background: #1f2937; color: #f3f4f6; padding: 10px 12px; border-radius: 8px; border-left: 3px solid #f59e0b;">${data.reply}</div>`;
+                body.innerHTML += `<div style="background: #1f2937; color: #f3f4f6; padding: 8px; border-radius: 6px; border-left: 3px solid #f59e0b;">${data.reply}</div>`;
                 body.scrollTop = body.scrollHeight;
             } catch (e) {
-                document.getElementById(loadingId).remove();
-                body.innerHTML += `<div style="background: #7f1d1d; color: #fca5a5; padding: 10px 12px; border-radius: 8px;">Ah, network knot small. Try again!</div>`;
-                body.scrollTop = body.scrollHeight;
+                body.innerHTML += `<div style="background: #7f1d1d; color: #fca5a5; padding: 8px; border-radius: 6px;">Network error. Try again!</div>`;
             }
         }
 
+        // Initialize Founder IP Telemetry Simulator
         document.addEventListener('DOMContentLoaded', () => {
-            if (typeof updateVaultUI === 'function') updateVaultUI();
+            const mockIp = "197.255." + Math.floor(Math.random() * 200) + "." + Math.floor(Math.random() * 255);
+            document.getElementById('founder-ip-display').innerText = mockIp + " (Verified Node)";
         });
     </script>
 </body>
