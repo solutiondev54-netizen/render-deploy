@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Studio Mixer | MAAE Ecosystem{% endblock %}
+{% block content %}
+<div style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #30363d; border-radius: 10px; padding: 12px; margin-bottom: 10px;">
+    <label style="color: #f2c94c; font-size: 10px; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 6px;">Neural Plot Directive</label>
+    <input type="text" id="prompt-input" placeholder="Enter West African comedy plot idea..." style="width: 100%; padding: 8px; background: #0d1117; border: 1px solid #30363d; color: #fff; border-radius: 6px; box-sizing: border-box; font-size: 11px; margin-bottom: 8px;">
+    <button type="button" onclick="generateScript()" style="width: 100%; padding: 10px; background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; border: none; border-radius: 6px; font-weight: bold; font-size: 10px; text-transform: uppercase; cursor: pointer;">Synthesize Script Matrix</button>
+</div>
+
+<div style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #30363d; border-radius: 10px; padding: 12px; margin-bottom: 10px;">
+    <label style="color: #f2c94c; font-size: 10px; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 6px;">Live Script Workspace</label>
+    <textarea id="workspace" placeholder="Output stream..." style="width: 100%; height: 140px; background: #0d1117; border: 1px solid #30363d; color: #f3f4f6; padding: 8px; border-radius: 6px; box-sizing: border-box; font-size: 11px;"></textarea>
+</div>
+
+<script>
+    async function generateScript() {
+        const input = document.getElementById('prompt-input').value;
+        const workspace = document.getElementById('workspace');
+        workspace.value = "Connecting to Gemini Neural Core...";
+        try {
+            const res = await fetch('/api/generate', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ prompt: input })
+            });
+            const data = await res.json();
+            workspace.value = data.script || data.message || "Error generating content.";
+        } catch (err) {
+            workspace.value = "Network Error: Failed to reach server.";
+        }
+    }
+</script>
+{% endblock %}
