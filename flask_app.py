@@ -105,8 +105,9 @@ def generate():
 
     for attempt in range(max_retries):
         try:
+            # Updated to current stable model name
             response = client.models.generate_content(
-                model='gemini-2.5-flash',
+                model='gemini-3.6-flash',
                 contents=structured_content
             )
 
@@ -142,8 +143,9 @@ def render_video():
         else:
             final_prompt = f"Cinematic professional portrait of a {cultural_guardrail}, {realism_enhancers}"
 
+        # Updated to current stable image generation model name
         response = client.models.generate_content(
-            model='gemini-2.5-flash-image',
+            model='gemini-3.1-flash-image',
             contents=final_prompt,
             config=types.GenerateContentConfig(
                 response_modalities=["TEXT", "IMAGE"],
@@ -191,7 +193,7 @@ def mama_akos_chat():
 
     try:
         response = client.models.generate_content(
-            model='gemini-2.5-flash',
+            model='gemini-3.6-flash',
             contents=f"{system_instruction}\n\nUser Question: {user_message}"
         )
         return jsonify({"reply": response.text})
