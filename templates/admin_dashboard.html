@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Admin Command Console | MAAE Ecosystem{% endblock %}
+{% block content %}
+<div style="max-width: 600px; margin: 20px auto; background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #10b981; border-radius: 10px; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <div>
+            <span style="color: #10b981; font-size: 9px; font-weight: 700; text-transform: uppercase;">🟢 Authorized Admin Portal</span>
+            <h2 style="color: #fff; font-size: 14px; margin: 2px 0 0 0;">Platform Management Suite</h2>
+        </div>
+        <a href="/" style="background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; padding: 4px 10px; border-radius: 4px; font-size: 9px; font-weight: bold; text-decoration: none;">Exit to Studio</a>
+    </div>
+
+    <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 12px; margin-bottom: 12px;">
+        <span style="color: #f59e0b; font-size: 10px; font-weight: bold; display: block; margin-bottom: 4px;">🛠️ Admin Moderation Tools</span>
+        <p style="color: #9ca3af; font-size: 9px; margin-bottom: 10px;">You are cleared to oversee community text feeds, moderate user script logs, and assist platform traffic flow.</p>
+        <button onclick="alert('Content queue synchronized.')" style="background: #1f2937; color: #fff; border: 1px solid #30363d; padding: 6px 12px; border-radius: 4px; font-size: 9px; cursor: pointer;">Refresh Content Feed</button>
+    </div>
+</div>
+{% endblock %}
