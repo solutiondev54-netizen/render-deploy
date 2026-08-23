@@ -16,12 +16,13 @@
                 <div style="font-size: 8px; color: #f59e0b; letter-spacing: 1px; text-transform: uppercase;">Next-Century Core</div>
             </div>
         </div>
-        <nav style="display: flex; gap: 4px;">
-            <a href="{{ url_for('studio') }}" style="background: {{ '#f59e0b' if active_page == 'studio' else '#1f2937' }}; color: {{ '#000' if active_page == 'studio' else '#9ca3af' }}; text-decoration: none; padding: 5px 8px; border-radius: 6px; font-size: 10px; font-weight: bold;">Studio</a>
-            <a href="{{ url_for('vault') }}" style="background: {{ '#f59e0b' if active_page == 'vault' else '#1f2937' }}; color: {{ '#000' if active_page == 'vault' else '#9ca3af' }}; text-decoration: none; padding: 5px 8px; border-radius: 6px; font-size: 10px; font-weight: bold;">Vault</a>
-            <a href="{{ url_for('community') }}" style="background: {{ '#f59e0b' if active_page == 'community' else '#1f2937' }}; color: {{ '#000' if active_page == 'community' else '#9ca3af' }}; text-decoration: none; padding: 5px 8px; border-radius: 6px; font-size: 10px; font-weight: bold;">Commons</a>
-            <a href="{{ url_for('founder') }}" style="background: {{ '#991b1b' if active_page == 'founder' else '#1f2937' }}; color: {{ '#fff' if active_page == 'founder' else '#9ca3af' }}; text-decoration: none; padding: 5px 8px; border-radius: 6px; font-size: 10px; font-weight: bold;">IP Hub</a>
-            <a href="/founder/gate" style="background: #1f2937; color: #f59e0b; border: 1px dashed #f59e0b; padding: 4px 8px; border-radius: 4px; text-decoration: none; font-size: 10px; font-weight: bold;">🔒 Founder Gate</a>
+        <nav style="display: flex; gap: 4px; overflow-x: auto;">
+             <a href="{{ url_for('studio') }}" style="background: {{ '#f59e0b' if active_page == 'studio' else '#1f2937' }}">Studio</a>
+             <a href="{{ url_for('vault') }}" style="background: {{ '#f59e0b' if active_page == 'vault' else '#1f2937' }}">Vault</a>
+             <a href="{{ url_for('community') }}" style="background: {{ '#f59e0b' if active_page == 'community' else '#1f2937' }}">Commons</a>
+             <a href="/founder/dashboard" style="background: {{ '#f59e0b' if active_page == 'founder' else '#1f2937' }}">Dashboard</a>
+             <a href="/founder/telemetry" style="background: #1f2937; color: #10b981; border: 1px solid #10b981; text-decoration: none;">🛰️ Tracker</a>
+             <a href="/founder/gate" style="background: #1f2937; color: #f59e0b; border: 1px dashed #f59e0b; text-decoration: none;">🔒 Gate</a>
         </nav>
     </header>
 
@@ -29,7 +30,7 @@
     <main style="width: 100%; max-width: 480px; margin: 0 auto; padding: 12px; box-sizing: border-box;">
         {% block content %}{% endblock %}
     </main>
-
+     
     <!-- Global Footer -->
     <footer style="background: #06080e; border-top: 1px solid #30363d; padding: 15px 12px; text-align: center; font-size: 9px; color: #6b7280; margin-top: 30px; box-sizing: border-box;">
         <div style="max-width: 480px; margin: 0 auto;">
