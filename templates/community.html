@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Community Commons | MAAE Ecosystem{% endblock %}
 {% block content %}
-<div style="max-width: 600px; margin: 10px auto; background: #0b141a; border: 1px solid #202c33; border-radius: 12px; padding: 10px; display: flex; flex-direction: column; height: 80vh; max-height: 520px; box-shadow: 0 4px 12px rgba(0,0,0,0.6);">
+<div style="max-width: 600px; margin: 10px auto; background: #0b141a; border: 1px solid #202c33; border-radius: 12px; padding: 10px; display: flex; flex-direction: column; height: 82vh; max-height: 540px; box-shadow: 0 4px 12px rgba(0,0,0,0.6);">
     
     <!-- WhatsApp Header -->
     <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #202c33; padding-bottom: 8px; margin-bottom: 8px;">
@@ -9,73 +9,70 @@
             <div style="width: 32px; height: 32px; background: #00a884; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; font-size: 13px;">M</div>
             <div>
                 <h3 style="color: #e9edef; font-size: 12px; margin: 0;">MAAE Global Commons</h3>
-                <span id="typing-indicator" style="color: #00a884; font-size: 8px; display: block;">online • secure node</span>
+                <span id="status-indicator" style="color: #00a884; font-size: 8px; display: block;">online • live secure node</span>
             </div>
         </div>
-        <span style="font-size: 8px; color: #8696a0; background: #111b21; padding: 2px 6px; border-radius: 8px;">End-to-End</span>
+        <span style="font-size: 8px; color: #8696a0; background: #111b21; padding: 2px 6px; border-radius: 8px;">E2EE Active</span>
     </div>
 
     <!-- Chat Stream Scrollable Area -->
     <div id="chat-stream" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; padding-right: 4px;">
-        
-        <!-- Incoming Message Bubble (Left-aligned) -->
         <div style="display: flex; justify-content: flex-start; width: 100%;">
             <div style="background: #202c33; color: #e9edef; padding: 7px 10px; border-radius: 0 8px 8px 8px; max-width: 75%; font-size: 11px; word-wrap: break-word; line-height: 1.4;">
-                How far blood! The security dragnet and node tracker are running live.
+                Hold the mic button or swipe up to record a voice note with sound feedback.
                 <div style="font-size: 7px; color: #8696a0; text-align: right; margin-top: 2px;">10:37 AM</div>
             </div>
         </div>
-
-        <!-- Sent Voice Note Bubble (Right-aligned) -->
-        <div style="display: flex; justify-content: flex-end; width: 100%;">
-            <div style="background: #005c4b; color: #e9edef; padding: 7px 10px; border-radius: 8px 0 8px 8px; max-width: 80%; width: 240px;">
-                <div style="display: flex; align-items: center; gap: 6px;">
-                    <button style="background: #00a884; border: none; border-radius: 50%; width: 26px; height: 26px; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 9px;">▶</button>
-                    <!-- Audio Waveform Bars -->
-                    <div style="flex: 1; display: flex; align-items: center; gap: 2px; height: 16px;">
-                        <div style="width: 2px; height: 8px; background: #aebac1; border-radius: 1px;"></div>
-                        <div style="width: 2px; height: 14px; background: #53bdeb; border-radius: 1px;"></div>
-                        <div style="width: 2px; height: 10px; background: #aebac1; border-radius: 1px;"></div>
-                        <div style="width: 2px; height: 16px; background: #53bdeb; border-radius: 1px;"></div>
-                        <div style="width: 2px; height: 6px; background: #aebac1; border-radius: 1px;"></div>
-                        <div style="width: 2px; height: 12px; background: #53bdeb; border-radius: 1px;"></div>
-                        <div style="width: 2px; height: 15px; background: #53bdeb; border-radius: 1px;"></div>
-                    </div>
-                    <!-- User Avatar Thumbnail inside Voice Note -->
-                    <div style="width: 24px; height: 24px; background: #111b21; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 8px; color: #00a884; border: 1px solid #00a884; overflow: hidden;">👤</div>
-                </div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 3px; font-size: 7px; color: #8696a0;">
-                    <span>0:18</span>
-                    <span style="display: flex; align-items: center; gap: 2px;">10:38 AM <span style="color: #53bdeb; font-weight: bold;">✓✓</span></span>
-                </div>
-            </div>
-        </div>
-
     </div>
 
-    <!-- WhatsApp Input Footer Bar -->
-    <div style="display: flex; align-items: center; gap: 6px; background: #202c33; padding: 6px 8px; border-radius: 8px; margin-top: 6px;">
+    <!-- Dynamic Input Bar -->
+    <div id="input-container" style="display: flex; align-items: center; gap: 6px; background: #202c33; padding: 6px 8px; border-radius: 8px; margin-top: 6px; position: relative;">
         <input type="text" id="msg-input" placeholder="Message" oninput="simulateTyping()" style="flex: 1; background: transparent; border: none; color: #e9edef; font-size: 11px; outline: none;" />
         <button onclick="sendTextMessage()" style="background: #00a884; border: none; color: #fff; padding: 5px 10px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Send</button>
-        <button id="mic-btn" onclick="toggleVoiceRecording()" style="background: #111b21; border: 1px solid #00a884; color: #00a884; padding: 5px 8px; border-radius: 6px; font-size: 10px; cursor: pointer;">🎙️</button>
+        
+        <!-- Interactive Mic Button supporting Hold & Swipe-Up -->
+        <button id="mic-btn" 
+            ontouchstart="startRecording(event)" onmousedown="startRecording(event)"
+            ontouchend="stopRecording(event)" onmouseup="stopRecording(event)"
+            onmousemove="handleSwipe(event)" ontouchmove="handleSwipe(event)"
+            style="background: #111b21; border: 1px solid #00a884; color: #00a884; padding: 5px 8px; border-radius: 6px; font-size: 10px; cursor: pointer; user-select: none;" 
+            title="Hold to record, swipe up to lock">🎙️</button>
     </div>
 </div>
 
 <script>
+    // Audio feedback synth for click sound
+    function playClickSound() {
+        try {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(600, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.08);
+            gain.gain.setValueAtTime(0.15, ctx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.08);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.08);
+        } catch(e) {}
+    }
+
     let typingTimer;
     function simulateTyping() {
-        const indicator = document.getElementById('typing-indicator');
-        indicator.innerText = "typing...";
+        const indicator = document.getElementById('status-indicator');
+        let randomUser = Math.random() > 0.5 ? "Chibest" : "Rose";
+        indicator.innerText = `${randomUser} is typing...`;
         clearTimeout(typingTimer);
         typingTimer = setTimeout(() => {
-            indicator.innerText = "online • secure node";
+            indicator.innerText = "online • live secure node";
         }, 1200);
     }
 
     function sendTextMessage() {
         const input = document.getElementById('msg-input');
         if (!input.value.trim()) return;
-        
         const stream = document.getElementById('chat-stream');
         const msgDiv = document.createElement('div');
         msgDiv.style = "display: flex; justify-content: flex-end; width: 100%;";
@@ -92,44 +89,149 @@
         stream.scrollTop = stream.scrollHeight;
     }
 
-    let recording = false;
-    function toggleVoiceRecording() {
-        const micBtn = document.getElementById('mic-btn');
-        const stream = document.getElementById('chat-stream');
-        
-        if (!recording) {
-            recording = true;
-            micBtn.style.background = "#ef4444";
-            micBtn.style.color = "#fff";
-            micBtn.innerText = "⏹️";
-        } else {
-            recording = false;
-            micBtn.style.background = "#111b21";
-            micBtn.style.color = "#00a884";
-            micBtn.innerText = "🎙️";
-            
-            const voiceDiv = document.createElement('div');
-            voiceDiv.style = "display: flex; justify-content: flex-end; width: 100%;";
-            voiceDiv.innerHTML = `
-                <div style="background: #005c4b; color: #e9edef; padding: 7px 10px; border-radius: 8px 0 8px 8px; max-width: 80%; width: 240px;">
-                    <div style="display: flex; align-items: center; gap: 6px;">
-                        <button style="background: #00a884; border: none; border-radius: 50%; width: 26px; height: 26px; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 9px;">▶</button>
-                        <div style="flex: 1; display: flex; align-items: center; gap: 2px; height: 16px;">
-                            <div style="width: 2px; height: 12px; background: #53bdeb; border-radius: 1px;"></div>
-                            <div style="width: 2px; height: 16px; background: #53bdeb; border-radius: 1px;"></div>
-                            <div style="width: 2px; height: 8px; background: #aebac1; border-radius: 1px;"></div>
-                            <div style="width: 2px; height: 14px; background: #53bdeb; border-radius: 1px;"></div>
+    let mediaRecorder;
+    let audioChunks = [];
+    let isRecording = false;
+    let isLocked = false;
+    let recordInterval;
+    let recordSeconds = 0;
+    let startY = 0;
+
+    async function startRecording(e) {
+        if (isRecording) return;
+        e.preventDefault();
+        startY = e.touches ? e.touches[0].clientY : e.clientY;
+        playClickSound();
+
+        try {
+            const streamAudio = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(streamAudio);
+            audioChunks = [];
+
+            mediaRecorder.ondataavailable = event => { audioChunks.push(event.data); };
+            mediaRecorder.onstop = () => {
+                const audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
+                const audioUrl = URL.createObjectURL(audioBlob);
+                const stream = document.getElementById('chat-stream');
+                
+                const voiceDiv = document.createElement('div');
+                voiceDiv.style = "display: flex; justify-content: flex-end; width: 100%;";
+                voiceDiv.innerHTML = `
+                    <div style="background: #005c4b; color: #e9edef; padding: 7px 10px; border-radius: 8px 0 8px 8px; max-width: 80%; width: 240px;">
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <audio src="${audioUrl}"></audio>
+                            <button onclick="playAudio(this)" style="background: #00a884; border: none; border-radius: 50%; width: 26px; height: 26px; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 9px;">▶</button>
+                            <div style="flex: 1; display: flex; align-items: center; gap: 2px; height: 16px;">
+                                <div style="width: 2px; height: 12px; background: #53bdeb; border-radius: 1px;"></div>
+                                <div style="width: 2px; height: 16px; background: #53bdeb; border-radius: 1px;"></div>
+                                <div style="width: 2px; height: 8px; background: #aebac1; border-radius: 1px;"></div>
+                                <div style="width: 2px; height: 14px; background: #53bdeb; border-radius: 1px;"></div>
+                            </div>
+                            <div style="width: 24px; height: 24px; background: #111b21; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 8px; color: #00a884; border: 1px solid #00a884; overflow: hidden;">👤</div>
                         </div>
-                        <div style="width: 24px; height: 24px; background: #111b21; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 8px; color: #00a884; border: 1px solid #00a884; overflow: hidden;">👤</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 3px; font-size: 7px; color: #8696a0;">
+                            <span>0:0${recordSeconds || 1}</span>
+                            <span style="display: flex; align-items: center; gap: 2px;">Just now <span style="color: #53bdeb; font-weight: bold;">✓✓</span></span>
+                        </div>
                     </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 3px; font-size: 7px; color: #8696a0;">
-                        <span>0:05</span>
-                        <span style="display: flex; align-items: center; gap: 2px;">Just now <span style="color: #53bdeb; font-weight: bold;">✓✓</span></span>
-                    </div>
+                `;
+                stream.appendChild(voiceDiv);
+                stream.scrollTop = stream.scrollHeight;
+            };
+
+            mediaRecorder.start();
+            isRecording = true;
+            isLocked = false;
+            recordSeconds = 0;
+
+            const inputContainer = document.getElementById('input-container');
+            inputContainer.style.background = "#111b21";
+            inputContainer.style.border = "1px solid #ef4444";
+            inputContainer.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 4px;">
+                    <span style="color: #ef4444; font-size: 11px; font-weight: bold; display: flex; align-items: center; gap: 6px;">
+                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; display: inline-block;"></span>
+                        <span id="rec-status-text">Recording...</span> <span id="rec-timer" style="color: #e9edef;">0:00</span>
+                    </span>
+                    <button onclick="cancelOrSendLocked(true)" style="background: #00a884; border: none; color: #fff; padding: 4px 10px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Send 🔒</button>
                 </div>
             `;
-            stream.appendChild(voiceDiv);
-            stream.scrollTop = stream.scrollHeight;
+
+            recordInterval = setInterval(() => {
+                recordSeconds++;
+                let mins = Math.floor(recordSeconds / 60);
+                let secs = recordSeconds % 60;
+                let timerEl = document.getElementById('rec-timer');
+                if (timerEl) timerEl.innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }, 1000);
+
+        } catch (err) {
+            alert("Microphone access is required for voice notes.");
+        }
+    }
+
+    function handleSwipe(e) {
+        if (!isRecording || isLocked) return;
+        let currentY = e.touches ? e.touches[0].clientY : e.clientY;
+        if (startY - currentY > 40) { // Swiped up over 40px
+            isLocked = true;
+            let statusText = document.getElementById('rec-status-text');
+            if (statusText) statusText.innerText = "Locked (Hands-Free)";
+        }
+    }
+
+    function stopRecording(e) {
+        if (!isRecording || isLocked) return; 
+        finalizeRecording();
+    }
+
+    function cancelOrSendLocked(send) {
+        if (send) {
+            finalizeRecording();
+        } else {
+            if (mediaRecorder && mediaRecorder.state !== "inactive") mediaRecorder.stop();
+            resetInputUI();
+        }
+    }
+
+    function finalizeRecording() {
+        if (!isRecording) return;
+        clearInterval(recordInterval);
+        isRecording = false;
+        isLocked = false;
+        if (mediaRecorder && mediaRecorder.state !== "inactive") {
+            mediaRecorder.stop();
+        }
+        resetInputUI();
+    }
+
+    function resetInputUI() {
+        const inputContainer = document.getElementById('input-container');
+        inputContainer.style.background = "#202c33";
+        inputContainer.style.border = "none";
+        inputContainer.innerHTML = `
+            <input type="text" id="msg-input" placeholder="Message" oninput="simulateTyping()" style="flex: 1; background: transparent; border: none; color: #e9edef; font-size: 11px; outline: none;" />
+            <button onclick="sendTextMessage()" style="background: #00a884; border: none; color: #fff; padding: 5px 10px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Send</button>
+            <button id="mic-btn" 
+                ontouchstart="startRecording(event)" onmousedown="startRecording(event)"
+                ontouchend="stopRecording(event)" onmouseup="stopRecording(event)"
+                onmousemove="handleSwipe(event)" ontouchmove="handleSwipe(event)"
+                style="background: #111b21; border: 1px solid #00a884; color: #00a884; padding: 5px 8px; border-radius: 6px; font-size: 10px; cursor: pointer; user-select: none;">🎙️</button>
+        `;
+        document.getElementById('status-indicator').innerText = "online • live secure node";
+    }
+
+    function playAudio(btn) {
+        const audio = btn.parentElement.querySelector('audio');
+        if (audio) {
+            if (audio.paused) {
+                audio.play();
+                btn.innerText = "⏸";
+                audio.onended = () => { btn.innerText = "▶"; };
+            } else {
+                audio.pause();
+                btn.innerText = "▶";
+            }
         }
     }
 </script>
