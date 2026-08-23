@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Admin Request Portal | MAAE Ecosystem{% endblock %}
+{% block content %}
+<div style="max-width: 450px; margin: 30px auto; background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #30363d; border-radius: 12px; padding: 20px;">
+    <div style="text-align: center; margin-bottom: 15px;">
+        <span style="color: #f59e0b; font-size: 10px; font-weight: 700; text-transform: uppercase;">🛡️ Ecosystem Governance</span>
+        <h2 style="color: #fff; font-size: 14px; margin: 4px 0;">Admin Access Request</h2>
+        <p style="color: #9ca3af; font-size: 9px;">Submit your qualifications and content strategy alignment for founder review.</p>
+    </div>
+
+    <form id="admin-reg-form" onsubmit="submitAdminRequest(event)">
+        <label style="color: #9ca3af; font-size: 9px; text-transform: uppercase; display: block; margin-bottom: 4px;">Full Name / Handle</label>
+        <input type="text" id="reg-name" required placeholder="e.g. Kofi Mensah" style="width: 100%; padding: 8px; background: #0d1117; border: 1px solid #30363d; color: #fff; border-radius: 6px; box-sizing: border-box; font-size: 10px; margin-bottom: 10px;">
+
+        <label style="color: #9ca3af; font-size: 9px; text-transform: uppercase; display: block; margin-bottom: 4px;">Secure Email Node</label>
+        <input type="email" id="reg-email" required placeholder="kofi@maae.core" style="width: 100%; padding: 8px; background: #0d1117; border: 1px solid #30363d; color: #fff; border-radius: 6px; box-sizing: border-box; font-size: 10px; margin-bottom: 10px;">
+
+        <label style="color: #9ca3af; font-size: 9px; text-transform: uppercase; display: block; margin-bottom: 4px;">Technical & Content Qualifications</label>
+        <textarea id="reg-qual" required rows="3" placeholder="Describe your background, platform management experience, and content alignment..." style="width: 100%; padding: 8px; background: #0d1117; border: 1px solid #30363d; color: #fff; border-radius: 6px; box-sizing: border-box; font-size: 10px; margin-bottom: 12px; resize: none;"></textarea>
+
+        <button type="submit" style="width: 100%; padding: 10px; background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; border: none; border-radius: 6px; font-weight: bold; font-size: 10px; text-transform: uppercase; cursor: pointer;">Transmit Request to Founder</button>
+    </form>
+    <div id="reg-response" style="font-size: 9px; text-align: center; margin-top: 10px;"></div>
+</div>
+
+<script>
+    async function submitAdminRequest(e) {
+        e.preventDefault();
+        const name = document.getElementById('reg-name').value;
+        const email = document.getElementById('reg-email').value;
+        const qualification = document.getElementById('reg-qual').value;
+        const resDiv = document.getElementById('reg-response');
+
+        try {
+            const res = await fetch('/admin/register', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ name, email, qualification })
+            });
+            const data = await res.json();
+            if (data.success) {
+                resDiv.style.color = "#10b981";
+                resDiv.innerText = data.message;
+                document.getElementById('admin-reg-form').reset();
+            } else {
+                resDiv.style.color = "#ef4444";
+                resDiv.innerText = data.message;
+            }
+        } catch (err) {
+            resDiv.style.color = "#ef4444";
+            resDiv.innerText = "Transmission failure to server core.";
+        }
+    }
+</script>
+{% endblock %}
