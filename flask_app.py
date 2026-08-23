@@ -200,6 +200,54 @@ def mama_akos_chat():
     except Exception as e:
         return jsonify({"reply": "Ah, see trouble! My server network is behaving like a stubborn child. Try again in a minute!"})
 
+# In-memory database lists (or replace with your SQL/MongoDB database models later)
+PENDING_ADMIN_REQUESTS = [
+    {"id": 1, "name": "Kwame Developer", "email": "kwame@maae.core", "qualification": "Full-stack Python & West African Audio AI scaling", "status": "pending"},
+    {"id": 2, "name": "Amina Content Lead", "email": "amina@maae.core", "qualification": "Specialized in regional dialect workflow scaling", "status": "pending"}
+]
+APPROVED_ADMINS = []
+
+@app.route('/admin/register', methods=['GET', 'POST'])
+def admin_register():
+    if request.method == 'POST':
+        data = request.get_json(silent=True) or request.form
+        name = data.get('name')
+        email = data.get('email')
+        qualification = data.get('qualification')
+        
+        if not name or not email or not qualification:
+            return jsonify({"success": False, "message": "All fields are required for admin consideration."})
+        
+        new_request = {
+            "id": len(PENDING_ADMIN_REQUESTS) + 1,
+            "name": name,
+            "email": email,
+            "qualification": qualification,
+            "status": "pending"
+        }
+        PENDING_ADMIN_REQUESTS.append(new_request)
+        return jsonify({"success": True, "message": "Application submitted successfully. Awaiting Founder approval."})
+    
+    return render_template('admin_register.html')
+
+@app.route('/founder/api/approve-admin/<int:admin_id>', methods=['POST'])
+def founder_approve_admin(admin_id):
+    if not session.get('is_founder'):
+        return jsonify({"success": False, "message": "Unauthorized"}), 403
+        
+    global PENDING_ADMIN_REQUESTS, APPROVED_ADMINS
+    admin_to_approve = None
+    
+    PENDING_ADMIN_REQUESTS = [req for req in PENDING_ADMIN_REQUESTS if req["id"] != admin_id]
+    
+    return jsonify({"success": True, "message": "Admin approved and role synced to auto-redirect portal."})
+
+@app.route('/admin/dashboard')
+def admin_dashboard():
+    # Check if user has admin privileges
+    if not session.get('is_admin') and not session.get('is_founder'):
+        return redirect(url_for('admin_register'))
+    return render_template('admin_dashboard.html')
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
