@@ -304,6 +304,12 @@ def founder_telemetry():
         "timestamp": time.strftime('%Y-%m-%d %H:%M:%S UTC', time.gmtime())
     })
 
+@app.route('/founder/telemetry')
+def founder_telemetry_page():
+    if not session.get('is_founder'):
+        return redirect(url_for('founder_gate'))
+    return render_template('founder_telemetry.html', active_page='founder')
+
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
