@@ -41,6 +41,34 @@ def generate():
             'message': 'Please enter a plot idea or select a character preset.'
         }), 400
 
+    from flask import render_template, request, redirect, url_for, session, jsonify
+import os
+
+# Set your secret Founder Passcode/PIN here (or use an environment variable)
+FOUNDER_PASSCODE = os.environ.get("FOUNDER_PASSCODE", "MAAE-FOUNDER-2026-SECURE")
+
+@app.route('/founder/gate', methods=['GET', 'POST'])
+def founder_gate():
+    if request.method == 'POST':
+        entered_pass = request.json.get('passcode') if request.is_json else request.form.get('passcode')
+        if entered_pass == FOUNDER_PASSCODE:
+            session['is_founder'] = True
+            return jsonify({"success": True, "redirect": url_for('founder_dashboard')})
+        else:
+            return jsonify({"success": False, "message": "Invalid Founder Security Key"})
+    return render_template('founder_gate.html')
+
+@app.route('/founder/dashboard')
+def founder_dashboard():
+    if not session.get('is_founder'):
+        return redirect(url_for('founder_gate'))
+    return render_template('founder_dashboard.html')
+
+@app.route('/founder/logout')
+def founder_logout():
+    session.pop('is_founder', None)
+    return redirect(url_for('founder_gate'))
+
     # Structured prompt template to lock in character dynamics and behaviors
     structured_content = (
         "You are the master comedy scriptwriter for MAAE CORE, a high-end African production suite. "
