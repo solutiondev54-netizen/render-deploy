@@ -242,12 +242,35 @@ def founder_approve_admin(admin_id):
     
     return jsonify({"success": True, "message": "Admin approved and role synced to auto-redirect portal."})
 
+
 @app.route('/admin/dashboard')
 def admin_dashboard():
     # Check if user has admin privileges
     if not session.get('is_admin') and not session.get('is_founder'):
         return redirect(url_for('admin_register'))
     return render_template('admin_dashboard.html')
+# In-memory community message feed storage
+COMMUNITY_FEED = [
+    {"user": "Mama Akos", "type": "text", "content": "Welcome to the MAAE community channel! Keep your scripts clean and respect the elders.", "time": "Just now"},
+    {"user": "Kofi Developer", "type": "text", "content": "The new Python pipeline is running blazing fast. Let's build!", "time": "2 mins ago"}
+]
+
+@app.route('/api/community/messages', methods=['GET', 'POST'])
+def handle_community_messages():
+    global COMMUNITY_FEED
+    if request.method == 'POST':
+        # Check if it's a JSON text post or a multipart form voice note
+        data = request.get_json(silent=True) or request.form
+        user = data.get('user', 'Founder')
+        msg_type = data.get('type', 'text')
+        content = data.get('content', '')
+        
+        if content:
+            new_msg = {"user": user, "type": msg_type, "content": content, "time": "Just now"}
+            COMMUNITY_FEED.append(new_msg)
+            return jsonify({"success": True, "message": new_msg})
+        return jsonify({"success": False, "message": "Empty message payload."}), 400
+    return jsonify({"success": True, "messages": COMMUNITY_FEED})
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
