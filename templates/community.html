@@ -18,15 +18,15 @@
     <!-- Chat Messages Stream Window -->
     <div id="chat-stream" style="height: 340px; overflow-y: auto; display: flex; flexDirection: column; gap: 8px; padding-right: 4px; margin-bottom: 10px;">
         
-        <!-- Sample Text Message with WhatsApp Double Checkmarks -->
-        <div style="display: flex; flex-direction: column; align-items: flex-end; margin-bottom: 4px;">
-            <div style="background: #005c4b; color: #e9edef; padding: 8px 12px; border-radius: 8px 0 8px 8px; max-width: 80%; font-size: 11px; word-break: break-word;">
-                How far blood! The security dragnet and node tracker are running live.
-                <div style="font-size: 8px; color: #79c7b2; text-align: right; margin-top: 2px; display: flex; align-items: center; justify-content: flex-end; gap: 3px;">
-                    10:37 AM <span style="color: #53bdeb; font-weight: bold;">✓✓</span>
-                </div>
-            </div>
+        <!-- Fixed Text Message Bubble Style -->
+<div style="display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 8px; width: 100%;">
+    <div style="background: #202c33; color: #e9edef; padding: 8px 12px; border-radius: 0 8px 8px 8px; max-width: 75%; font-size: 11px; word-wrap: break-word; line-height: 1.4;">
+        How far blood! The security dragnet and node tracker are running live.
+        <div style="font-size: 8px; color: #8696a0; text-align: right; margin-top: 3px; display: flex; align-items: center; justify-content: flex-end; gap: 3px;">
+            10:37 AM <span style="color: #53bdeb; font-weight: bold;">✓✓</span>
         </div>
+    </div>
+</div>
 
         <!-- Sample WhatsApp Voice Note Style with Waveform & Avatar -->
         <div style="display: flex; flex-direction: column; align-items: flex-end; margin-bottom: 4px;">
@@ -85,14 +85,19 @@
         
         const stream = document.getElementById('chat-stream');
         const msgDiv = document.createElement('div');
-        msgDiv.style = "display: flex; flex-direction: column; align-items: flex-end; margin-bottom: 4px;";
+        msgDiv.style = "display: flex; flex-direction: column; align-items: flex-end; margin-bottom: 8px; width: 100%;";
         msgDiv.innerHTML = `
-            <div style="background: #005c4b; color: #e9edef; padding: 8px 12px; border-radius: 8px 0 8px 8px; max-width: 80%; font-size: 11px; word-break: break-word;">
+            <div style="background: #005c4b; color: #e9edef; padding: 8px 12px; border-radius: 8px 0 8px 8px; max-width: 75%; font-size: 11px; word-wrap: break-word; line-height: 1.4;">
                 ${input.value}
-                <div style="font-size: 8px; color: #79c7b2; text-align: right; margin-top: 2px; display: flex; align-items: center; justify-content: flex-end; gap: 3px;">
+                <div style="font-size: 8px; color: #79c7b2; text-align: right; margin-top: 3px; display: flex; align-items: center; justify-content: flex-end; gap: 3px;">
                     Just now <span style="color: #53bdeb; font-weight: bold;">✓✓</span>
                 </div>
             </div>
+        `;
+        stream.appendChild(msgDiv);
+        input.value = '';
+        stream.scrollTop = stream.scrollHeight;
+    }
         `;
         stream.appendChild(msgDiv);
         input.value = '';
