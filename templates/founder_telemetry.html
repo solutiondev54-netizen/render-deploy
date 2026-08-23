@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Cyber Telemetry & IP Tracker | MAAE Ecosystem{% endblock %}
+{% block content %}
+<div style="max-width: 700px; margin: 15px auto; background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #f59e0b; border-radius: 12px; padding: 15px;">
+    
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <div>
+            <span style="color: #f59e0b; font-size: 9px; font-weight: 700; text-transform: uppercase;">🛰️ Advanced Surveillance Node</span>
+            <h2 style="color: #fff; font-size: 14px; margin: 2px 0 0 0;">IP Geolocation & Camera Telemetry</h2>
+        </div>
+        <a href="/founder/dashboard" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid #f59e0b; padding: 4px 10px; border-radius: 4px; font-size: 9px; font-weight: bold; text-decoration: none;">Back to Hub</a>
+    </div>
+
+    <!-- Telemetry Data Grid -->
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 12px;">
+        <div style="background: #0d1117; border: 1px solid #30363d; padding: 10px; border-radius: 6px;">
+            <span style="color: #9ca3af; font-size: 8px; text-transform: uppercase; display: block;">Target IP Address</span>
+            <span id="node-ip" style="color: #10b981; font-size: 12px; font-weight: bold; font-family: monospace;">Scanning...</span>
+        </div>
+        <div style="background: #0d1117; border: 1px solid #30363d; padding: 10px; border-radius: 6px;">
+            <span style="color: #9ca3af; font-size: 8px; text-transform: uppercase; display: block;">Geographic Coordinates</span>
+            <span id="node-coords" style="color: #f59e0b; font-size: 11px; font-weight: bold; font-family: monospace;">Acquiring...</span>
+        </div>
+    </div>
+
+    <!-- Live Map & Camera Simulation Window -->
+    <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 10px;">
+        
+        <!-- Map Node Box -->
+        <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 10px; height: 180px; display: flex; flex-direction: column; justify-content: space-between;">
+            <span style="color: #9ca3af; font-size: 8px; text-transform: uppercase;">Node Location Grid</span>
+            <div id="map-display" style="text-align: center; color: #f59e0b; font-size: 10px; font-family: monospace;">
+                📍 Node locked: <span id="city-country" style="color: #fff;">Resolving...</span>
+            </div>
+            <div style="font-size: 7px; color: #10b981; text-align: right;">SECURE ENCRYPTION ACTIVE</div>
+        </div>
+
+        <!-- Live Camera Stream Feed Simulation -->
+        <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 10px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;">
+            <div style="display: flex; justify-content: space-between;">
+                <span style="color: #9ca3af; font-size: 8px; text-transform: uppercase;">Face Telemetry Feed</span>
+                <span style="color: #ef4444; font-size: 8px; font-weight: bold;">● LIVE REC</span>
+            </div>
+            
+            <div style="display: flex; align-items: center; justify-content: center; flex: 1;">
+                <video id="webcam-preview" autoplay playsinline muted style="width: 100%; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #1f2937; filter: contrast(120%) sepia(30%);"></video>
+            </div>
+            
+            <span id="face-status" style="font-size: 7px; color: #f59e0b; text-align: center;">Target Face Matrix: Locked</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function loadTelemetry() {
+        try {
+            const res = await fetch('/api/founder/telemetry');
+            const data = await res.json();
+            if (data.success) {
+                document.getElementById('node-ip').innerText = data.ip;
+                document.getElementById('node-coords').innerText = `${data.lat}, ${data.lon}`;
+                document.getElementById('city-country').innerText = `${data.city}, ${data.country}`;
+            }
+        } catch (err) {
+            document.getElementById('node-ip').innerText = "Telemetry Error";
+        }
+    }
+
+    // Initialize local camera feed for face telemetry interface
+    async function initCameraFeed() {
+        try {
+            const video = document.getElementById('webcam-preview');
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+            video.srcObject = stream;
+        } catch (err) {
+            document.getElementById('face-status').innerText = "Camera Node Unavailable";
+        }
+    }
+
+    loadTelemetry();
+    initCameraFeed();
+</script>
+{% endblock %}
