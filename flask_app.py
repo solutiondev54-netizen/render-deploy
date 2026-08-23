@@ -272,6 +272,38 @@ def handle_community_messages():
         return jsonify({"success": False, "message": "Empty message payload."}), 400
     return jsonify({"success": True, "messages": COMMUNITY_FEED})
 
+import requests
+
+@app.route('/api/founder/telemetry', methods=['GET'])
+def founder_telemetry():
+    if not session.get('is_founder'):
+        return jsonify({"success": False, "message": "Unauthorized access restricted to founder node."}), 403
+    
+    # Get client real IP behind proxies if applicable
+    client_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+    if client_ip and ',' in client_ip:
+        client_ip = client_ip.split(',')[0].strip()
+        
+    # Fallback for local testing
+    if client_ip in ['127.0.0.1', 'localhost']:
+        geo_data = {"city": "Accra (Local Node)", "country": "Ghana", "lat": 5.6037, "lon": -0.1870, "query": "127.0.0.1"}
+    else:
+        try:
+            res = requests.get(f"http://ip-api.com/json/{client_ip}", timeout=3)
+            geo_data = res.json()
+        except Exception:
+            geo_data = {"city": "Unknown Grid", "country": "Global", "lat": 0.0, "lon": 0.0, "query": client_ip}
+            
+    return jsonify({
+        "success": True,
+        "ip": geo_data.get('query', client_ip),
+        "city": geo_data.get('city', 'Accra'),
+        "country": geo_data.get('country', 'Ghana'),
+        "lat": geo_data.get('lat', 5.6037),
+        "lon": geo_data.get('lon', -0.1870),
+        "timestamp": time.strftime('%Y-%m-%d %H:%M:%S UTC', time.gmtime())
+    })
+
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
