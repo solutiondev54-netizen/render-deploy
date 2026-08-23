@@ -5,22 +5,22 @@
 <div style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #30363d; border-radius: 10px; padding: 12px; margin-bottom: 10px;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
         <span style="color: #f2c94c; font-size: 10px; font-weight: 700; text-transform: uppercase;">Version Vault Tracker</span>
-        <button type="button" onclick="saveToVault()" style="background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; padding: 3px 8px; border-radius: 4px; font-size: 9px; font-weight: bold; cursor: pointer;">💾 Save to Vault</button>
+        <button type="button" id="save-vault-btn" style="background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; padding: 3px 8px; border-radius: 4px; font-size: 9px; font-weight: bold; cursor: pointer;">💾 Save to Vault</button>
     </div>
 
     <label style="color: #f2c94c; font-size: 10px; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 6px;">Studio Directive Manifest</label>
     <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px;">
-        <button type="button" onclick="setPreset('Mama Akos')" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 6px 10px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Mama Akos</button>
-        <button type="button" onclick="setPreset('Kofi')" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 6px 10px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Kofi</button>
-        <button type="button" onclick="setPreset('Papa Kofi')" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 6px 10px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Papa Kofi</button>
-        <button type="button" onclick="setPreset('Akos Kofi\'s sister')" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 6px 10px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Akos Kofi's sister</button>
+        <button type="button" class="preset-btn" data-character="Mama Akos" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 6px 10px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Mama Akos</button>
+        <button type="button" class="preset-btn" data-character="Kofi" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 6px 10px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Kofi</button>
+        <button type="button" class="preset-btn" data-character="Papa Kofi" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 6px 10px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Papa Kofi</button>
+        <button type="button" class="preset-btn" data-character="Akos Kofi's sister" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 6px 10px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer;">Akos Kofi's sister</button>
     </div>
 
     <label style="color: #f2c94c; font-size: 10px; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 6px;">Emotion & Sentiment Tags</label>
     <div style="display: flex; gap: 6px;">
-        <button type="button" onclick="addTag('😂 [Laughs]')" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 4px 8px; border-radius: 4px; font-size: 9px; cursor: pointer;">😂 [Laughs]</button>
-        <button type="button" onclick="addTag('❄️ [Sighs]')" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 4px 8px; border-radius: 4px; font-size: 9px; cursor: pointer;">❄️ [Sighs]</button>
-        <button type="button" onclick="addTag('🔥 [Whisper]')" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 4px 8px; border-radius: 4px; font-size: 9px; cursor: pointer;">🔥 [Whisper]</button>
+        <button type="button" class="tag-btn" data-tag="😂 [Laughs]" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 4px 8px; border-radius: 4px; font-size: 9px; cursor: pointer;">😂 [Laughs]</button>
+        <button type="button" class="tag-btn" data-tag="❄️ [Sighs]" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 4px 8px; border-radius: 4px; font-size: 9px; cursor: pointer;">❄️ [Sighs]</button>
+        <button type="button" class="tag-btn" data-tag="🔥 [Whisper]" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 4px 8px; border-radius: 4px; font-size: 9px; cursor: pointer;">🔥 [Whisper]</button>
     </div>
 </div>
 
@@ -31,12 +31,12 @@
 
     <label style="color: #f2c94c; font-size: 10px; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 6px;">Select Dialect Style</label>
     <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px;">
-        <button type="button" onclick="setDialect('Classic Family')" style="background: #1f2937; color: #f2c94c; border: 1px solid #f2c94c; padding: 6px 10px; border-radius: 6px; font-size: 10px; cursor: pointer;">Classic Family</button>
-        <button type="button" onclick="setDialect('Accra Pidgin')" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 6px 10px; border-radius: 6px; font-size: 10px; cursor: pointer;">Accra Pidgin</button>
-        <button type="button" onclick="setDialect('Lagos Street')" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 6px 10px; border-radius: 6px; font-size: 10px; cursor: pointer;">Lagos Street</button>
+        <button type="button" class="dialect-btn" data-dialect="Classic Family" style="background: #1f2937; color: #f2c94c; border: 1px solid #f2c94c; padding: 6px 10px; border-radius: 6px; font-size: 10px; cursor: pointer;">Classic Family</button>
+        <button type="button" class="dialect-btn" data-dialect="Accra Pidgin" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 6px 10px; border-radius: 6px; font-size: 10px; cursor: pointer;">Accra Pidgin</button>
+        <button type="button" class="dialect-btn" data-dialect="Lagos Street" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 6px 10px; border-radius: 6px; font-size: 10px; cursor: pointer;">Lagos Street</button>
     </div>
 
-    <button type="button" onclick="generateScript()" style="width: 100%; padding: 10px; background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; border: none; border-radius: 6px; font-weight: bold; font-size: 10px; text-transform: uppercase; cursor: pointer;">Script Engine Matrix</button>
+    <button type="button" id="generate-script-btn" style="width: 100%; padding: 10px; background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; border: none; border-radius: 6px; font-weight: bold; font-size: 10px; text-transform: uppercase; cursor: pointer;">Script Engine Matrix</button>
 </div>
 
 <!-- Script Workspace -->
@@ -45,21 +45,21 @@
         <label style="color: #f2c94c; font-size: 10px; font-weight: 700; text-transform: uppercase;">Script Workspace</label>
         <span id="word-count" style="color: #9ca3af; font-size: 9px;">0 words (~0 sec)</span>
     </div>
-    <textarea id="workspace" oninput="updateWordCount()" placeholder="Script Workspace output stream..." style="width: 100%; height: 110px; background: #0d1117; border: 1px solid #30363d; color: #f3f4f6; padding: 8px; border-radius: 6px; box-sizing: border-box; font-size: 11px;"></textarea>
+    <textarea id="workspace" placeholder="Script Workspace output stream..." style="width: 100%; height: 110px; background: #0d1117; border: 1px solid #30363d; color: #f3f4f6; padding: 8px; border-radius: 6px; box-sizing: border-box; font-size: 11px;"></textarea>
 </div>
 
 <!-- Background Soundscape Vibe & Ambient FX -->
 <div style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #30363d; border-radius: 10px; padding: 12px; margin-bottom: 10px;">
     <label style="color: #f2c94c; font-size: 10px; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 6px;">Background Soundscape Vibe</label>
     <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px;">
-        <button type="button" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 5px 8px; border-radius: 6px; font-size: 9px;">🚫 None</button>
-        <button type="button" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 5px 8px; border-radius: 6px; font-size: 9px;">🛒 Accra Market</button>
-        <button type="button" style="background: #1f2937; color: #f2c94c; border: 1px solid #f2c94c; padding: 5px 8px; border-radius: 6px; font-size: 9px;">🚗 Lagos Traffic</button>
-        <button type="button" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 5px 8px; border-radius: 6px; font-size: 9px;">🎶 Chill Highlife</button>
+        <button type="button" class="vibe-btn" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 5px 8px; border-radius: 6px; font-size: 9px; cursor: pointer;">🚫 None</button>
+        <button type="button" class="vibe-btn" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 5px 8px; border-radius: 6px; font-size: 9px; cursor: pointer;">🛒 Accra Market</button>
+        <button type="button" class="vibe-btn" style="background: #1f2937; color: #f2c94c; border: 1px solid #f2c94c; padding: 5px 8px; border-radius: 6px; font-size: 9px; cursor: pointer;">🚗 Lagos Traffic</button>
+        <button type="button" class="vibe-btn" style="background: #1f2937; color: #f3f4f6; border: 1px solid #30363d; padding: 5px 8px; border-radius: 6px; font-size: 9px; cursor: pointer;">🎶 Chill Highlife</button>
     </div>
 
     <label style="color: #f2c94c; font-size: 10px; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 4px;">Ambient FX Volume: <span id="vol-val">50%</span></label>
-    <input type="range" min="0" max="100" value="50" oninput="document.getElementById('vol-val').innerText = this.value + '%'" style="width: 100%; accent-color: #f59e0b;">
+    <input type="range" id="vol-slider" min="0" max="100" value="50" style="width: 100%; accent-color: #f59e0b;">
 </div>
 
 <!-- Visual Studio Feed & Direct Social Hub -->
@@ -72,34 +72,97 @@
         Awaiting Script Generation... Click below to render visual.
     </div>
 
-    <button type="button" onclick="renderVisual()" style="width: 100%; padding: 10px; background: #10b981; color: #000; border: none; border-radius: 6px; font-weight: bold; font-size: 10px; text-transform: uppercase; cursor: pointer; margin-bottom: 12px;">Render Video / Cinematic Visual</button>
+    <button type="button" id="render-visual-btn" style="width: 100%; padding: 10px; background: #10b981; color: #000; border: none; border-radius: 6px; font-weight: bold; font-size: 10px; text-transform: uppercase; cursor: pointer; margin-bottom: 12px;">Render Video / Cinematic Visual</button>
 
     <label style="color: #f2c94c; font-size: 10px; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 6px; text-align: left;">Direct Social Broadcast Hub</label>
     <div style="display: flex; gap: 6px;">
-        <button type="button" style="flex: 1; padding: 6px; background: #000; color: #fff; border: 1px solid #30363d; border-radius: 6px; font-size: 9px; font-weight: bold;">🎵 TikTok</button>
-        <button type="button" style="flex: 1; padding: 6px; background: #db2777; color: #fff; border: none; border-radius: 6px; font-size: 9px; font-weight: bold;">📸 Reels</button>
-        <button type="button" style="flex: 1; padding: 6px; background: #dc2626; color: #fff; border: none; border-radius: 6px; font-size: 9px; font-weight: bold;">▶️ Shorts</button>
+        <button type="button" style="flex: 1; padding: 6px; background: #000; color: #fff; border: 1px solid #30363d; border-radius: 6px; font-size: 9px; font-weight: bold; cursor: pointer;">🎵 TikTok</button>
+        <button type="button" style="flex: 1; padding: 6px; background: #db2777; color: #fff; border: none; border-radius: 6px; font-size: 9px; font-weight: bold; cursor: pointer;">📸 Reels</button>
+        <button type="button" style="flex: 1; padding: 6px; background: #dc2626; color: #fff; border: none; border-radius: 6px; font-size: 9px; font-weight: bold; cursor: pointer;">▶️ Shorts</button>
     </div>
 </div>
 
 <script>
     let activeDialect = "Classic Family";
 
-    function setPreset(character) {
-        const input = document.getElementById('prompt-input');
-        input.value = `Focus scene heavily on character ${character}: `;
-        input.focus();
-    }
+    document.addEventListener('DOMContentLoaded', () => {
+        // Preset Character Buttons
+        document.querySelectorAll('.preset-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const character = btn.getAttribute('data-character');
+                const input = document.getElementById('prompt-input');
+                input.value = `Focus scene heavily on character ${character}: `;
+                input.focus();
+            });
+        });
 
-    function addTag(tag) {
+        // Emotion & Sentiment Tags
+        document.querySelectorAll('.tag-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tag = btn.getAttribute('data-tag');
+                const workspace = document.getElementById('workspace');
+                workspace.value += ` ${tag} `;
+                updateWordCount();
+            });
+        });
+
+        // Dialect Selector Buttons
+        document.querySelectorAll('.dialect-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.dialect-btn').forEach(b => {
+                    b.style.color = "#f3f4f6";
+                    b.style.borderColor = "#30363d";
+                });
+                btn.style.color = "#f2c94c";
+                btn.style.borderColor = "#f2c94c";
+                activeDialect = btn.getAttribute('data-dialect');
+            });
+        });
+
+        // Soundscape Vibe Buttons
+        document.querySelectorAll('.vibe-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.vibe-btn').forEach(b => {
+                    b.style.color = "#f3f4f6";
+                    b.style.borderColor = "#30363d";
+                });
+                btn.style.color = "#f2c94c";
+                btn.style.borderColor = "#f2c94c";
+            });
+        });
+
+        // Volume Slider Output Handler
+        const volSlider = document.getElementById('vol-slider');
+        if (volSlider) {
+            volSlider.addEventListener('input', (e) => {
+                document.getElementById('vol-val').innerText = e.target.value + '%';
+            });
+        }
+
+        // Workspace Typing Counter
         const workspace = document.getElementById('workspace');
-        workspace.value += ` ${tag} `;
-        updateWordCount();
-    }
+        if (workspace) {
+            workspace.addEventListener('input', updateWordCount);
+        }
 
-    function setDialect(dialect) {
-        activeDialect = dialect;
-    }
+        // Script Generation Button Binding
+        const generateBtn = document.getElementById('generate-script-btn');
+        if (generateBtn) {
+            generateBtn.addEventListener('click', generateScript);
+        }
+
+        // Save to Vault Button Binding
+        const saveVaultBtn = document.getElementById('save-vault-btn');
+        if (saveVaultBtn) {
+            saveVaultBtn.addEventListener('click', saveToVault);
+        }
+
+        // Render Visual Button Binding
+        const renderVisualBtn = document.getElementById('render-visual-btn');
+        if (renderVisualBtn) {
+            renderVisualBtn.addEventListener('click', renderVisual);
+        }
+    });
 
     function updateWordCount() {
         const text = document.getElementById('workspace').value;
