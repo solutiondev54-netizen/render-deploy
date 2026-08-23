@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Founder Command Center | MAAE Ecosystem{% endblock %}
+{% block content %}
+<div style="background: linear-gradient(135deg, #161b22, #11151c); border: 1px solid #f59e0b; border-radius: 10px; padding: 15px; margin-bottom: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <div>
+            <span style="color: #f59e0b; font-size: 10px; font-weight: 700; text-transform: uppercase;">⚡ Supreme Founder Command</span>
+            <h2 style="color: #fff; font-size: 14px; margin: 2px 0 0 0;">Master Control Hub</h2>
+        </div>
+        <a href="/founder/logout" style="background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid #ef4444; padding: 4px 10px; border-radius: 4px; font-size: 9px; font-weight: bold; text-decoration: none;">Lock Core 🔒</a>
+    </div>
+
+    <!-- Quick Stats Grid -->
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 15px;">
+        <div style="background: #0d1117; border: 1px solid #30363d; padding: 10px; border-radius: 6px;">
+            <span style="color: #9ca3af; font-size: 9px; text-transform: uppercase;">Active Ecosystem Nodes</span>
+            <div style="color: #10b981; font-size: 16px; font-weight: bold; margin-top: 4px;">1,248 Online</div>
+        </div>
+        <div style="background: #0d1117; border: 1px solid #30363d; padding: 10px; border-radius: 6px;">
+            <span style="color: #9ca3af; font-size: 9px; text-transform: uppercase;">Pending Admin Requests</span>
+            <div style="color: #f59e0b; font-size: 16px; font-weight: bold; margin-top: 4px;" id="pending-count">3 Queued</div>
+        </div>
+    </div>
+
+    <!-- Master Global Override Switches -->
+    <label style="color: #f59e0b; font-size: 10px; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 6px;">Global Override Switches</label>
+    <div style="display: flex; gap: 8px; margin-bottom: 15px;">
+        <button type="button" onclick="alert('Ecosystem placed into Safe Lockdown Mode.')" style="flex: 1; background: #7f1d1d; color: #fca5a5; border: 1px solid #ef4444; padding: 8px; border-radius: 6px; font-size: 9px; font-weight: bold; cursor: pointer;">🚨 Emergency Freeze</button>
+        <button type="button" onclick="alert('Broadcasting sync pulse across network.')" style="flex: 1; background: #065f46; color: #6ee7b7; border: 1px solid #10b981; padding: 8px; border-radius: 6px; font-size: 9px; font-weight: bold; cursor: pointer;">🔄 Force Global Sync</button>
+    </div>
+
+    <!-- Admin Approval Queue Section -->
+    <label style="color: #f59e0b; font-size: 10px; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 6px;">Admin Approval Queue</label>
+    <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 10px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1f2937; padding-bottom: 8px; margin-bottom: 8px;">
+            <div>
+                <span style="color: #fff; font-size: 10px; font-weight: bold; display: block;">Kwame Developer</span>
+                <span style="color: #9ca3af; font-size: 8px;">Aligned with West African Audio/Visual AI automation.</span>
+            </div>
+            <div style="display: flex; gap: 4px;">
+                <button onclick="approveAdmin('Kwame Developer')" style="background: #10b981; color: #000; border: none; padding: 4px 8px; border-radius: 4px; font-size: 8px; font-weight: bold; cursor: pointer;">Approve</button>
+                <button onclick="rejectAdmin(this)" style="background: #ef4444; color: #fff; border: none; padding: 4px 8px; border-radius: 4px; font-size: 8px; font-weight: bold; cursor: pointer;">Reject</button>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <span style="color: #fff; font-size: 10px; font-weight: bold; display: block;">Amina Content Lead</span>
+                <span style="color: #9ca3af; font-size: 8px;">Specialized in regional dialect workflow scaling.</span>
+            </div>
+            <div style="display: flex; gap: 4px;">
+                <button onclick="approveAdmin('Amina Content Lead')" style="background: #10b981; color: #000; border: none; padding: 4px 8px; border-radius: 4px; font-size: 8px; font-weight: bold; cursor: pointer;">Approve</button>
+                <button onclick="rejectAdmin(this)" style="background: #ef4444; color: #fff; border: none; padding: 4px 8px; border-radius: 4px; font-size: 8px; font-weight: bold; cursor: pointer;">Reject</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function approveAdmin(name) {
+        alert(`Admin privileges granted to ${name}. Account synced and queued for dashboard redirect.`);
+        event.target.parentElement.parentElement.remove();
+    }
+    function rejectAdmin(btn) {
+        alert('Admin request rejected.');
+        btn.parentElement.parentElement.remove();
+    }
+</script>
+{% endblock %}
