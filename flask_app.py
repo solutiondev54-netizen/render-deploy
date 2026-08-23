@@ -279,44 +279,57 @@ def founder_telemetry():
     if not session.get('is_founder'):
         return jsonify({"success": False, "message": "Unauthorized access restricted to founder node."}), 403
     
-    # Extract client network headers and proxy footprints
     client_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
     if client_ip and ',' in client_ip:
         client_ip = client_ip.split(',')[0].strip()
         
     user_agent = request.headers.get('User-Agent', 'Unknown Target Device')
-    
-    # Receive stealth fingerprint data if posted silently by the frontend
     stealth_data = request.get_json(silent=True) or {}
     canvas_hash = stealth_data.get('canvas_hash', 'Standard Matrix')
     
-    # Deep IP & ISP Geolocation Resolution
+    # Global IP Intelligence & Geocoding Resolution
     if client_ip in ['127.0.0.1', 'localhost']:
+        # Local development placeholder
         geo_data = {
-            "country": "Ghana", 
-            "city": "Accra", 
-            "regionName": "Greater Accra", 
-            "isp": "Local Secure Core", 
-            "lat": 5.6037, 
-            "lon": -0.1870, 
+            "country": "Ghana",
+            "city": "Accra",
+            "regionName": "Greater Accra",
+            "isp": "Local Development Node",
+            "lat": 5.6037,
+            "lon": -0.1870,
             "query": "127.0.0.1"
         }
     else:
         try:
+            # Query global carrier/ISP registry for international coordinates
             res = requests.get(f"http://ip-api.com/json/{client_ip}?fields=status,country,regionName,city,isp,lat,lon,query", timeout=3)
             geo_data = res.json()
         except Exception:
-            geo_data = {"country": "Global", "city": "Target Grid", "regionName": "Unknown", "isp": "Unknown Gateway", "lat": 0.0, "lon": 0.0, "query": client_ip}
+            geo_data = {
+                "country": "Global Node", 
+                "city": "Unknown Vector", 
+                "regionName": "International Gateway", 
+                "isp": "Anonymous Transit", 
+                "lat": 0.0, 
+                "lon": 0.0, 
+                "query": client_ip
+            }
             
+    # Universal community and street landmark mapping for any country
+    country_name = geo_data.get('country', 'Global')
+    city_name = geo_data.get('city', 'Metropolitan Center')
+    region_name = geo_data.get('regionName', 'District Zone')
+    isp_name = geo_data.get('isp', 'Global ISP Network')
+    
     return jsonify({
         "success": True,
         "ip": geo_data.get('query', client_ip),
-        "country": geo_data.get('country', 'Ghana'),
-        "city": geo_data.get('city', 'Accra'),
-        "community": f"ISP Exchange: {geo_data.get('isp', 'Direct Node')}",
-        "landmark": f"Region: {geo_data.get('regionName', 'Accra Central')}",
-        "lat": geo_data.get('lat', 5.6037),
-        "lon": geo_data.get('lon', -0.1870),
+        "country": country_name,
+        "city": city_name,
+        "community": f"District: {region_name} ({isp_name})",
+        "landmark": f"Active Sector Grid: {city_name} Central Exchange",
+        "lat": geo_data.get('lat', 0.0),
+        "lon": geo_data.get('lon', 0.0),
         "hardware_fingerprint": canvas_hash[:16] + "..." if canvas_hash else "Clean Node",
         "device_profile": user_agent[:45] + "...",
         "timestamp": time.strftime('%Y-%m-%d %H:%M:%S UTC', time.gmtime())
