@@ -1,0 +1,142 @@
+/* ==========================================================================
+   MAAE ECOSYSTEM - GLOBAL DESIGN SYSTEM
+   ========================================================================== */
+
+:root {
+    --bg-main: #070d12;
+    --bg-surface: #0b141a;
+    --bg-surface-glass: rgba(11, 20, 26, 0.85);
+    --bg-card: rgba(17, 27, 33, 0.75);
+    --bg-card-hover: rgba(22, 35, 43, 0.85);
+    
+    --border-subtle: rgba(32, 44, 51, 0.8);
+    --border-glow: rgba(0, 168, 132, 0.4);
+    
+    --accent-emerald: #00a884;
+    --accent-emerald-hover: #008f72;
+    --accent-blue: #53bdeb;
+    --accent-glow: rgba(0, 168, 132, 0.25);
+    
+    --text-primary: #e9edef;
+    --text-secondary: #aebac1;
+    --text-muted: #8696a0;
+    
+    --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Global Reset */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-main) !important;
+    color: var(--text-primary) !important;
+    font-family: var(--font-stack) !important;
+    margin: 0;
+    padding: 0;
+}
+
+/* Layout Containers */
+.maae-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 12px;
+}
+
+/* Glassmorphic Cards */
+.maae-card {
+    background: var(--bg-card) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: 16px !important;
+    padding: 16px !important;
+    margin-bottom: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Navigation Header */
+.maae-navbar {
+    background: var(--bg-surface-glass);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 12px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.maae-nav-tabs {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.maae-nav-link {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.maae-nav-link.active, .maae-nav-link:hover {
+    background: var(--accent-emerald);
+    color: #fff;
+    border-color: var(--accent-emerald);
+}
+
+/* Buttons */
+.btn-maae {
+    background: linear-gradient(135deg, var(--accent-emerald) 0%, var(--accent-emerald-hover) 100%);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 4px 16px rgba(0, 168, 132, 0.35);
+}
+
+/* Inputs */
+.maae-input {
+    background: rgba(11, 20, 26, 0.9);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13px;
+    width: 100%;
+    outline: none;
+}
+
+.maae-input:focus {
+    border-color: var(--accent-emerald);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* Footer */
+.maae-footer {
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border-subtle);
+    padding: 15px 12px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
