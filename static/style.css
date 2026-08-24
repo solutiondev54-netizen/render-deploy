@@ -169,3 +169,31 @@ body {
     50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px var(--accent-emerald); }
     100% { transform: scale(0.95); opacity: 0.8; }
 }
+
+/* Autonomous Agent Log Stream Terminal */
+.maae-terminal-box {
+    background: #04080b;
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 12px;
+    font-family: monospace;
+    font-size: 10px;
+    color: var(--text-secondary);
+    max-height: 120px;
+    overflow-y: auto;
+    margin-top: 12px;
+}
+
+.log-entry {
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.log-time {
+    color: var(--text-muted);
+}
+
+.log-action {
+    color: var(--accent-emerald);
+}
