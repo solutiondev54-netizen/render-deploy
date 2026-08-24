@@ -233,3 +233,32 @@ body {
     width: 100%;
     box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
 }
+
+/* Secure Session Vault Tokenizer */
+.maae-vault-panel {
+    background: rgba(0, 168, 132, 0.05);
+    border: 1px solid rgba(0, 168, 132, 0.2);
+    border-radius: 12px;
+    padding: 14px;
+    margin-top: 16px;
+}
+
+.maae-vault-btn {
+    background: transparent;
+    border: 1px solid var(--accent-emerald);
+    color: var(--accent-emerald);
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 8px;
+    transition: all 0.2s ease;
+}
+
+.maae-vault-btn:hover {
+    background: var(--accent-emerald);
+    color: #fff;
+}
