@@ -90,14 +90,30 @@
     </div> <!-- Closing main outer card -->
 
     <script>
-        function approveAdmin(name) {
-            alert('Admin privileges granted to ' + name + '. Account synced and queued for dashboard redirect.');
-            event.target.parentElement.parentElement.remove();
+    
+function processAdmin(adminId, action) {
+    const url = action === 'approve' 
+        ? `/founder/api/approve-admin/${adminId}` 
+        : `/founder/api/reject-admin/${adminId}`;
+
+    fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success) {
+            alert(data.message);
+            location.reload();
+        } else {
+            alert('Action failed: ' + data.message);
         }
-        function rejectAdmin(btn) {
-            alert('Admin request rejected.');
-            btn.parentElement.parentElement.remove();
-        }
+    })
+    .catch(err => {
+        alert('Network error connecting to ecosystem core.');
+    });
+  }
+        
         function triggerBroadcast() {
             const msg = document.getElementById('broadcastMsg').value;
             if(!msg) {
