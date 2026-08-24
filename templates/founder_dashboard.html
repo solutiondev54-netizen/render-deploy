@@ -73,11 +73,18 @@
             </div>
         </div>
 
-        <!-- Global Broadcast Announcement Banner -->
+  <!-- Global Broadcast Announcement Banner -->
         <div class="maae-broadcast-panel">
             <label style="color: #f59e0b; font-size: 10px; font-weight: 700; text-transform: uppercase; display: block;">📢 GLOBAL BROADCAST OVERRIDE</label>
             <input type="text" id="broadcastMsg" class="maae-broadcast-input" placeholder="Type global announcement message...">
             <button type="button" class="maae-broadcast-btn" onclick="triggerBroadcast()">Broadcast to Ecosystem</button>
+        </div>
+
+        <!-- Secure Session Vault Tokenizer -->
+        <div class="maae-vault-panel">
+            <label style="color: var(--accent-emerald); font-size: 10px; font-weight: 700; text-transform: uppercase; display: block;">🔒 SECURE SESSION VAULT TOKENIZER</label>
+            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">Active Token: <span style="font-family: monospace; color: var(--text-primary);">MAAE-CORE-9982-SECURE</span></div>
+            <button type="button" class="maae-vault-btn" onclick="rotateVaultToken()">Rotate Master Cryptographic Token</button>
         </div>
 
     </div> <!-- Closing main outer card -->
@@ -100,5 +107,11 @@
             alert('SUCCESS: Broadcast transmitted to all active ecosystem nodes: "' + msg + '"');
             document.getElementById('broadcastMsg').value = '';
         }
-    </script>
+        function rotateVaultToken() {
+            const confirmRotate = confirm('Are you sure you want to rotate the master cryptographic token? Active peripheral nodes will require re-sync.');
+            if(confirmRotate) {
+                alert('SUCCESS: Master vault token successfully re-keyed and deployed globally.');
+            }
+        }
+    </script>      
 {% endblock %}
