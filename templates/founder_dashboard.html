@@ -18,17 +18,17 @@
     </div>
     <div style="color: var(--accent-emerald); font-family: monospace;">LATENCY: 14MS | REGION: ACCRA-CORE</div>
 </div>
-    <!-- Quick Stats Grid -->
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 15px;">
-        <div style="background: #0d1117; border: 1px solid #30363d; padding: 10px; border-radius: 6px;">
-            <span style="color: #9ca3af; font-size: 9px; text-transform: uppercase;">Active Ecosystem Nodes</span>
-            <div style="color: #10b981; font-size: 16px; font-weight: bold; margin-top: 4px;">1,248 Online</div>
-        </div>
-        <div style="background: #0d1117; border: 1px solid #30363d; padding: 10px; border-radius: 6px;">
-            <span style="color: #9ca3af; font-size: 9px; text-transform: uppercase;">Pending Admin Requests</span>
-            <div style="color: #f59e0b; font-size: 16px; font-weight: bold; margin-top: 4px;" id="pending-count">3 Queued</div>
-        </div>
+ <!-- Quick Stats Grid -->
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 15px;">
+    <div style="background: #0d1117; border: 1px solid #30363d; padding: 10px; border-radius: 6px;">
+        <span style="color: #9ca3af; font-size: 9px; text-transform: uppercase;">Active Ecosystem Nodes</span>
+        <span style="color: #10b981; font-size: 16px; font-weight: bold; margin-top: 4px; display: block;">{{ active_nodes }} Online</span>
     </div>
+    <div style="background: #0d1117; border: 1px solid #30363d; padding: 10px; border-radius: 6px;">
+        <span style="color: #9ca3af; font-size: 9px; text-transform: uppercase;">Pending Admin Requests</span>
+        <span style="color: #f59e0b; font-size: 16px; font-weight: bold; margin-top: 4px; display: block;">{{ pending_requests }} Queued</span>
+    </div>
+</div>
 
     <!-- Master Global Override Switches -->
     <label style="color: #f59e0b; font-size: 10px; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 6px;">Global Override Switches</label>
