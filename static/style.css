@@ -1,397 +1,182 @@
-/* --- Global Studio Foundation --- */
-body {
-    background-color: #0d1117; /* Deep Midnight */
-    color: #E2E8F0;
-    font-family: 'Poppins', system-ui, sans-serif;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    margin: 0;
+/* ==========================================================================
+   MAAE ECOSYSTEM - ELITE GLOBAL DESIGN SYSTEM (Dark Glassmorphic UI)
+   ========================================================================== */
+
+:root {
+    --bg-main: #070d12;
+    --bg-surface: #0b141a;
+    --bg-surface-glass: rgba(11, 20, 26, 0.85);
+    --bg-card: rgba(17, 27, 33, 0.75);
+    --bg-card-hover: rgba(22, 35, 43, 0.85);
+    
+    --border-subtle: rgba(32, 44, 51, 0.8);
+    --border-glow: rgba(0, 168, 132, 0.4);
+    
+    --accent-emerald: #00a884;
+    --accent-emerald-hover: #008f72;
+    --accent-blue: #53bdeb;
+    --accent-glow: rgba(0, 168, 132, 0.25);
+    
+    --text-primary: #e9edef;
+    --text-secondary: #aebac1;
+    --text-muted: #8696a0;
+    
+    --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* --- Premium Studio Outer Frame Decoration --- */
-.container {
-    width: 100%;
-    max-width: 650px;
-    background: linear-gradient(135deg, rgba(20, 25, 35, 0.95), rgba(13, 17, 23, 0.98));
-    border: 2px solid transparent;
-    background-image: linear-gradient(rgba(20, 25, 35, 0.95), rgba(13, 17, 23, 0.98)),
-                      linear-gradient(135deg, #6366f1, #a055f7, #f59e0b, #ec4899);
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-    padding: 30px;
-    border-radius: 28px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
-}
-
-/* --- Premium Typography for MAAE Core --- */
-h1 {
-    font-family: 'Inter', sans-serif;
-    font-size: 3rem;
-    font-weight: 800;
-    letter-spacing: -0.05em;
-    background: linear-gradient(90deg, #FFFFFF, #94A3B8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin: 0 0 5px 0;
-    text-transform: uppercase;
-}
-
-.subtitle {
-    font-size: 0.85rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: #6366f1;
-    margin-bottom: 30px;
-    font-weight: 600;
-}
-
-/* --- Token Pills & Dialect Selectors (Unique Color per Button) --- */
-.token-bank, #dialect-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.tag-token, .dialect-pill {
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(135deg, #1E293B, #0F172A);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #F1F5F9;
-    padding: 10px 20px;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Shimmer overlay effect */
-.tag-token::after, .dialect-pill::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: 0.5s;
-}
-
-.tag-token:hover::after, .dialect-pill:hover::after {
-    left: 100%;
-}
-
-/* Individual Distinct Advanced Hover Colors for Each Token/Pill Button */
-.tag-token:nth-child(1):hover, .dialect-pill:nth-child(1):hover { 
-    background: linear-gradient(135deg, #f59e0b, #ea580c); 
-    border-color: #fbbf24;
-    transform: translateY(-3px); 
-    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6); 
-}
-
-.tag-token:nth-child(2):hover, .dialect-pill:nth-child(2):hover { 
-    background: linear-gradient(135deg, #10b981, #047857); 
-    border-color: #34d399;
-    transform: translateY(-3px); 
-    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.6); 
-}
-
-.tag-token:nth-child(3):hover, .dialect-pill:nth-child(3):hover { 
-    background: linear-gradient(135deg, #ef4444, #b91c1c); 
-    border-color: #f87171;
-    transform: translateY(-3px); 
-    box-shadow: 0 8px 25px rgba(239, 68, 68, 0.6); 
-}
-
-.tag-token:nth-child(4):hover, .dialect-pill:nth-child(4):hover { 
-    background: linear-gradient(135deg, #8b5cf6, #6d28d9); 
-    border-color: #a78bfa;
-    transform: translateY(-3px); 
-    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6); 
-}
-
-/* Fallback for extra buttons */
-.tag-token:hover, .dialect-pill:hover {
-    background: linear-gradient(135deg, #6366f1, #4f46e5);
-    border-color: #818cf8;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
-}
-
-.tag-token:active, .dialect-pill:active {
-    transform: translateY(-1px);
-}
-
-/* --- Input Field --- */
-#prompt-input {
-    width: 100%;
-    background: #111827;
-    border: 2px solid #374151;
-    padding: 14px 18px;
-    border-radius: 16px;
-    color: white;
-    margin-bottom: 15px;
+/* Global Reset & Typography */
+* {
     box-sizing: border-box;
-    font-size: 1.05rem;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-#prompt-input:focus {
-    border-color: #6366f1;
-    box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
-    outline: none;
+body {
+    background-color: var(--bg-main) !important;
+    color: var(--text-primary) !important;
+    font-family: var(--font-stack) !important;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
-/* --- Hero Action Buttons (Distinct Electric Indigo-Purple Gradient) --- */
-#script-btn {
-    position: relative;
-    width: 100%;
-    background: linear-gradient(135deg, #4f46e5, #9333ea, #db2777);
-    background-size: 200% auto;
-    border: none;
-    border-radius: 14px;
-    padding: 15px;
-    color: white;
-    font-weight: 700;
-    font-size: 0.95rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: 0.4s ease;
-    box-shadow: 0 4px 20px rgba(147, 51, 234, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    margin-top: 10px;
+/* Elite Scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+    background: #202c33;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-emerald);
 }
 
-#script-btn:hover {
-    background-position: right center;
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(147, 51, 234, 0.7), 0 0 20px rgba(219, 39, 119, 0.4);
+/* Glassmorphic Cards & Containers */
+.maae-card, .dashboard-card, .vault-box, .studio-panel, .commons-container {
+    background: var(--bg-card) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: 16px !important;
+    padding: 20px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5) !important;
+    transition: var(--transition-smooth);
 }
 
-#script-btn:active {
-    transform: translateY(-1px);
-}
-
-#script-btn:disabled {
-    background: #374151;
-    cursor: not-allowed;
-    box-shadow: none;
-    transform: none;
-}
-
-/* --- Premium Workspace (Script Box Decorated Border) --- */
-#workspace {
-    border: 3px solid transparent;
-    background-image: linear-gradient(rgba(15, 20, 30, 0.95), rgba(15, 20, 30, 0.95)),
-                      linear-gradient(135deg, #6366f1, #a055f7, #ec4899);
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-    padding: 22px;
-    border-radius: 20px;
-    margin-top: 25px;
-    max-height: 400px;
-    overflow-y: auto;
-    color: #E2E8F0;
-    font-family: 'Courier Prime', monospace;
-    box-shadow: inset 0 4px 15px rgba(0,0,0,0.5), 0 10px 30px rgba(0,0,0,0.4);
-}
-
-/* --- Video Render Section Box Decoration --- */
-.container-box {
-    background: rgba(15, 20, 30, 0.95);
-    border: 3px solid transparent;
-    background-image: linear-gradient(rgba(15, 20, 30, 0.95), rgba(15, 20, 30, 0.95)),
-                      linear-gradient(135deg, #ec4899, #a055f7, #6366f1);
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-    padding: 22px;
-    border-radius: 20px;
-    margin-top: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-}
-
-/* --- Render Video Action Button (Distinct Pink-Violet Gradient) --- */
-.render-video-btn {
-    width: 100%;
-    background: linear-gradient(135deg, #db2777, #7c3aed);
-    background-size: 200% auto;
-    border: none;
-    border-radius: 14px;
-    padding: 15px;
-    color: white;
-    font-weight: 700;
-    font-size: 0.95rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: 0.4s ease;
-    box-shadow: 0 4px 20px rgba(219, 39, 119, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.render-video-btn:hover {
-    background-position: right center;
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(219, 39, 119, 0.6), 0 0 20px rgba(124, 58, 237, 0.4);
-    filter: brightness(1.1);
-}
-
-.render-video-btn:active {
-    transform: translateY(-1px);
-}
-
-/* --- Mama Akos Widget Elite Polish --- */
-#mama-akos-trigger {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-#mama-akos-trigger:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 30px rgba(245, 158, 11, 0.5);
-}
-
-#mama-akos-modal {
-    animation: slideUpModal 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes slideUpModal {
-    from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-/* --- Advanced Studio Additions Styles --- */
-.feature-section-title {
-    font-size: 0.75rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: #94a3b8;
-    margin: 20px 0 10px 5px;
-    font-weight: 600;
-}
-
-.soundscape-grid, .subtitle-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.soundscape-pill, .subtitle-pill {
-    position: relative;
-    background: linear-gradient(135deg, #1e293b, #0f172a);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #f1f5f9;
-    padding: 8px 16px;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 11px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.soundscape-pill.active, .subtitle-pill.active {
-    background: linear-gradient(135deg, #6366f1, #a055f7);
-    border-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-}
-
-/* --- Saved Vault / History Styles --- */
-.vault-trigger-btn {
-    width: 100%;
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-    border: none;
-    border-radius: 14px;
-    padding: 12px;
-    color: white;
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-    margin-top: 15px;
-}
-
-.vault-trigger-btn:hover {
+.maae-card:hover, .dashboard-card:hover {
+    background: var(--bg-card-hover) !important;
+    border-color: var(--border-glow) !important;
+    box-shadow: 0 12px 48px var(--accent-glow) !important;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
 }
 
-/* Vault Modal Screen */
-#script-vault-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(13, 17, 23, 0.85);
-    backdrop-filter: blur(8px);
-    z-index: 1000;
+/* Modern Primary Buttons */
+.btn-maae-primary {
+    background: linear-gradient(135deg, var(--accent-emerald) 0%, var(--accent-emerald-hover) 100%) !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    border-radius: 10px !important;
+    padding: 10px 20px !important;
+    box-shadow: 0 4px 16px rgba(0, 168, 132, 0.35);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
+    gap: 8px;
 }
 
-.vault-content-box {
-    background: #161b22;
-    border: 2px solid #30363d;
-    width: 90%;
-    max-width: 500px;
-    max-height: 80vh;
+.btn-maae-primary:hover {
+    opacity: 0.95;
+    box-shadow: 0 6px 20px rgba(0, 168, 132, 0.5);
+    transform: translateY(-1px);
+}
+
+.btn-maae-primary:active {
+    transform: translateY(0);
+}
+
+/* Secondary / Outline Buttons */
+.btn-maae-outline {
+    background: var(--bg-surface-glass) !important;
+    border: 1px solid var(--border-subtle) !important;
+    color: var(--text-primary) !important;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+    border-radius: 10px !important;
+    padding: 9px 18px !important;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.btn-maae-outline:hover {
+    background: #111b21 !important;
+    border-color: var(--accent-emerald) !important;
+    color: var(--accent-emerald) !important;
+}
+
+/* Polished Inputs & Textareas */
+.maae-input, input[type="text"], input[type="search"], textarea {
+    background: rgba(11, 20, 26, 0.9) !important;
+    border: 1px solid var(--border-subtle) !important;
+    color: var(--text-primary) !important;
+    border-radius: 10px !important;
+    padding: 12px 16px !important;
+    font-size: 13px !important;
+    outline: none !important;
+    transition: var(--transition-smooth);
+    width: 100%;
+}
+
+.maae-input:focus, input[type="text"]:focus, textarea:focus {
+    border-color: var(--accent-emerald) !important;
+    box-shadow: 0 0 0 3px var(--accent-glow) !important;
+    background: #0b141a !important;
+}
+
+/* Status Badges & Pills */
+.maae-badge {
+    background: rgba(0, 168, 132, 0.15);
+    color: var(--accent-emerald);
+    border: 1px solid rgba(0, 168, 132, 0.3);
+    padding: 4px 10px;
     border-radius: 20px;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.8);
-}
-
-.vault-header {
-    display: flex;
-    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: inline-flex;
     align-items: center;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #30363d;
-    padding-bottom: 10px;
+    gap: 6px;
 }
 
-.vault-list {
-    overflow-y: auto;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.maae-badge-blue {
+    background: rgba(83, 187, 235, 0.15);
+    color: var(--accent-blue);
+    border: 1px solid rgba(83, 187, 235, 0.3);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
-.vault-item {
-    background: #21262d;
-    padding: 12px 15px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.05);
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.vault-item:hover {
-    border-color: #6366f1;
-    background: #30363d;
-}
-
-.vault-close-btn {
-    background: #ef4444;
-    border: none;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
+/* Ecosystem Navigation / Header Bar Polish */
+.maae-navbar {
+    background: var(--bg-surface-glass) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 12px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
