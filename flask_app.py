@@ -65,7 +65,22 @@ def founder_gate():
 def founder_dashboard():
     if not session.get('is_founder'):
         return redirect(url_for('founder_gate'))
-    return render_template('founder_dashboard.html', active_page='founder')
+    
+    # REAL BACKEND: Query your actual database models here
+    # active_nodes_count = User.query.filter_by(status='active').count()
+    # pending_admins = User.query.filter_by(role='pending_approval').all()
+    
+    # For now, using dynamic variables you can plug your models into:
+    active_nodes_count = 1  # Replace with actual DB query when ready
+    pending_admins = []     # Replace with actual DB query for pending users
+    
+    return render_template(
+        'founder_dashboard.html', 
+        active_nodes=active_nodes_count, 
+        pending_requests=len(pending_admins),
+        pending_admins=pending_admins,
+        active_page='founder'
+    )
 
 @app.route('/founder/logout')
 def founder_logout():
