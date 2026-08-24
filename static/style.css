@@ -197,3 +197,39 @@ body {
 .log-action {
     color: var(--accent-emerald);
 }
+
+/* Global Broadcast Announcement Banner */
+.maae-broadcast-panel {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.03) 100%);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 12px;
+    padding: 14px;
+    margin-top: 16px;
+}
+
+.maae-broadcast-input {
+    background: rgba(11, 20, 26, 0.9);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: var(--text-primary);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 12px;
+    width: 100%;
+    outline: none;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.maae-broadcast-btn {
+    background: #f59e0b;
+    border: none;
+    color: #070d12;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+}
