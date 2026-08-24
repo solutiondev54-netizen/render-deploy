@@ -9,27 +9,38 @@
     --bg-card: rgba(17, 27, 33, 0.75);
     --bg-card-hover: rgba(22, 35, 43, 0.85);
     
-    --border-subtle: rgba(32, 44, 51, 0.8);
-    --border-glow: rgba(0, 168, 132, 0.4);
-    
-    --accent-emerald: #00a884;
-    --accent-emerald-hover: #008f72;
-    --accent-blue: #53bdeb;
-    --accent-glow: rgba(0, 168, 132, 0.25);
-    
-    --text-primary: #e9edef;
-    --text-secondary: #aebac1;
-    --text-muted: #8696a0;
-    
-    --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
+    <body class="maae-body">
 
-/* Global Reset & Typography */
-* {
-    box-sizing: border-box;
-}
+    <!-- Global Navigation Header -->
+    <header class="maae-navbar">
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">🌍</span>
+            <div>
+                <h1 style="font-size: 13px; font-weight: 800; margin: 0;">MAAE ECOSYSTEM</h1>
+                <div style="font-size: 8px; color: var(--accent-emerald); letter-spacing: 1px; text-transform: uppercase;">Next-Century Core</div>
+            </div>
+        </div>
+        <nav style="display: flex; gap: 6px; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; padding-bottom: 4px; scrollbar-width: none;">
+            <a href="{{ url_for('studio') }}" class="btn-maae-outline">Studio</a>
+            <a href="{{ url_for('vault') }}" class="btn-maae-outline">Vault</a>
+            <a href="{{ url_for('community') }}" class="btn-maae-outline">Community</a>
+            <a href="/founder/dashboard" class="btn-maae-outline">Dashboard</a>
+        </nav>
+    </header>
 
+    <!-- Main Content Container -->
+    <main style="width: 100%; max-width: 480px; margin: 0 auto; padding: 12px; box-sizing: border-box;">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Global Footer -->
+    <footer style="background: var(--bg-surface); border-top: 1px solid var(--border-subtle); padding: 15px 12px; text-align: center; font-size: 11px;">
+        <div style="max-width: 480px; margin: 0 auto;">
+            <p style="margin: 0; color: var(--text-primary); font-weight: bold;">MAAE PRIME STUDIO | Next-Century Autonomous Media</p>
+            <p style="margin: 4px 0 0; color: var(--text-muted);">&copy; 2026 MAAE Ecosystem Inc. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
 body {
     background-color: var(--bg-main) !important;
     color: var(--text-primary) !important;
