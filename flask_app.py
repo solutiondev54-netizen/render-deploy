@@ -36,6 +36,11 @@ class BroadcastMessage(db.Model):
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
     active = db.Column(db.Boolean, default=True)
 
+class SystemToken(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    token_string = db.Column(db.String(100), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
 # Auto-create tables on startup if they don't exist
 with app.app_context():
     db.create_all()
@@ -399,6 +404,26 @@ def founder_broadcast():
     db.session.commit()
     
     return jsonify({'success': True, 'message': 'SUCCESS: Broadcast transmitted across ecosystem nodes.'})
+
+@app.route('/founder/api/rotate-token', methods=['POST'])
+def rotate_token():
+    if not session.get('is_founder'):
+        return jsonify({'success': False, 'message': 'Unauthorized command access.'}), 403
+    
+    # Generate a fresh secure token string
+    import random
+    new_token_val = f"MAAE-CORE-{random.randint(1000, 9999)}-SECURE"
+    
+    # Save to database
+    new_token = SystemToken(token_string=new_token_val)
+    db.session.add(new_token)
+    db.session.commit()
+    
+    return jsonify({
+        'success': True, 
+        'message': 'Master cryptographic token rotated successfully.', 
+        'token': new_token_val
+    })
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
