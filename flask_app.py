@@ -5,6 +5,7 @@ import io
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
+from google import genai
 from datetime import datetime
 import os
 
