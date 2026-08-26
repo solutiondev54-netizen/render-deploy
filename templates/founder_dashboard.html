@@ -165,5 +165,27 @@ function triggerBroadcast() {
         showSystemToast('Network error transmitting broadcast.', true);
     });
 }
+    function rotateMasterToken() {
+    fetch('/founder/api/rotate-token', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success) {
+            showSystemToast(data.message, false);
+            // Update the token display on the page instantly
+            const tokenElement = document.querySelector('.secure-vault-token'); // Update selector to match your element class/id
+            if(tokenElement) {
+                tokenElement.textContent = `Active Token: ${data.token}`;
+            }
+        } else {
+            showSystemToast('Token rotation failed: ' + data.message, true);
+        }
+    })
+    .catch(err => {
+        showSystemToast('Network error rotating master token.', true);
+    });
+ }
    </script>      
 {% endblock %}
