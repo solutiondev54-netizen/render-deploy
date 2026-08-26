@@ -148,5 +148,32 @@
         }, 300);
     }, 4000);
  }
+function triggerBroadcast() {
+    const msgInput = document.getElementById('broadcastMsg');
+    const msg = msgInput.value.trim();
+    
+    if(!msg) {
+        showSystemToast('Please enter a broadcast message.', true);
+        return;
+    }
+
+    fetch('/founder/api/broadcast', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success) {
+            showSystemToast(data.message, false);
+            msgInput.value = '';
+        } else {
+            showSystemToast('Broadcast failed: ' + data.message, true);
+        }
+    })
+    .catch(err => {
+        showSystemToast('Network error transmitting broadcast.', true);
+    });
+}
    </script>      
 {% endblock %}
