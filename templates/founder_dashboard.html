@@ -115,16 +115,6 @@
         showSystemToast('Network error connecting to ecosystem core.', true);
     });
  }
-        
-    function triggerBroadcast() {
-    const msg = document.getElementById('broadcastMsg').value;
-    if(!msg) {
-        showSystemToast('Please enter a broadcast message.', true);
-        return;
-    }
-    showSystemToast('SUCCESS: Broadcast transmitted to all active ecosystem nodes.');
-    document.getElementById('broadcastMsg').value = '';
-    }
 
  function showSystemToast(message, isError = false) {
     const toast = document.getElementById('maae-toast');
