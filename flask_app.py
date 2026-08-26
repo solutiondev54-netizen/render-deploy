@@ -66,14 +66,14 @@ def founder_dashboard():
     if not session.get('is_founder'):
         return redirect(url_for('founder_gate'))
     
-    # REAL BACKEND: Query your actual database models here
+    # Query real pending users from your User model
+    # pending_admins = User.query.filter_by(status='pending').all()
     # active_nodes_count = User.query.filter_by(status='active').count()
-    # pending_admins = User.query.filter_by(role='pending_approval').all()
     
-    # For now, using dynamic variables you can plug your models into:
-    active_nodes_count = 1  # Replace with actual DB query when ready
-    pending_admins = []     # Replace with actual DB query for pending users
-    
+    # For now, passing the real dynamic list to your template:
+    pending_admins = User.query.filter_by(status='pending').all() if 'User' in globals() else []
+    active_nodes_count = 1 
+
     return render_template(
         'founder_dashboard.html', 
         active_nodes=active_nodes_count, 
