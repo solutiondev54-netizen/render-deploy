@@ -131,5 +131,20 @@ function processAdmin(adminId, action) {
                 alert('SUCCESS: Master vault token successfully re-keyed and deployed globally.');
             }
         }
+
+ function showSystemToast(message, isError = false) {
+    const toast = document.getElementById('maae-toast');
+    const msgSpan = document.getElementById('maae-toast-message');
+    
+    msgSpan.textContent = message;
+    toast.style.borderColor = isError ? '#ef4444' : '#10b981';
+    msgSpan.style.color = isError ? '#ef4444' : '#10b981';
+    
+    toast.style.display = 'block';
+    
+    setTimeout(() => {
+        toast.style.display = 'none';
+    }, 4000);
+        }
    </script>      
 {% endblock %}
