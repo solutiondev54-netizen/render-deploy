@@ -93,7 +93,7 @@
 
     <script>
     
-function processAdmin(adminId, action) {
+ function processAdmin(adminId, action) {
     const url = action === 'approve' 
         ? `/founder/api/approve-admin/${adminId}` 
         : `/founder/api/reject-admin/${adminId}`;
@@ -105,32 +105,26 @@ function processAdmin(adminId, action) {
     .then(res => res.json())
     .then(data => {
         if(data.success) {
-            alert(data.message);
-            location.reload();
+            showSystemToast(data.message, false); // Green success toast
+            setTimeout(() => location.reload(), 1500);
         } else {
-            alert('Action failed: ' + data.message);
+            showSystemToast('Action failed: ' + data.message, true); // Red error toast
         }
     })
     .catch(err => {
-        alert('Network error connecting to ecosystem core.');
+        showSystemToast('Network error connecting to ecosystem core.', true);
     });
-  }
+ }
         
-        function triggerBroadcast() {
-            const msg = document.getElementById('broadcastMsg').value;
-            if(!msg) {
-                alert('Please enter a broadcast message.');
-                return;
-            }
-            alert('SUCCESS: Broadcast transmitted to all active ecosystem nodes: "' + msg + '"');
-            document.getElementById('broadcastMsg').value = '';
-        }
-        function rotateVaultToken() {
-            const confirmRotate = confirm('Are you sure you want to rotate the master cryptographic token? Active peripheral nodes will require re-sync.');
-            if(confirmRotate) {
-                alert('SUCCESS: Master vault token successfully re-keyed and deployed globally.');
-            }
-        }
+    function triggerBroadcast() {
+    const msg = document.getElementById('broadcastMsg').value;
+    if(!msg) {
+        showSystemToast('Please enter a broadcast message.', true);
+        return;
+    }
+    showSystemToast('SUCCESS: Broadcast transmitted to all active ecosystem nodes.');
+    document.getElementById('broadcastMsg').value = '';
+    }
 
  function showSystemToast(message, isError = false) {
     const toast = document.getElementById('maae-toast');
@@ -146,5 +140,11 @@ function processAdmin(adminId, action) {
         toast.style.display = 'none';
     }, 4000);
         }
+    function rotateVaultToken() {
+    // For confirmation, you can keep a simple check or trigger a toast warning
+    if(confirm('Are you sure you want to rotate the master cryptographic token?')) {
+        showSystemToast('SUCCESS: Master vault token successfully re-keyed.');
+    }
+ }
    </script>      
 {% endblock %}
