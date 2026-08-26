@@ -86,6 +86,11 @@
 
     </div> <!-- Closing main outer card -->
 
+    <!-- Custom Professional Toast Notification Box -->
+<div id="maae-toast" style="display: none; position: fixed; bottom: 20px; right: 20px; background: #0d1117; border: 1px solid #f59e0b; color: #fff; padding: 12px 18px; border-radius: 6px; font-size: 11px; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,0.5); font-family: monospace;">
+    <span id="maae-toast-message" style="color: #f59e0b; font-weight: bold;">System Notification</span>
+</div>
+
     <script>
     
 function processAdmin(adminId, action) {
@@ -126,5 +131,5 @@ function processAdmin(adminId, action) {
                 alert('SUCCESS: Master vault token successfully re-keyed and deployed globally.');
             }
         }
-    </script>      
+   </script>      
 {% endblock %}
