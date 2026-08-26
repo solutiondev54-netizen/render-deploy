@@ -356,6 +356,24 @@ def founder_telemetry_page():
         return redirect(url_for('founder_gate'))
     return render_template('founder_telemetry.html', active_page='founder')
 
+@app.route('/founder/api/broadcast', methods=['POST'])
+def founder_broadcast():
+    if not session.get('is_founder'):
+        return jsonify({'success': False, 'message': 'Unauthorized command access.'}), 403
+    
+    data = request.get_json()
+    msg_text = data.get('message', '').strip()
+    
+    if not msg_text:
+        return jsonify({'success': False, 'message': 'Broadcast message cannot be empty.'}), 400
+    
+    # Save to database
+    new_broadcast = BroadcastMessage(message=msg_text, active=True)
+    db.session.add(new_broadcast)
+    db.session.commit()
+    
+    return jsonify({'success': True, 'message': 'SUCCESS: Broadcast transmitted across ecosystem nodes.'})
+
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
