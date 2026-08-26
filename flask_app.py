@@ -3,16 +3,40 @@ import time
 import base64
 import io
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session
-from flask_cors import CORS
-from google import genai
-from google.genai import types
-import gc
-
-# Enable garbage collection to keep container memory clean
-gc.enable()
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+import os
 
 app = Flask(__name__)
 CORS(app)
+
+# Database Setup (SQLite for light storage, PostgreSQL compatible)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///maae_ecosystem.db')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+# ==========================================
+# DATABASE MODELS
+# ==========================================
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    role = db.Column(db.String(50), default='Admin')
+    status = db.Column(db.String(20), default='pending') # 'pending', 'active', 'rejected'
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+class BroadcastMessage(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    message = db.Column(db.String(500), nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    active = db.Column(db.Boolean, default=True)
+
+# Auto-create tables on startup if they don't exist
+with app.app_context():
+    db.create_all()
 
 # Secure Session Secret Key
 app.secret_key = os.environ.get("SECRET_KEY", "maae-ecosystem-supreme-key-2026")
