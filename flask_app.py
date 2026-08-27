@@ -45,6 +45,12 @@ class SystemToken(db.Model):
 with app.app_context():
     db.create_all()
 
+class AgentLog(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    agent_name = db.Column(db.String(50), nullable=False)
+    action_text = db.Column(db.String(255), nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
 # Secure Session Secret Key
 app.secret_key = os.environ.get("SECRET_KEY", "maae-ecosystem-supreme-key-2026")
 
@@ -423,6 +429,26 @@ def rotate_token():
         'success': True, 
         'message': 'Master cryptographic token rotated successfully.', 
         'token': new_token_val
+    })
+
+@app.route('/founder/api/agent-logs')
+def get_agent_logs():
+    if not session.get('is_founder'):
+        return jsonify({'success': False, 'message': 'Unauthorized'}), 403
+    
+    # Fetch recent logs from database
+    logs = AgentLog.query.order_by(AgentLog.timestamp.desc()).limit(5).all()
+    
+    # If empty, seed a live initial log
+    if not logs:
+        initial_log = AgentLog(agent_name="NODE_CORE", action_text="Ecosystem database bridge established.")
+        db.session.add(initial_log)
+        db.session.commit()
+        logs = [initial_log]
+        
+    return jsonify({
+        'success': True,
+        'logs': [{'agent': l.agent_name, 'action': l.action_text, 'time': l.timestamp.strftime('%H:%M:%S')} for l in logs]
     })
 
 if __name__ == '__main__':
