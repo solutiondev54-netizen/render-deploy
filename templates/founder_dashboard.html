@@ -165,7 +165,7 @@ function triggerBroadcast() {
         showSystemToast('Network error transmitting broadcast.', true);
     });
 }
-    function rotateMasterToken() {
+ function rotateMasterToken() {
     fetch('/founder/api/rotate-token', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
@@ -187,5 +187,23 @@ function triggerBroadcast() {
         showSystemToast('Network error rotating master token.', true);
     });
  }
+
+function fetchAgentLogs() {
+    fetch('/founder/api/agent-logs')
+    .then(res => res.json())
+    .then(data => {
+        if(data.success && data.logs) {
+            const logContainer = document.querySelector('.autonomous-agent-log-stream'); // Match your log box container selector
+            if(logContainer) {
+                logContainer.innerHTML = data.logs.map(l => 
+                    `[${l.time}] <span style="color: #00ffcc;">${l.agent}</span>: ${l.action}`
+                ).join('<br>');
+            }
+        }
+    }).catch(err => console.error("Log stream sync error"));
+}
+
+// Poll live logs every 5 seconds
+setInterval(fetchAgentLogs, 5000);
    </script>      
 {% endblock %}
