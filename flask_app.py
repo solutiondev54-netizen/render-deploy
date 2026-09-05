@@ -451,6 +451,35 @@ def get_agent_logs():
         'logs': [{'agent': l.agent_name, 'action': l.action_text, 'time': l.timestamp.strftime('%H:%M:%S')} for l in logs]
     })
 
+class StudioAsset(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    prompt = db.Column(db.String(500), nullable=False)
+    status = db.Column(db.String(50), default='Processing')
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+@app.route('/founder/api/studio/generate-clip', methods=['POST'])
+def generate_studio_clip():
+    if not session.get('is_founder'):
+        return jsonify({'success': False, 'message': 'Unauthorized command access.'}), 403
+    
+    data = request.get_json()
+    prompt_text = data.get('prompt', '').strip()
+    
+    if not prompt_text:
+        return jsonify({'success': False, 'message': 'Prompt cannot be empty.'}), 400
+    
+    # Save the generation task to your production database
+    new_asset = StudioAsset(prompt=prompt_text, status='Queued in Veo Pipeline')
+    db.session.add(new_asset)
+    db.session.commit()
+    
+    return jsonify({
+        'success': True,
+        'message': f'Studio clip successfully initialized for: "{prompt_text}"',
+        'asset_id': new_asset.id,
+        'status': 'Processing'
+    })
+
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
