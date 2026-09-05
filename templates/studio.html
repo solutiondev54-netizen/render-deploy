@@ -221,5 +221,38 @@
             visualBox.innerHTML = "Visual pipeline offline.";
         }
     }
+
+function runScriptEngineMatrix() {
+    const promptInput = document.getElementById('plot-prompt-input');
+    const outputWorkspace = document.getElementById('script-workspace-output');
+    const prompt = promptInput.value;
+    
+    if(!prompt) {
+        alert('Please enter a plot idea or prompt.');
+        return;
+    }
+    
+    outputWorkspace.value = 'Compiling script engine matrix across nodes...';
+    
+    fetch('/founder/api/studio/generate-clip', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+            prompt: prompt,
+            dialect: 'Accra Pidgin' // You can capture selected dialect dynamically here
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success) {
+            outputWorkspace.value = data.output_script;
+        } else {
+            outputWorkspace.value = 'Error compiling script matrix.';
+        }
+    })
+    .catch(err => {
+        outputWorkspace.value = 'Network connection error during matrix sync.';
+    });
+}
 </script>
 {% endblock %}
